@@ -7,10 +7,12 @@
 package projetweb.modeles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +28,51 @@ public class Abonnement implements Serializable {
     private String nom;
     private String duree;
     private int prix;
+    @OneToMany(mappedBy="abonnement")
+    private ArrayList<Utilisateur> utilisateurs;
+
+    public Abonnement() {
+    }
+
+    public Abonnement(String nom, String duree, int prix) {
+        this.nom = nom;
+        this.duree = duree;
+        this.prix = prix;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDuree() {
+        return duree;
+    }
+
+    public void setDuree(String duree) {
+        this.duree = duree;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public ArrayList<Utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(ArrayList<Utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+    
+    
 
     public Long getId() {
         return id;
