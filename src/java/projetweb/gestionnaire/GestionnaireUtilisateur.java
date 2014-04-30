@@ -22,9 +22,7 @@ public class GestionnaireUtilisateur {
 
     @PersistenceContext
     private EntityManager em;
-
-
-    
+   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("John", "Lennon", "jlennon","mdp");  
         creeUtilisateur("Paul", "Mac Cartney", "pmc","mdp");  
@@ -44,9 +42,5 @@ public class GestionnaireUtilisateur {
         Query q = em.createQuery("select u from Utilisateur u");  
         return q.getResultList();  
     }  
-     
-         // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
     
 }

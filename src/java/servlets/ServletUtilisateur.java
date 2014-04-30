@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
 import projetweb.modeles.Utilisateur;
 
@@ -22,6 +23,7 @@ import projetweb.modeles.Utilisateur;
  * @author Nicolas
  */
 public class ServletUtilisateur extends HttpServlet {
+
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
 
@@ -37,24 +39,23 @@ public class ServletUtilisateur extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        String forwardTo = "";
+        String message = "";
+
+        //Object connecte = null;
+        HttpSession session = request.getSession();
+        gestionnaireUtilisateur.creerUtilisateursDeTest();
         Collection<Utilisateur> liste = gestionnaireUtilisateur.getAllUsers();
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletUtilisateur</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            //out.println(liste);
-            out.println("<h1>Servlet ServletUtilisateur at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setAttribute("listeDesUsers", liste);
+        forwardTo = "index.jsp";
+        message = "Liste des utilisateurs";
+
+        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
+
+        dp.forward(request, response);
     }
 
-    
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
