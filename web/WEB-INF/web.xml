@@ -4,9 +4,17 @@
         <servlet-name>ServletUtilisateur</servlet-name>
         <servlet-class>servlets.ServletUtilisateur</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletMorceau</servlet-name>
+        <servlet-class>servlets.ServletMorceau</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUtilisateur</servlet-name>
         <url-pattern>/ServletUtilisateur</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletMorceau</servlet-name>
+        <url-pattern>/ServletMorceau</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
