@@ -7,64 +7,49 @@
 package projetweb.modeles;
 
 import java.io.Serializable;
-import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Nicolas
  */
 @Entity
-public class Artiste implements Serializable {
+public class Abonnement implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
+    
     private String nom;
-    private String prenom;
-    private String groupe;
-    @ManyToMany
-    @JoinTable(name = "MORCEAU_ARTISTE",
-            joinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ARTISTE_PK", referencedColumnName = "id")})
-    private Set<Morceau> morceau;
-    
-    
-    
-    public int getId() {
+    private String duree;
+    private int prix;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }  
-
+    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Artiste)) {
+        if (!(object instanceof Abonnement)) {
             return false;
         }
-        Artiste other = (Artiste) object;
-        if (this.id != other.id) {
+        Abonnement other = (Abonnement) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -72,7 +57,7 @@ public class Artiste implements Serializable {
 
     @Override
     public String toString() {
-        return "projetweb.modeles.Artiste[ id=" + id + " ]";
+        return "projetweb.modeles.Abonnement[ id=" + id + " ]";
     }
     
 }

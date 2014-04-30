@@ -7,10 +7,14 @@
 package projetweb.modeles;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -22,6 +26,14 @@ public class Instrument implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    @ManyToMany
+    @JoinTable(name = "MORCEAU_INSTRUMENT",
+            joinColumns = {
+                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
+    private Set<Morceau> morceau;
 
     public int getId() {
         return id;

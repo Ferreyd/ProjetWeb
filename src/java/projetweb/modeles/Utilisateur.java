@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +23,11 @@ public class Utilisateur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    private String nom;
+    private String prenom;
+    @OneToOne
+    private Abonnement abonnement;
 
     public int getId() {
         return id;
