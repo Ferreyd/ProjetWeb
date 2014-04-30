@@ -49,14 +49,16 @@ public class Morceau implements Serializable {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
-    private Set<Artiste> instruments;
+    private Set<Instrument> instruments;
     
     @OneToOne
     private Album album;
     
     @OneToMany(mappedBy = "morceau")
-    private ArrayList<Piste> pistes;   
-    private String style;
+    private ArrayList<Piste> pistes;  
+    
+    @OneToOne
+    private Genre genre;
     private int annee;
     
 

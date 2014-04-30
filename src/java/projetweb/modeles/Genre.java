@@ -7,34 +7,27 @@
 package projetweb.modeles;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import javax.persistence.OneToMany;
 
 /**
  *
- * @author Nicolas
+ * @author Jeje
  */
 @Entity
-public class Instrument implements Serializable {
+public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nom;
-
-    @ManyToMany
-    @JoinTable(name = "MORCEAU_INSTRUMENT",
-            joinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
-    private Set<Morceau> morceau;
+    @OneToMany(mappedBy = "genre")
+    private ArrayList<Morceau> morceaux;
+    
 
     public int getId() {
         return id;
@@ -44,14 +37,6 @@ public class Instrument implements Serializable {
         this.id = id;
     }
 
-    
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
     @Override
     public int hashCode() {
         int hash = 0;
@@ -62,10 +47,10 @@ public class Instrument implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Instrument)) {
+        if (!(object instanceof Genre)) {
             return false;
         }
-        Instrument other = (Instrument) object;
+        Genre other = (Genre) object;
         if (this.id != other.id) {
             return false;
         }
@@ -74,7 +59,7 @@ public class Instrument implements Serializable {
 
     @Override
     public String toString() {
-        return "projetweb.modeles.Instrument[ id=" + id + " ]";
+        return "projetweb.modeles.Genre[ id=" + id + " ]";
     }
     
 }
