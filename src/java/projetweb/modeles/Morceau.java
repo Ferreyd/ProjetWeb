@@ -54,15 +54,9 @@ public class Morceau implements Serializable {
     @OneToOne
     private Album album;
     
-    @ManyToOne
-    private ArrayList<Piste> pistes;
-    
-    
-    
-    
-    
-    
-    private Enum style;
+    @OneToMany(mappedBy = "morceau")
+    private ArrayList<Piste> pistes;   
+    private String style;
     private int annee;
     
 
