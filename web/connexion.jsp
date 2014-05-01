@@ -12,14 +12,14 @@
         <title></title>
     </head>
     <body>
-
+        <h1>${message}</h1>
         <div class="login">
             <h2>Veuillez entrez vos identifiants de connexion ci dessous :</h2>
             <form role="form" action="ServletUtilisateur" method="post" >
                 <label for="log">Login</label>
                 <input class="form-control"placeholder="Login" type="text" name="log">
                 <label for="pass">Mot de passe</label>
-                <input class="form-control"placeholder="Mot de passe" type="text" name="pass"><br/>    
+                <input class="form-control"placeholder="Mot de passe" type="password" name="pass"><br/>    
                 <input type="hidden" name="action" value="checkConnexion">    
                 <input type="submit" class="btn btn-primary" name="submit" value="Connexion">
             </form>

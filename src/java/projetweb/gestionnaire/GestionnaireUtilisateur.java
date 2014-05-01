@@ -33,6 +33,7 @@ public class GestionnaireUtilisateur {
 
     public Utilisateur creeUtilisateur(String nom, String prenom, String login, String mdp) {
         Utilisateur u = new Utilisateur(nom, prenom, login, mdp);
+        u.setAbonnement(getAbonnementParNom("gratuit"));
         em.persist(u);
         return u;
     }
@@ -73,6 +74,11 @@ public class GestionnaireUtilisateur {
 
     }
 
+     public Abonnement getAbonnementParNom(String nom) {
+        Query q = em.createQuery("select a from Abonnement a where a.nom = '"+nom+"'");
+        return (Abonnement)q.getResultList().get(0);
+    }
+    
     public Collection<Abonnement> getAllAbonnement() {
         Query q = em.createQuery("select a from Abonnement a");
         return q.getResultList();

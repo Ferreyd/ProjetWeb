@@ -75,10 +75,10 @@ public class ServletUtilisateur extends HttpServlet {
                 //boolean existe = true;
 
                 if (existe) {
-                   
+
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
-                    session.setAttribute("abonnementUtilisateur", gestionnaireUtilisateur.getAbonnementUtilisateur(request.getParameter("log")).getNom());                  
+                    session.setAttribute("abonnementUtilisateur", gestionnaireUtilisateur.getAbonnementUtilisateur(request.getParameter("log")).getNom());
                     session.setAttribute("connecte", "OK");
                     //connecte = true;
                     message = "Connexion reussie";
@@ -86,18 +86,25 @@ public class ServletUtilisateur extends HttpServlet {
                     forwardTo = "index.jsp?action=ok";
                 } else {
                     session.setAttribute("connecte", "KO");
-                    message = "Connexion failed";
+                    message = "Vos identifiants de connexions ne sont pas correcte";
                     forwardTo = "index.jsp?action=ko";
                 }
             } else if (action.equals("inscription")) { //On l'inscrit et il est automatiquement redirigé vers le site
-                gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
-                session.setAttribute("login", request.getParameter("log"));
-                session.setAttribute("mdp", request.getParameter("pass"));
                 
-                session.setAttribute("connecte", "OK");              
-                message = "Connexion reussie";
+                if (gestionnaireUtilisateur.chercherParLogin(request.getParameter("log")).isEmpty()) {
+                    
+                    gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
+                    session.setAttribute("login", request.getParameter("log"));
+                    session.setAttribute("mdp", request.getParameter("pass"));
+                    
+                    session.setAttribute("connecte", "OK");
+                    message = "Connexion reussie";
+                    forwardTo = "index.jsp?action=ok";
+                } else {
+                    message = "Login déjà utilisé, veuillez en prendre un autre";
+                    forwardTo = "index.jsp?action=ko";
+                }
 
-                forwardTo = "index.jsp?action=ok";
             } else if (action.equals("deconnexion")) {
                 session.setAttribute("connecte", "KO");
                 //connecte = null;
@@ -108,7 +115,7 @@ public class ServletUtilisateur extends HttpServlet {
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !\n";
             }
             if (action.equals("changerAbo")) {
-                Utilisateur u = gestionnaireUtilisateur.ajouteAbonnement((String)session.getAttribute("login"), (String)request.getParameter("choixAbo"));
+                Utilisateur u = gestionnaireUtilisateur.ajouteAbonnement((String) session.getAttribute("login"), (String) request.getParameter("choixAbo"));
                 session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
                 message = "Abonnement ajoute";
                 forwardTo = "index.jsp?action=ok";

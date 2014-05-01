@@ -27,7 +27,7 @@
         <form action="ServletUtilisateur" method="post">
             <select name="choixAbo">
                 <c:forEach var="a" items="${abonnements}">
-                    <option value="${a.id}">Prix : ${a.nom},Duree : ${a.duree}</option>
+                    <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
                 </c:forEach>
             </select>
             <input type="hidden" name="action" value="changerAbo">
