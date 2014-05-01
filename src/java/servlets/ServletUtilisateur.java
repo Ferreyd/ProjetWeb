@@ -11,6 +11,7 @@ import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import projetweb.modeles.Utilisateur;
  *
  * @author Nicolas
  */
+@WebServlet(name = "ServletUtilisateur", urlPatterns = {"/ServletUtilisateur"})
 public class ServletUtilisateur extends HttpServlet {
 
     @EJB
@@ -40,20 +42,83 @@ public class ServletUtilisateur extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String action = request.getParameter("action");
+        String form = request.getParameter("form");
         String forwardTo = "";
         String message = "";
 
         //Object connecte = null;
         HttpSession session = request.getSession();
-        gestionnaireUtilisateur.creerUtilisateursDeTest();
-        Collection<Utilisateur> liste = gestionnaireUtilisateur.getAllUsers();
-        request.setAttribute("listeDesUsers", liste);
-        forwardTo = "index.jsp";
-        message = "Liste des utilisateurs";
+
+        if (session != null) //On met les informations intéréssante en attributs afin de les avoir affichés
+        {
+            request.setAttribute("log", session.getAttribute("login"));
+            request.setAttribute("nom", session.getAttribute("nom"));
+            request.setAttribute("prenom", session.getAttribute("prenom"));
+        }
+        if (action != null) {
+            if (gestionnaireUtilisateur.testAbonnement() == false) {
+                gestionnaireUtilisateur.creerAbonnementsTest();
+            } else {
+                request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
+            }
+            if (action.equals("creerUtilisateursDeTest")) {
+                gestionnaireUtilisateur.creerUtilisateursDeTest();
+                Collection<Utilisateur> liste = gestionnaireUtilisateur.getAllUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Liste des utilisateurs";
+            } else if (action.equals("checkConnexion")) {
+                System.out.println("test");
+                boolean existe = gestionnaireUtilisateur.userExists(request.getParameter("log"), request.getParameter("pass"));
+                System.out.println("EXISTE : " + existe);
+                //boolean existe = true;
+
+                if (existe) {
+                   
+                    session.setAttribute("login", request.getParameter("log"));
+                    session.setAttribute("mdp", request.getParameter("pass"));
+                    session.setAttribute("abonnementUtilisateur", gestionnaireUtilisateur.getAbonnementUtilisateur(request.getParameter("log")).getNom());                  
+                    session.setAttribute("connecte", "OK");
+                    //connecte = true;
+                    message = "Connexion reussie";
+
+                    forwardTo = "index.jsp?action=ok";
+                } else {
+                    session.setAttribute("connecte", "KO");
+                    message = "Connexion failed";
+                    forwardTo = "index.jsp?action=ko";
+                }
+            } else if (action.equals("inscription")) { //On l'inscrit et il est automatiquement redirigé vers le site
+                gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
+                session.setAttribute("login", request.getParameter("log"));
+                session.setAttribute("mdp", request.getParameter("pass"));
+                
+                session.setAttribute("connecte", "OK");              
+                message = "Connexion reussie";
+
+                forwardTo = "index.jsp?action=ok";
+            } else if (action.equals("deconnexion")) {
+                session.setAttribute("connecte", "KO");
+                //connecte = null;
+                message = "Deconnexion reussie";
+                forwardTo = "index.jsp?action=bye";
+            } else {
+                forwardTo = "index.jsp?action=todo";
+                message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !\n";
+            }
+            if (action.equals("changerAbo")) {
+                Utilisateur u = gestionnaireUtilisateur.ajouteAbonnement((String)session.getAttribute("login"), (String)request.getParameter("choixAbo"));
+                session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
+                message = "Abonnement ajoute";
+                forwardTo = "index.jsp?action=ok";
+            }
+        }
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
 
         dp.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

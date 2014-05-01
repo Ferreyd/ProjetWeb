@@ -4,6 +4,6 @@
         <img src="${pageContext.request.contextPath}/resources/logo.jpg"/>  
     </a>  
     <c:if test="${connecte!=null}">
-        <a href="ServletUsers?action=deconnexion">Deconnexion</a>
+        <a href="ServletUtilisateur?action=deconnexion">Deconnexion</a>
     </c:if>
 </div> 

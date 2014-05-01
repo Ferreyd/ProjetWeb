@@ -26,15 +26,13 @@ public class Abonnement implements Serializable {
     private Long id;
     
     private String nom;
-    private String duree;
+    private int duree;
     private int prix;
-    @OneToMany(mappedBy="abonnement")
-    private ArrayList<Utilisateur> utilisateurs;
 
     public Abonnement() {
     }
 
-    public Abonnement(String nom, String duree, int prix) {
+    public Abonnement(String nom, int duree, int prix) {
         this.nom = nom;
         this.duree = duree;
         this.prix = prix;
@@ -48,11 +46,11 @@ public class Abonnement implements Serializable {
         this.nom = nom;
     }
 
-    public String getDuree() {
+    public int getDuree() {
         return duree;
     }
 
-    public void setDuree(String duree) {
+    public void setDuree(int duree) {
         this.duree = duree;
     }
 
@@ -64,13 +62,6 @@ public class Abonnement implements Serializable {
         this.prix = prix;
     }
 
-    public ArrayList<Utilisateur> getUtilisateurs() {
-        return utilisateurs;
-    }
-
-    public void setUtilisateurs(ArrayList<Utilisateur> utilisateurs) {
-        this.utilisateurs = utilisateurs;
-    }
     
     
 

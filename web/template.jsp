@@ -9,15 +9,22 @@
     <body> 
 
 
-        <jsp:include page="header.jsp"/> 
+  <c:choose>
+            <c:when test="${connecte=='OK'}">
+                <jsp:include page="header.jsp"/> 
 
+                <jsp:include page="menu.jsp"/>  
 
+                <h1>${param.title}</h1>  
 
-        <h1>${param.title}</h1>  
+                <jsp:include page="${param.content}.jsp"/>  
 
-        <jsp:include page="${param.content}.jsp"/>  
-
-        <jsp:include page="footer.jsp"/>  
+                <jsp:include page="footer.jsp"/>  
+            </c:when>
+            <c:otherwise>
+                <jsp:include page="connexion.jsp"/>
+            </c:otherwise>
+        </c:choose>
 
 
 
