@@ -16,8 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.ArrayList;
 /**
  *
  * @author Nicolas
@@ -28,16 +29,45 @@ public class Artiste implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    // Nom de l'artiste (ou du groupe)
     private String nom;
-    private String prenom;
-    private String groupe;
-    @ManyToMany
+
+    /*@ManyToMany
     @JoinTable(name = "MORCEAU_ARTISTE",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
             inverseJoinColumns = {
-                @JoinColumn(name = "ARTISTE_PK", referencedColumnName = "id")})
-    private Set<Morceau> morceau;
+                @JoinColumn(name = "ARTISTE_PK", referencedColumnName = "id")})*/
+    
+    // Morceaux joués par l'artiste
+    @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="artiste")
+    private Collection<Morceau> morceaux;
+
+
+    
+    public Artiste(){}
+    // Constructeur
+    public Artiste(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Collection<Morceau> getMorceaux() {
+        return morceaux;
+    }
+
+    public void setMorceaux(Collection<Morceau> morceaux) {
+        this.morceaux = morceaux;
+    }
+
     
     
     

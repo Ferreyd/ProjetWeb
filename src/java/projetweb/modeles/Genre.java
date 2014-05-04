@@ -12,6 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 /**
@@ -24,9 +27,12 @@ public class Genre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    // Nom du genre
     private String nom;
-    @OneToMany(mappedBy = "genre")
-    private ArrayList<Morceau> morceaux;
+    
+    // Morceaux appartenant au genre
+    @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="genre")
+    private Collection<Morceau> morceaux;
     
 
     public int getId() {
@@ -37,6 +43,23 @@ public class Genre implements Serializable {
         this.id = id;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Collection<Morceau> getMorceaux() {
+        return morceaux;
+    }
+
+    public void setMorceaux(Collection<Morceau> morceaux) {
+        this.morceaux = morceaux;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

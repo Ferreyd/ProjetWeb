@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,7 +26,10 @@ public class Piste implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    @OneToOne
+    // Nom de la piste
+    private String nom;
+    
+    @ManyToOne
     private Morceau morceau;
 
     public int getId() {
@@ -36,6 +40,32 @@ public class Piste implements Serializable {
         this.id = id;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Morceau getMorceau() {
+        return morceau;
+    }
+
+    public void setMorceau(Morceau morceau) {
+        this.morceau = morceau;
+    }
+    
+    
+    public Piste() {
+ 
+    }
+    public Piste(String nom) {
+        this.nom = nom;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

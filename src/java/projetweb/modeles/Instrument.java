@@ -7,7 +7,8 @@
 package projetweb.modeles;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,16 +27,28 @@ public class Instrument implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    
+    // Nom de l'instrument
     private String nom;
 
+    // Morceaux dans lesquels on retrouve l'instrument
     @ManyToMany
     @JoinTable(name = "MORCEAU_INSTRUMENT",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
-    private Set<Morceau> morceau;
+    private Collection<Morceau> morceaux = new ArrayList<Morceau>();
 
+    public Collection<Morceau> getMorceaux() {
+        return morceaux;
+    }
+
+    public void setMorceaux(Collection<Morceau> morceaux) {
+        this.morceaux = morceaux;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -52,6 +65,8 @@ public class Instrument implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

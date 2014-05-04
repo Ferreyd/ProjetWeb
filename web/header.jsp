@@ -5,5 +5,6 @@
     </a>  
     <c:if test="${connecte!=null}">
         <a href="ServletUtilisateur?action=deconnexion">Deconnexion</a>
+        <a href="ServletMorceau">Morceaux</a>
     </c:if>
 </div> 
