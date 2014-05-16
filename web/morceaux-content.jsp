@@ -41,11 +41,14 @@
                 <table border="1">
                     <tr>
                         <td><b>Titre</b></td>
+                        <td><b>Artiste</b></td>
+                        <td></td>
                     </tr>
 
                     <c:forEach var="m" items="${requestScope['listeMorceaux']}">
                         <tr>                                               
                             <td>${m.titre}</td>
+                            <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</td>
                             <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">Pistes</a>
                         </tr>
                     </c:forEach>
@@ -63,6 +66,10 @@
                         </tr>
                     </c:forEach>
                 </table>
+            </c:if>
+                
+            <c:if test="${param['action'] == 'ficheArtiste'}" >
+                <h2>${requestScope['nomArtiste']}</h2>
             </c:if>
             
  

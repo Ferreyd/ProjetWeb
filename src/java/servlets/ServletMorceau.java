@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import projetweb.gestionnaire.GestionnaireMorceau;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Piste;
+import projetweb.modeles.Artiste;
 
 /**
  *
@@ -44,6 +45,7 @@ public class ServletMorceau extends HttpServlet {
         String forwardTo = "morceaux.jsp";
         String action = request.getParameter("action");
         String morceau_id = /*Integer.parseInt(*/request.getParameter("id")/*)*/;
+        String artist_id = request.getParameter("artiste_id");
         
         if (action != null) {
             if (action.equals("afficherLesMorceaux")) {
@@ -52,18 +54,35 @@ public class ServletMorceau extends HttpServlet {
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
-             
+                
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("listePistes", pistes);
                 request.setAttribute("titreMorceau", titre);
+                
             }
             if (action.equals("ajouterMorceauxAvecPistes")) {
                 gestionnaireMorceau.ajouterMorceauAvecPistes();
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
                 request.setAttribute("listeMorceaux", morceaux);       
             }
+            
+            
+           /* if (action.equals("rechercheParNom")) {
+                String nom = request.getParameter("");
+                Collection<Morceau> resultat = gestionnaireMorceau.getMorceauByName(nom);
+                request.setAttribute("resultatsParMorceau", resultat);
+            }*/
+            if (action.equals("ficheArtiste")) {
+                Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
+                String nomArtiste = a.getNom();
+                
+                Collection<Morceau> listeMorceaux = a.getMorceaux();
+                request.setAttribute("nomArtiste", nomArtiste);
+                request.setAttribute("listeMorceaux", listeMorceaux);
+            }
+            
         }
 
         

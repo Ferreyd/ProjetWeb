@@ -32,7 +32,10 @@ public class Artiste implements Serializable {
     
     // Nom de l'artiste (ou du groupe)
     private String nom;
+    /*private String resume;
 
+
+    private String photo;*/
     /*@ManyToMany
     @JoinTable(name = "MORCEAU_ARTISTE",
             joinColumns = {
@@ -43,7 +46,7 @@ public class Artiste implements Serializable {
     // Morceaux joués par l'artiste
     @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="artiste")
     private Collection<Morceau> morceaux;
-
+    
 
     
     public Artiste(){}
@@ -59,7 +62,22 @@ public class Artiste implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
+   /* public String getResume() {
+        return resume;
+    }
 
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }*/
+    
     public Collection<Morceau> getMorceaux() {
         return morceaux;
     }

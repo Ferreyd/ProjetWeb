@@ -8,34 +8,39 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="lib/bootstrap-3.1.1-dist/css/signin.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>
     <body>
         <h1>${message}</h1>
-        <div class="login">
-            <h2>Veuillez entrez vos identifiants de connexion ci dessous :</h2>
-            <form role="form" action="ServletUtilisateur" method="post" >
-                <label for="log">Login</label>
-                <input class="form-control"placeholder="Login" type="text" name="log">
-                <label for="pass">Mot de passe</label>
-                <input class="form-control"placeholder="Mot de passe" type="password" name="pass"><br/>    
-                <input type="hidden" name="action" value="checkConnexion">    
-                <input type="submit" class="btn btn-primary" name="submit" value="Connexion">
-            </form>
-            <h2>Si vous n'êtes pas inscrit, alors veuillez vous inscrire en remplissants le formulaire ci-dessous</h2>
-            <form role="form" action="ServletUtilisateur" method="post" >
-                <label for="log">Login</label>
-                <input class="form-control"placeholder="Login" type="text" name="log">
-                <label for="nom">Nom</label>
-                <input class="form-control"placeholder="Nom" type="text" name="nom">
-                <label for="prenom">Prénom</label>
-                <input class="form-control"placeholder="Prénom" type="text" name="prenom">
-                <label for="pass">Mot de passe</label>
-                <input class="form-control"placeholder="Mot de passe" type="password" name="mdp"><br/>    
-                <input type="hidden" name="action" value="inscription">    
-                <input type="submit" class="btn btn-primary" name="submit" value="Inscription">
-            </form>
+        <div class="container">
+            <div class="login">
+
+                <form class="form-signin" role="form" action="ServletUtilisateur" method="post" >
+                    <h2 class="form-signin-heading">Connectez-vous</h2>
+
+                    <input class="form-control"placeholder="Login" type="text" name="log">
+
+                    <input class="form-control"placeholder="Mot de passe" type="password" name="pass"><br/>    
+                    <input type="hidden" name="action" value="checkConnexion">    
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Connexion">
+                </form>
+
+                <form class="form-signin" role="form" action="ServletUtilisateur" method="post" >
+                    <h2 class="form-signin-heading">Sinon, inscrivez-vous</h2>
+                    <label for="log">Login</label>
+                    <input class="form-control"placeholder="Login" type="text" name="log">
+                    <label for="nom">Nom</label>
+                    <input class="form-control"placeholder="Nom" type="text" name="nom">
+                    <label for="prenom">Prénom</label>
+                    <input class="form-control"placeholder="Prénom" type="text" name="prenom">
+                    <label for="pass">Mot de passe</label>
+                    <input class="form-control"placeholder="Mot de passe" type="password" name="mdp"><br/>    
+                    <input type="hidden" name="action" value="inscription">    
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Inscription">
+                </form>
+            </div>
         </div>
 
 

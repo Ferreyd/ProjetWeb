@@ -24,9 +24,9 @@ public class GestionnaireMorceau {
     @PersistenceContext
     private EntityManager em;
     
-    public Morceau creerMorceau(String titre, int annee /*Collection<Piste>pistes*/){
+    public Morceau creerMorceau(String titre, int annee, Artiste artiste){
         Morceau m = new Morceau(titre, annee);
-        //m.setPistes(pistes);
+        m.setArtiste(artiste);
         em.persist(m);
         return m;
     }
@@ -38,10 +38,18 @@ public class GestionnaireMorceau {
         return p;
     }
   
+    public Artiste creerArtiste(String nom){
+        Artiste a = new Artiste(nom);
+        em.persist(a);
+        return a;
+    }
     public void ajouterMorceauAvecPistes(){
  
-        Morceau m1 = creerMorceau("Highway To Hell", 1979);
-        Morceau m2 = creerMorceau("We Are The Champions", 1977);
+        Artiste a1 = creerArtiste("Ac-Dc");
+        Artiste a2 = creerArtiste("Queen");
+        
+        Morceau m1 = creerMorceau("Highway To Hell", 1979, creerArtiste("Ac-Dc"));
+        Morceau m2 = creerMorceau("We Are The Champions", 1977, creerArtiste("Queen"));
         
         creerPiste("Bass.mp3", m1);
         creerPiste("Drums 2 Bass drum.mp3", m1);
@@ -75,6 +83,7 @@ public class GestionnaireMorceau {
         return q.getResultList();
     }
     
+    
     public Collection<Piste> getPistesByMorceau(String morceau_id){
         Query q = em.createQuery("select m from Morceau m where m.id ="+morceau_id+"");
         Morceau m = (Morceau) q.getSingleResult();
@@ -85,6 +94,17 @@ public class GestionnaireMorceau {
         Query q = em.createQuery("select m.titre from Morceau m where m.id ="+morceau_id+"");
         return (String)q.getSingleResult();
     }
+    public Artiste getInfosArtiste(String id){
+        Query q = em.createQuery("select a from Artiste a where a.id = "+id+"");
+        return (Artiste)q.getSingleResult();
+    }
+    
+    // POUR LA RECHERCHE
+    public Collection<Morceau> getMorceauByArtiste(String nom){
+        Query q = em.createQuery("select m from Morceau m where m.nom = "+nom+"");
+        return q.getResultList();
+    }
  
+
  
 }
