@@ -16,12 +16,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Nicolas
  */
 @Entity
+@XmlRootElement
 public class Instrument implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,6 +43,7 @@ public class Instrument implements Serializable {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Morceau> morceaux = new ArrayList<Morceau>();
 
+    @XmlTransient
     public Collection<Morceau> getMorceaux() {
         return morceaux;
     }

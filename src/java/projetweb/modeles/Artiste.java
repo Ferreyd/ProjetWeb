@@ -19,11 +19,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author Nicolas
  */
 @Entity
+@XmlRootElement
 public class Artiste implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -16,12 +16,15 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Jeje
  */
 @Entity
+@XmlRootElement
 public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,6 +54,7 @@ public class Genre implements Serializable {
         this.nom = nom;
     }
 
+    @XmlTransient
     public Collection<Morceau> getMorceaux() {
         return morceaux;
     }

@@ -126,13 +126,16 @@ public class GestionnaireUtilisateur {
     
     public Utilisateur getUtilisateurParId(String id)
     {
+        System.out.println("REQUETE GET UTILISATEUR ID : " + "select u from Utilisateur u where u.id='"+id+"'");
         Query q = em.createQuery("select u from Utilisateur u where u.id='"+id+"'");
         return (Utilisateur)q.getResultList().get(0);
     }
     
     public int getIdUtilisateurParLogin(String login)
     {
+        System.out.println("REQUETE => " + "select u.id from Utilisateur u where u.login = '" + login + "'");
         Query q = em.createQuery("select u.id from Utilisateur u where u.login = '" + login + "'");
+        
         return (int)q.getResultList().get(0);
     }
       public void creerAbonnementsTest() {
@@ -148,6 +151,13 @@ public class GestionnaireUtilisateur {
         return a;
     }
 
+    /**
+     * Verifie si un utilisateur existe dans la base de donnée
+     * Si on rentre admin admin, on creer l'utilisateur admin s'il n'existe pas dans la base de donnée
+     * @param login
+     * @param mdp
+     * @return 
+     */
     public boolean userExists(String login, String mdp) {
         Query q = em.createQuery("select u from Utilisateur u where u.login = '" + login + "' and u.mdp = '" + mdp + '"');
         if (q.getResultList().size() > 0) {

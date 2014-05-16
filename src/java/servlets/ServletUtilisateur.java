@@ -50,11 +50,13 @@ public class ServletUtilisateur extends HttpServlet {
         //Object connecte = null;
         HttpSession session = request.getSession();
 
-        if (session != null) //On met les informations intéréssante en attributs afin de les avoir affichés
+        if (session.getAttribute("log") != null) //On met les informations intéréssante en attributs afin de les avoir affichés
         {
             request.setAttribute("log", session.getAttribute("login"));
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
+            System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
+            request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String)session.getAttribute("login")));
         }
         if (action != null) {
             if (gestionnaireUtilisateur.testAbonnement() == false) {
@@ -79,6 +81,7 @@ public class ServletUtilisateur extends HttpServlet {
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
                     session.setAttribute("abonnementUtilisateur", gestionnaireUtilisateur.getAbonnementUtilisateur(request.getParameter("log")).getNom());
+                    session.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin(request.getParameter("log")));
                     session.setAttribute("connecte", "OK");
                     //connecte = true;
                     message = "Connexion reussie";
@@ -93,9 +96,10 @@ public class ServletUtilisateur extends HttpServlet {
                 
                 if (gestionnaireUtilisateur.chercherParLogin(request.getParameter("log")).isEmpty()) {
                     
-                    gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
+                    Utilisateur u = gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
+                    session.setAttribute("idUtilisateur", u.getId());
                     
                     session.setAttribute("connecte", "OK");
                     message = "Connexion reussie";
@@ -106,8 +110,7 @@ public class ServletUtilisateur extends HttpServlet {
                 }
 
             } else if (action.equals("deconnexion")) {
-                session.setAttribute("connecte", "KO");
-                //connecte = null;
+                session.invalidate();
                 message = "Deconnexion reussie";
                 forwardTo = "index.jsp?action=bye";
             } else {

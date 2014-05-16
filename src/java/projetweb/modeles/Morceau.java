@@ -22,12 +22,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Nicolas
  */
 @Entity
+@XmlRootElement
 public class Morceau implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,14 +38,7 @@ public class Morceau implements Serializable {
     private int id;
     // Titre du morceau
     private String titre; 
-    
-    /*@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "MORCEAU_ARTISTE",
-            joinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "ARTISTE_PK", referencedColumnName = "id")})*/
-    
+        
     // Instruments qu'on retrouve dans ce morceau
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "MORCEAU_INSTRUMENT",
@@ -51,6 +47,18 @@ public class Morceau implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Instrument> instruments = new ArrayList<Instrument>();
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "UTILISATEUR_MORCEAU",
+            joinColumns = {
+                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "UTILISATEUR", referencedColumnName = "id")})
+    private Collection<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
+    
+    private Collection<Morceau> panier;
+
+    
       
     /*@OneToOne
     private Album album;*/
@@ -75,7 +83,6 @@ public class Morceau implements Serializable {
         this.annee = annee;
     }
 
-
     public String getTitre() {
         return titre;
     }
@@ -85,6 +92,7 @@ public class Morceau implements Serializable {
     }
 
 
+    @XmlTransient
     public Collection<Instrument> getInstruments() {
         return instruments;
     }
@@ -94,6 +102,7 @@ public class Morceau implements Serializable {
     }
 
 
+    @XmlTransient
     public Collection<Piste> getPistes() {
         return pistes;
     }
@@ -110,8 +119,6 @@ public class Morceau implements Serializable {
     public void setAnnee(int annee) {
         this.annee = annee;
     }
-
-
     
     public int getId() {
         return id;
@@ -156,6 +163,21 @@ public class Morceau implements Serializable {
             return false;
         }
         return true;
+    }
+    public Collection<Utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Collection<Utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+
+    public Collection<Morceau> getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Collection<Morceau> panier) {
+        this.panier = panier;
     }
 
     @Override
