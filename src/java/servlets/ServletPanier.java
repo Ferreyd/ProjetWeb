@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +24,12 @@ import projetweb.modeles.Utilisateur;
  *
  * @author Nicolas
  */
+@WebServlet(name = "ServletPanier", urlPatterns = {"/ServletPanier"})
 public class ServletPanier extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +45,7 @@ public class ServletPanier extends HttpServlet {
 
         String action = request.getParameter("action");
         String form = request.getParameter("form");
-        String forwardTo = "";
+        String forwardTo = "panier.jsp";
         String message = "";
 
         //Object connecte = null;
@@ -53,20 +57,20 @@ public class ServletPanier extends HttpServlet {
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
             System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
-            request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String)session.getAttribute("login")));
-        }else
-        {
+            request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
+        } else {
             System.out.println("session : " + session.getAttribute("login") + " " + session.getAttribute("idUtilisateur") + " cast : " + session.getAttribute("idUtilisateur").toString());
             Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
-            
+
             Collection<Morceau> morceaux = u.getMorceaux();
-            
+
             request.setAttribute("morceaux", morceaux);
         }
-            
-            
-            
-        
+
+        RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
+
+        dp.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
