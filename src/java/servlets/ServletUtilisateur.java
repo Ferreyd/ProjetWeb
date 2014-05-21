@@ -68,7 +68,7 @@ public class ServletUtilisateur extends HttpServlet {
                 gestionnaireUtilisateur.creerUtilisateursDeTest();
                 Collection<Utilisateur> liste = gestionnaireUtilisateur.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                forwardTo = "compte.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
             } else if (action.equals("checkConnexion")) {
                 System.out.println("test");
@@ -117,12 +117,7 @@ public class ServletUtilisateur extends HttpServlet {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !\n";
             }
-            if (action.equals("changerAbo")) {
-                Utilisateur u = gestionnaireUtilisateur.ajouteAbonnement((String) session.getAttribute("login"), (String) request.getParameter("choixAbo"));
-                session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
-                message = "Abonnement ajoute";
-                forwardTo = "index.jsp?action=ok";
-            }
+            
         }
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
