@@ -58,13 +58,22 @@ public class ServletPanier extends HttpServlet {
             request.setAttribute("prenom", session.getAttribute("prenom"));
             System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
             request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
-        } else {
+        }
+        if(action != null)
+        {
+           if(action.equals("affiche"))
+           {
+               
+           }
+        }
+        else {
             System.out.println("session : " + session.getAttribute("login") + " " + session.getAttribute("idUtilisateur") + " cast : " + session.getAttribute("idUtilisateur").toString());
             Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
             Collection<Morceau> morceaux = u.getMorceaux();
 
             request.setAttribute("morceaux", morceaux);
+            forwardTo +="?action=affiche";
         }
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
