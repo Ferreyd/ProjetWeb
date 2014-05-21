@@ -47,16 +47,6 @@ public class Utilisateur implements Serializable {
     
     private Collection<Morceau> morceaux = new ArrayList<Morceau>();
 
-    /*
-     // Instruments qu'on retrouve dans ce morceau
-     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-     @JoinTable(name = "MORCEAU_INSTRUMENT",
-     joinColumns = {
-     @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-     inverseJoinColumns = {
-     @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
-     private Collection<Instrument> instruments = new ArrayList<Instrument>();
-     */
     public Utilisateur() {
     }
 
