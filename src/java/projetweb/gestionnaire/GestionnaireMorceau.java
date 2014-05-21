@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import projetweb.modeles.*;
+import java.io.*;
 
 /**
  *
@@ -24,8 +25,8 @@ public class GestionnaireMorceau {
     @PersistenceContext
     private EntityManager em;
     
-    public Morceau creerMorceau(String titre, int annee, Artiste artiste){
-        Morceau m = new Morceau(titre, annee);
+    public Morceau creerMorceau(String titre, Artiste artiste){
+        Morceau m = new Morceau(titre);
         m.setArtiste(artiste);
         em.persist(m);
         return m;
@@ -43,9 +44,36 @@ public class GestionnaireMorceau {
         em.persist(a);
         return a;
     }
-    public void ajouterMorceauAvecPistes(){
+    public boolean artisteExiste(String nom){
+        Query q = em.createQuery("select a from Artiste a where a.nom ='"+nom+"'");
+        if(q.getResultList().isEmpty()) return false;
+        else return true;
+    }
+    
+    public Artiste getArtiste(String nom){
+        /*if(artisteExiste(nom)==false){
+           Artiste a = new Artiste(nom);
+           return a;
+        }else{
+           Query q = em.createQuery("select a from Artiste a where a.nom ="+nom+"");
+           return q.getResultList();
+           return a;
+        }*/
+        Query q = em.createQuery("select a from Artiste a where a.nom ='"+nom+"'");
+        if(q.getResultList().isEmpty()){
+            Artiste a = new Artiste(nom);
+            System.out.println("EXISTE PAS:" + a.getNom());
+            return a;
+        }
+        else{
+            Artiste a = (Artiste)q.getSingleResult();
+            System.out.println("EXISTE:" + a.getNom());
+            return a;
+        }       
+    }
+    public void ajouterMorceauAvecPistes() throws Exception{
  
-        Artiste a1 = creerArtiste("Ac-Dc");
+        /*Artiste a1 = creerArtiste("Ac-Dc");
         Artiste a2 = creerArtiste("Queen");
         
         Morceau m1 = creerMorceau("Highway To Hell", 1979, creerArtiste("Ac-Dc"));
@@ -62,7 +90,7 @@ public class GestionnaireMorceau {
         creerPiste("Bass.mp3", m2);
         creerPiste("Guitare.mp3", m2);
         creerPiste("Piano.mp3", m2);
-        creerPiste("Voix.mp3", m2);
+        creerPiste("Voix.mp3", m2);*/
         /*p1.add(creerPiste("Bass.mp3"));
         p1.add(creerPiste("Drums 2 Bass drum.mp3"));
         p1.add(creerPiste("Drums 3 snare.mp3"));
@@ -76,7 +104,45 @@ public class GestionnaireMorceau {
         p2.add(creerPiste("Piano.mp3"));
         p2.add(creerPiste("Voix.mp3"));*/
         
+        String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        FileInputStream fis = null;
+        BufferedReader br = null;
+        try{
+            String ligne;
+            fis = new FileInputStream(data);
+            br = new BufferedReader(new InputStreamReader(fis));
+            
+            Morceau m = null;
+            Artiste a = null;
+            //int countInstru = 0;
+            
+            while((ligne = br.readLine())!= null){
+                
+                if(ligne.startsWith("./")){
+                    //System.out.println(ligne);
+                    String strar[] = ligne.split("./");
+                   // System.out.println(strar[1]);
+                    String musique[] = strar[1].split(" - ");
+                   
+                    String artiste = musique[0];
+                    String titre[] = musique[1].split(":");
+                    String morceau = titre[0];
+                    m = new Morceau(morceau);
+                    //m.setTitre(morceau);
+                    a = getArtiste(artiste);
+                    m.setArtiste(a);
 
+                }
+                    em.persist(a);
+                    em.persist(m);
+            }
+
+        }
+        catch(FileNotFoundException exc)
+        {
+          System.out.println("Erreur d'ouverture");
+        }
+ 
     }  
     public Collection<Morceau> getAllMorceaux(){
         Query q = em.createQuery("select m from Morceau m");

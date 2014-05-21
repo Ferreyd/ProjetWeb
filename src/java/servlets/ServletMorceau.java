@@ -63,7 +63,12 @@ public class ServletMorceau extends HttpServlet {
                 
             }
             if (action.equals("ajouterMorceauxAvecPistes")) {
-                gestionnaireMorceau.ajouterMorceauAvecPistes();
+                try{
+                    gestionnaireMorceau.ajouterMorceauAvecPistes();
+                }
+                catch(Exception e){
+                    e.getMessage();
+                }
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
                 request.setAttribute("listeMorceaux", morceaux);       
             }

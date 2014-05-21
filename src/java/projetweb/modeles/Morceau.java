@@ -78,9 +78,9 @@ public class Morceau implements Serializable {
     private int annee;
 
     public Morceau(){}
-    public Morceau(String titre, int annee) {
+    public Morceau(String titre) {
         this.titre = titre;
-        this.annee = annee;
+        
     }
 
     public String getTitre() {
