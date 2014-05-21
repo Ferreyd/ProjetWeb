@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index-content
-    Created on : 30 avr. 2014, 16:04:07
-    Author     : Nicolas
+    Document   : compte-content
+    Created on : 21 mai 2014, 12:40:17
+    Author     : Jeje
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
     "http://www.w3.org/TR/html4/loose.dtd">  
@@ -33,6 +32,7 @@
             <input type="hidden" name="action" value="changerAbo">
             <input type="submit" class="btn btn-success"/>
         </form>
+
 
 
     </body>
