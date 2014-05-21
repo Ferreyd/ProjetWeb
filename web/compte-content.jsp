@@ -16,14 +16,22 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenue ${login}</h1>
+        <h1>Bienvenue ${u.nom}</h1>
         <h2> Votre abonnement : ${abonnementUtilisateur}</h2>
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
         <c:if test="${!empty param['message']}">  
             <h4>Reçu message : ${param.message}</h4>  
         </c:if>  
-        <h4 class="position"><a class="btn btn-default" href="ServletUtilisateur?action=creerUtilisateursDeTest" role="button">Créer 4 utilisateurs de test</a></h4>  
-        <form action="ServletUtilisateur" method="post">
+    
+            <h2>
+                Nom : ${utilisateur.nom} <br/>
+                Prenom : ${utilisateur.prenom}<br/>
+                Abonnement : ${utilisateur.abonnement}<br/>
+                Login : ${utilisateur.login}<br/>
+                MDP : ${utilisateur.mdp}<br/>
+            </h2>
+        
+        <form action="ServletCompte" method="post">
             <select name="choixAbo">
                 <c:forEach var="a" items="${abonnements}">
                     <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
