@@ -24,15 +24,7 @@
             <h4>Reçu message : ${param.message}</h4>  
         </c:if>  
         <h4 class="position"><a class="btn btn-default" href="ServletUtilisateur?action=creerUtilisateursDeTest" role="button">Créer 4 utilisateurs de test</a></h4>  
-        <form action="ServletUtilisateur" method="post">
-            <select name="choixAbo">
-                <c:forEach var="a" items="${abonnements}">
-                    <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
-                </c:forEach>
-            </select>
-            <input type="hidden" name="action" value="changerAbo">
-            <input type="submit" class="btn btn-success"/>
-        </form>
+
 
 
     </body>
