@@ -14,8 +14,10 @@
             <ul class="nav navbar-nav">
                 <c:if test="${connecte!=null}">
                     <li> <a href="ServletUtilisateur?action=deconnexion">Deconnexion</a></li>
-                    <li> <a href="ServletUtilisateur">Mon compte</a></li>
+                    <li> <a href="">Index</a></li>
+                    <li> <a href="ServletCompte">Mon compte</a></li>
                     <li><a href="ServletMorceau">Morceaux</a></li>
+                    <li><a href="ServletPanier">Votre Panier</a></li>
                 </c:if>
             </ul>  
         </div>
