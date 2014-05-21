@@ -59,6 +59,7 @@ public class ServletCompte extends HttpServlet {
         }
         //On prend l'utilisateur courant
         Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
+
         if (action != null) {
             System.out.println("if action");
             if (action.equals("changerAbo")) {
@@ -67,19 +68,20 @@ public class ServletCompte extends HttpServlet {
                 u = gestionnaireUtilisateur.ajouteAbonnement((String) session.getAttribute("login"), (String) request.getParameter("choixAbo"));
                 session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
                 message = "Abonnement ajoute";
-                forwardTo += "action=affiche";
-                System.out.println("action, apres forwarTO");
+                forwardTo += "?action=affiche";
+                System.out.println("action, apres forwarTO : " + forwardTo);
             }
             if (action.equals("affiche")) {
                 System.out.println("affiche");
             }
         } else {
             System.out.println("le else");
-            request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
+
             forwardTo += "?action=affiche";
         }
-        
+
         request.setAttribute("utilisateur", u);
+        request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
         System.out.println("avant request");
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         System.out.println("avant forward");
