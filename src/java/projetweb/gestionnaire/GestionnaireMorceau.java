@@ -72,38 +72,7 @@ public class GestionnaireMorceau {
         }       
     }
     public void ajouterMorceauAvecPistes() throws Exception{
- 
-        /*Artiste a1 = creerArtiste("Ac-Dc");
-        Artiste a2 = creerArtiste("Queen");
-        
-        Morceau m1 = creerMorceau("Highway To Hell", 1979, creerArtiste("Ac-Dc"));
-        Morceau m2 = creerMorceau("We Are The Champions", 1977, creerArtiste("Queen"));
-        
-        creerPiste("Bass.mp3", m1);
-        creerPiste("Drums 2 Bass drum.mp3", m1);
-        creerPiste("Drums 3 snare.mp3", m1);
-        creerPiste("Drums 4 snare.mp3", m1);
-        creerPiste("Drums 5 hi-hat cymbals.mp3", m1);
-        creerPiste("Drums 6 hi-hat cymbals.mp3", m1);
-        creerPiste("Drums1 bass drum.mp3", m1);
-        
-        creerPiste("Bass.mp3", m2);
-        creerPiste("Guitare.mp3", m2);
-        creerPiste("Piano.mp3", m2);
-        creerPiste("Voix.mp3", m2);*/
-        /*p1.add(creerPiste("Bass.mp3"));
-        p1.add(creerPiste("Drums 2 Bass drum.mp3"));
-        p1.add(creerPiste("Drums 3 snare.mp3"));
-        p1.add(creerPiste("Drums 4 snare.mp3"));
-        p1.add(creerPiste("Drums 5 hi-hat cymbals.mp3"));
-        p1.add(creerPiste("Drums 6 hi-hat cymbals.mp3"));
-        p1.add(creerPiste("Drums1 bass drum.mp3"));
-        
-        p2.add(creerPiste("Bass.mp3"));
-        p2.add(creerPiste("Guitare.mp3"));
-        p2.add(creerPiste("Piano.mp3"));
-        p2.add(creerPiste("Voix.mp3"));*/
-        
+
         String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         FileInputStream fis = null;
         BufferedReader br = null;
@@ -115,6 +84,7 @@ public class GestionnaireMorceau {
             Morceau m = null;
             Artiste a = null;
             //int countInstru = 0;
+            Piste p = null;
             
             while((ligne = br.readLine())!= null){
                 
@@ -131,11 +101,17 @@ public class GestionnaireMorceau {
                     //m.setTitre(morceau);
                     a = getArtiste(artiste);
                     m.setArtiste(a);
-
+                }else{                 
+                    if(!ligne.isEmpty()){//Pour les sauts de ligne
+                        p = new Piste(ligne);
+                        p.setMorceau(m);
+                        em.persist(p);
+                    }
                 }
-                    em.persist(a);
-                    em.persist(m);
-            }
+                
+                em.persist(a);
+                em.persist(m);
+            } 
 
         }
         catch(FileNotFoundException exc)
@@ -144,18 +120,26 @@ public class GestionnaireMorceau {
         }
  
     }  
+    
+    //OK
     public Collection<Morceau> getAllMorceaux(){
         Query q = em.createQuery("select m from Morceau m");
         return q.getResultList();
     }
     
+    public Collection<Morceau> rechercheParMorceau(String titre){
+        Query q = em.createQuery("select m from Morceau m where m.titre LIKE '%"+titre+"%'");
+        return q.getResultList();
+    }
     
+    //OK
     public Collection<Piste> getPistesByMorceau(String morceau_id){
         Query q = em.createQuery("select m from Morceau m where m.id ="+morceau_id+"");
         Morceau m = (Morceau) q.getSingleResult();
         return m.getPistes();       
     }
-    
+
+    //OK
     public String getMorceauById(String morceau_id){
         Query q = em.createQuery("select m.titre from Morceau m where m.id ="+morceau_id+"");
         return (String)q.getSingleResult();

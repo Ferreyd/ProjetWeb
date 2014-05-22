@@ -49,8 +49,10 @@ public class ServletMorceau extends HttpServlet {
         
         if (action != null) {
             if (action.equals("afficherLesMorceaux")) {
+                
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
-                request.setAttribute("listeMorceaux", morceaux);       
+                request.setAttribute("listeMorceaux", morceaux);
+                
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
@@ -74,11 +76,12 @@ public class ServletMorceau extends HttpServlet {
             }
             
             
-           /* if (action.equals("rechercheParNom")) {
-                String nom = request.getParameter("");
-                Collection<Morceau> resultat = gestionnaireMorceau.getMorceauByName(nom);
+            if (action.equals("rechercheParTitre")) {
+                String nom = request.getParameter("titre_recherche");
+                Collection<Morceau> resultat = gestionnaireMorceau.rechercheParMorceau(nom);
                 request.setAttribute("resultatsParMorceau", resultat);
-            }*/
+                forwardTo="morceaux.jsp?action=rechercheParTitre";
+            }
             if (action.equals("ficheArtiste")) {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
                 String nomArtiste = a.getNom();

@@ -17,45 +17,90 @@
     <body>
         <a href="ServletMorceau?action=afficherLesMorceaux">Afficher/Rafraichir la liste des morceaux</a><br/>
         <a href="ServletMorceau?action=ajouterMorceauxAvecPistes">Ajouter des morceaux</a><br/>
-       
+        <form action="ServletMorceau" method="get">
+                Recherche par titre<input type="text" name="titre_recherche"/><br>
+                <input type="hidden" name="action" value="rechercheParTitre"/>
+                <input type="submit" value="Rechercher" name="submit"/>
+        </form>
+ <!-- DEBUT TOUS LES MORCEAUX -->        
            <c:if test="${param['action'] == 'afficherLesMorceaux'}" >
                 <h2>Tableau des morceaux</h2>
                 <table border="1">
                     <tr>
                         <td><b>Titre</b></td>
                         <td><b>Artiste</b></td>
-                        <td></td>
+                         <td><b>Pistes</b></td>
                     </tr>
 
                     <c:forEach var="m" items="${requestScope['listeMorceaux']}">
+                        <input type="hidden" value="${m.id}" name="morceau_id"/>
                         <tr>                                               
                             <td>${m.titre}</td>
                             <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</td>
-                            <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">Pistes</a>
+                            <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">
+                                    <c:forEach var="p" varStatus="compter" items="${m.pistes}">
+                                        <!-- NOMBRE DE PISTES DU MORCEAU -->
+                                        <c:if test="${compter.last}" >  
+                                            ${compter.count}
+                                        </c:if>
+                                    </c:forEach>
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
-            </c:if>      
-            
-            <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" >
-                <a href="ServletMorceau?action=afficherLesMorceaux">Retour morceaux</a><br/>
-                
+            </c:if>
+  <!-- FIN TOUS LES MORCEAUX -->                
+ <!-- DEBUT RESULTAT DE RECHERCHE -->
+           <c:if test="${param['action'] == 'rechercheParTitre'}" >
                 <h2>Tableau des morceaux</h2>
                 <table border="1">
                     <tr>
                         <td><b>Titre</b></td>
                         <td><b>Artiste</b></td>
-                        <td></td>
+                         <td><b>Pistes</b></td>
                     </tr>
 
-                    <c:forEach var="m" items="${requestScope['listeMorceaux']}">
+                    <c:forEach var="m" items="${requestScope['resultatsParMorceau']}">
+                        <input type="hidden" value="${m.id}" name="morceau_id"/>
                         <tr>                                               
                             <td>${m.titre}</td>
-                            <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</td>
-                            <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">Pistes</a>
+                            <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</a></td>
+                            <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">
+                                    <c:forEach var="p" varStatus="compter" items="${m.pistes}">
+                                        <!-- NOMBRE DE PISTES DU MORCEAU -->
+                                        <c:if test="${compter.last}" >  
+                                            ${compter.count}
+                                        </c:if>
+                                    </c:forEach>
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
+                
+                <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" >
+                 <h2>Tableau des pistes</h2>
+
+                <table border="1">
+                    <tr>
+                        <td><b>Pistes de ${requestScope['titreMorceau']}</b></td>
+                    </tr>
+
+                    <c:forEach var="p" items="${requestScope['listePistes']}">
+                        <tr>                                               
+                            <td>${p.nom}</td>                               
+                        </tr>
+                    </c:forEach>
+                </table>                   
+                    
+                </c:if>
+            </c:if>                
+  <!-- FIN RESULTAT DE RECHERCHE -->            
+   <!-- DEBUT DETAIL PISTES -->          
+            <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" >
+                <a href="ServletMorceau?action=afficherLesMorceaux">Retour morceaux</a><br/>
+
                 <h2>Tableau des pistes</h2>
 
                 <table border="1">
@@ -74,7 +119,7 @@
             <c:if test="${param['action'] == 'ficheArtiste'}" >
                 <h2>${requestScope['nomArtiste']}</h2>
             </c:if>
-            
+   <!-- FIN DETAIL PISTES -->                 
  
     </body>
 </html>
