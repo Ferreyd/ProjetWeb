@@ -134,9 +134,15 @@ public class GestionnaireMorceau {
         return q.getResultList();
     }
     
-    public Collection<Morceau> rechercheParMorceau(String titre){
+    public Collection<Morceau> rechercheParMorceau(String titre, int index){
         Query q = em.createQuery("select m from Morceau m where m.titre LIKE '%"+titre+"%'");
+        q.setFirstResult(index);
+        q.setMaxResults(10);
         return q.getResultList();
+    }
+     public int compteRechercheParMorceaux(String titre){
+        Query q = em.createQuery("select m from Morceau m where m.titre LIKE '%"+titre+"%'");      
+        return q.getResultList().size();
     }
     
     //OK

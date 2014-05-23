@@ -47,7 +47,7 @@
                         
                          <h2>Tableau des morceaux</h2>
 
-                         <table id="tablepaging" class="table table-bordered table-striped">
+                         <table class="table table-bordered table-striped">
                              <thead>
                                 <tr>
                                     <td><b>Titre</b></td>
@@ -67,10 +67,10 @@
                                         <td>${m.titre}</td>
                                         <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</td>
                                         <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">
-                                                <c:forEach var="p" varStatus="compter" items="${m.pistes}">
+                                                <c:forEach var="p" varStatus="comptePiste" items="${m.pistes}">
                                                     <!-- NOMBRE DE PISTES DU MORCEAU -->
-                                                    <c:if test="${compter.last}" >  
-                                                        ${compter.count}
+                                                    <c:if test="${comptePiste.last}" >  
+                                                        ${comptePiste.count}
                                                     </c:if>
                                                 </c:forEach>
                                             </a>
@@ -106,16 +106,22 @@
               <!-- FIN TOUS LES MORCEAUX -->                
              <!-- DEBUT RESULTAT DE RECHERCHE -->
                     <c:if test="${param['action'] == 'rechercheParTitre'}" >
-                         <h2>Tableau des morceaux</h2>
-                         <table class="table table-striped">
-                             <tr>
-                                 <th><b>Titre</b></th>
-                                 <th><b>Artiste</b></th>
-                                  <th><b>Pistes</b></th>
-                             </tr>
-
+                       <c:if test="${requestScope['nbResultatParMorceau'] == 0}" > 
+                            <div class="alert alert-info">Aucun resultat trouvé pour "${param['titre_recherche']}"</div>
+                       </c:if>
+                      <c:if test="${requestScope['nbResultatParMorceau'] != 0}" >  
+                         <h2>${requestScope['nbResultatParMorceau']} resultat(s) pour "${param['titre_recherche']}"</h2>
+                         <table class="table table-bordered table-striped">
+                             <thead>
+                                <tr>
+                                    <th><b>Titre</b></th>
+                                    <th><b>Artiste</b></th>
+                                     <th><b>Pistes</b></th>
+                                </tr>
+                             </thead>
+                             <tbody>
                              <c:forEach var="m" items="${requestScope['resultatsParMorceau']}">
-                                 <input type="hidden" value="${m.id}" name="morceau_id"/>
+                                 
                                  <tr>                                               
                                      <td>${m.titre}</td>
                                      <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</a></td>
@@ -130,8 +136,35 @@
                                      </td>
                                  </tr>
                              </c:forEach>
+                            </tbody>
                          </table>
-
+                         <c:if test="${requestScope['nbResultatParMorceau'] > 10 }">
+                         <ul class="pagination">
+                            <c:if test="${param['page'] == null}">
+                                    <c:set var="after" value="1"/>
+                                    <li class="disabled"><a>&laquo;</a></li>
+                                    <c:forEach var="m" varStatus="compter" begin="0" end="${requestScope['nbPages']}">
+                                          <li><a href="ServletMorceau?action=rechercheParTitre&titre_recherche=${param['titre_recherche']}&page=${compter.index}">${compter.count}</a></li>                                                          
+                                    </c:forEach>
+                                    <li><a href="ServletMorceau?action=rechercheParTitre&titre_recherche=${param['titre_recherche']}&page=${after}">&raquo;</a></li> 
+                             </c:if>    
+                        </c:if> 
+                        </ul>
+                        <ul class="pagination">
+                        <c:if test="${param['page'] != null}">
+                            <c:set var="before" value="${param['page']-1}"/>
+                            <c:if test="${before < 0}"></c:if>
+                            <c:if test="${before >= 0}"><li><a href="ServletMorceau?action=rechercheParTitre&titre_recherche=${param['titre_recherche']}&page=${before}">&laquo;</a></li></c:if>
+                            <c:forEach var="m" varStatus="compter" begin="0" end="${requestScope['nbPages']}">                                     
+                            <li <c:if test="${compter.index == param['page']}">class="active"</c:if>><a href="ServletMorceau?action=rechercheParTitre&titre_recherche=${param['titre_recherche']}&page=${compter.index}">${compter.count}</a></li>                                                          
+                            </c:forEach>                         
+                            <c:set var="after" value="${param['page']+1}"/>
+                            <c:if test="${after <= requestScope['nbPages']}"><li><a href="ServletMorceau?action=rechercheParTitre&titre_recherche=${param['titre_recherche']}&page=${after}">&raquo;</a></li></c:if>
+                            <c:if test="${after > requestScope['nbPages']}"></c:if>
+                        </c:if>
+                        </ul>                           
+                         
+                       </c:if>     
                      </c:if>                
               <!-- FIN RESULTAT DE RECHERCHE -->            
                <!-- DEBUT DETAIL PISTES -->          
@@ -160,18 +193,6 @@
                 </div>
             </div>
         </div>
-        
-            <div id="pageNavPosition" ></div>
-        
-
     </body>
 </html>  
 
-
-<script type="text/javascript" src="lib/paging.js"></script>
-<script type="text/javascript">
-   /* var pager = new Pager('tablepaging', 10);
-    pager.init();
-    pager.showPageNav('pager', 'pageNavPosition');
-    pager.showPage(1);*/
-</script>

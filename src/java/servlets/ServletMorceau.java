@@ -71,14 +71,14 @@ public class ServletMorceau extends HttpServlet {
                 // before et after pour les fleches
                 
                 
-                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));//param nbpagination
+                //Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));//param nbpagination
                 
                 
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
                 
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
                 request.setAttribute("nbLignes", pistes.size());
-                request.setAttribute("listeMorceaux", morceaux);
+                //request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("listePistes", pistes);
                 request.setAttribute("titreMorceau", titre);
                 
@@ -96,9 +96,20 @@ public class ServletMorceau extends HttpServlet {
             
             
             if (action.equals("rechercheParTitre")) {
+                Collection<Morceau> resultat;
                 String nom = request.getParameter("titre_recherche");
-                Collection<Morceau> resultat = gestionnaireMorceau.rechercheParMorceau(nom);
+                double res = Math.ceil(gestionnaireMorceau.compteRechercheParMorceaux(nom)/10);
+                int nbPages = (int) res;
+                if(index == null){
+                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, 0);
+                }
+                else{
+                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, (Integer.valueOf(10))*Integer.parseInt(index));
+                }
                 request.setAttribute("resultatsParMorceau", resultat);
+                request.setAttribute("nbResultatParMorceau", gestionnaireMorceau.compteRechercheParMorceaux(nom));
+                request.setAttribute("index", index);
+                request.setAttribute("nbPages", nbPages);
                 forwardTo="morceaux.jsp?action=rechercheParTitre";
             }
             if (action.equals("ficheArtiste")) {
