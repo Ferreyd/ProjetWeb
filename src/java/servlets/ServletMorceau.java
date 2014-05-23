@@ -46,19 +46,38 @@ public class ServletMorceau extends HttpServlet {
         String action = request.getParameter("action");
         String morceau_id = /*Integer.parseInt(*/request.getParameter("id")/*)*/;
         String artist_id = request.getParameter("artiste_id");
+        String index = request.getParameter("page");
         
         if (action != null) {
-            if (action.equals("afficherLesMorceaux")) {
-                
-                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
+            if (action.equals("afficherLesMorceaux"))
+            {
+                Collection<Morceau> morceaux;
+                double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux()/10);
+                int nbPages = (int) res;
+                if(index == null){
+                    morceaux = gestionnaireMorceau.getAllMorceaux(0);
+                }
+                else{          
+                    morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10))*Integer.parseInt(index));
+  
+                }
                 request.setAttribute("listeMorceaux", morceaux);
+                request.setAttribute("index", index);
+                request.setAttribute("nbPages", nbPages);
                 
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
-                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
+                //STOCKER PAGINATION parameter
+                // before et after pour les fleches
+                
+                
+                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));//param nbpagination
+                
                 
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
+                
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
+                request.setAttribute("nbLignes", pistes.size());
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("listePistes", pistes);
                 request.setAttribute("titreMorceau", titre);
@@ -71,7 +90,7 @@ public class ServletMorceau extends HttpServlet {
                 catch(Exception e){
                     e.getMessage();
                 }
-                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux();
+                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));
                 request.setAttribute("listeMorceaux", morceaux);       
             }
             

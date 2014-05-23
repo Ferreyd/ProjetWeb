@@ -122,8 +122,15 @@ public class GestionnaireMorceau {
     }  
     
     //OK
-    public Collection<Morceau> getAllMorceaux(){
+    public int compteAllMorceaux(){
+        Query q = em.createQuery("select m from Morceau m");      
+        return q.getResultList().size();
+    }
+    
+    public Collection<Morceau> getAllMorceaux(int index){
         Query q = em.createQuery("select m from Morceau m");
+        q.setFirstResult(index);
+        q.setMaxResults(10);
         return q.getResultList();
     }
     
