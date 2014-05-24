@@ -13,13 +13,17 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireMorceau;
+import projetweb.gestionnaire.GestionnaireUtilisateur;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Piste;
 import projetweb.modeles.Artiste;
+import projetweb.modeles.Utilisateur;
 
 /**
  *
@@ -29,7 +33,10 @@ import projetweb.modeles.Artiste;
 public class ServletMorceau extends HttpServlet {
     @EJB
     private GestionnaireMorceau gestionnaireMorceau;
-
+    @EJB
+    private GestionnaireUtilisateur gestionnaireUtilisateur;
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +53,8 @@ public class ServletMorceau extends HttpServlet {
         String action = request.getParameter("action");
         String morceau_id = /*Integer.parseInt(*/request.getParameter("id")/*)*/;
         String artist_id = request.getParameter("artiste_id");
-        String index = request.getParameter("page");
+        String index = request.getParameter("page");       
+        HttpSession session = request.getSession();
         
         if (action != null) {
             if (action.equals("afficherLesMorceaux"))
@@ -120,11 +128,30 @@ public class ServletMorceau extends HttpServlet {
                 request.setAttribute("nomArtiste", nomArtiste);
                 request.setAttribute("listeMorceaux", listeMorceaux);
             }
-            
-        }
-
-        
-        
+            if(action.equals("ajoutMorceauPanier"))
+            {
+                Cookie[] cookies = request.getCookies();
+                if(cookies != null) //Si il y a des cookies
+                {
+                    for(int i = 0; i< cookies.length; i++) // on cherche dans le tableau de cookies
+                    {
+                        if(cookies[i].equals("panier")) // S'il existe un cookie de nom panier
+                        { //On récupere sa valeur et on ajoute l'id du morceau choisis dans le cookie
+                            String valeur = cookies[i].getValue();
+                            valeur += ";" + morceau_id;
+                            cookies[i].setValue(valeur);
+                            
+                        }
+                    }
+                }else //sinon, on cree le cookie
+                {
+                    Cookie cookie = new Cookie("panier",morceau_id);
+                    response.addCookie(cookie);                  
+                } 
+                
+                forwardTo="morceaux.jsp?action=rechercheParTitre";
+            }         
+        }      
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
 
         dp.forward(request, response);
