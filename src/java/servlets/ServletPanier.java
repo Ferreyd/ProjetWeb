@@ -66,7 +66,7 @@ public class ServletPanier extends HttpServlet {
             if (action.equals("affiche")) {
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
-                Collection<Morceau> morceaux = new ArrayList<Morceau>();
+                Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
                     System.out.println("JE SUIS LA " + valeur);
@@ -74,13 +74,13 @@ public class ServletPanier extends HttpServlet {
                     if (valeur != "") {
                         for (String s : tokens) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
-                            System.out.println("MORCEAU : " + m.toString());
-                            morceaux.add(m);
+                            System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
+                            listeMorceaux.add(m);
                         }
                     }
                 }
                 System.out.println("ET LA AUSSI");
-                request.setAttribute("morceaux", morceaux);
+                request.setAttribute("listeMorceaux", listeMorceaux);
                 forwardTo = "panier.jsp?action=affiche";
             }
         } else {
