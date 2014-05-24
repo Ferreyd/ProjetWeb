@@ -53,6 +53,7 @@
                                     <td><b>Titre</b></td>
                                     <td><b>Artiste</b></td>
                                      <td><b>Pistes</b></td>
+                                     <td><b>Ajouter à votre panier</b></td>
                                 </tr>
                              </thead>
                              <tbody>
@@ -75,6 +76,7 @@
                                                 </c:forEach>
                                             </a>
                                         </td>
+                                        <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter</a></td>
                                     </tr>
                                 </c:forEach>
                              </tbody>
