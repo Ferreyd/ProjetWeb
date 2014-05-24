@@ -172,7 +172,8 @@ public class GestionnaireMorceau {
     
     public Morceau getMorceauByIdReturnAsMorceau(String morceau_id){
         Query q = em.createQuery("select m from Morceau m where m.id ="+morceau_id+"");
-        return (Morceau)q.getSingleResult();
+        Morceau m = (Morceau)q.getSingleResult();
+        return m;
     }
     
     public Artiste getInfosArtiste(String id){
