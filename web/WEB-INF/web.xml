@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>ServletPanier</servlet-name>
-        <servlet-class>ServletPanier</servlet-class>
+        <servlet-class>servlets.ServletPanier</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletUtilisateur</servlet-name>
