@@ -8,6 +8,7 @@ package projetweb.modeles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -45,7 +46,7 @@ public class Utilisateur implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")})
     
-    private Collection<Morceau> morceaux = new ArrayList<Morceau>();
+    private Set<Morceau> morceaux;
 
     public Utilisateur() {
     }
@@ -134,10 +135,7 @@ public class Utilisateur implements Serializable {
         return morceaux;
     }
 
-    public void setMorceaux(Collection<Morceau> morceaux) {
-        this.morceaux = morceaux;
+    public void setMorceaux(Set<Morceau> morceaux) {
+        this.morceaux.addAll(morceaux);
     }
-    
-    
-
 }
