@@ -22,7 +22,6 @@
             <c:forEach var="m" items="${requestScope['morceaux']}">
                 <tr>                                               
                     <td>${m.titre}</td>
-                    <td><a href="ServletMorceau?action=afficherLesMorceauxEtPistes&id=${m.id}">Pistes</a>
                 </tr>
             </c:forEach>
         </table>
