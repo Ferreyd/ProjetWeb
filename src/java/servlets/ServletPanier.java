@@ -67,7 +67,6 @@ public class ServletPanier extends HttpServlet {
         }
         if (action != null) {
             if (action.equals("affiche")) {
-                System.out.println("session : " + session.getAttribute("login") + " " + session.getAttribute("idUtilisateur") + " cast : " + session.getAttribute("idUtilisateur").toString());
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
                 Collection<Morceau> morceaux = new ArrayList<Morceau>();
