@@ -73,7 +73,8 @@ public class GestionnaireMorceau {
     }
     public void ajouterMorceauAvecPistes() throws Exception{
 
-        String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+       // String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         FileInputStream fis = null;
         BufferedReader br = null;
         try{
