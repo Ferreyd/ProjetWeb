@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,7 +57,7 @@ public class ServletUtilisateur extends HttpServlet {
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
             System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
-            request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String)session.getAttribute("login")));
+            request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
         }
         if (action != null) {
             if (gestionnaireUtilisateur.testAbonnement() == false) {
@@ -86,6 +87,22 @@ public class ServletUtilisateur extends HttpServlet {
                     //connecte = true;
                     message = "Connexion reussie";
 
+                    // à la connexion on vérifie si le cookie panier est présent
+                    Cookie[] cookies = request.getCookies();
+                    boolean find = false;
+
+                    for (int i = 0; i < cookies.length; i++) {
+                        if (cookies[i].equals("panier")) {
+                            find = true;
+                        }
+                    }             
+                    System.out.println("FINd = " +  find);
+                    if (find == false) { //S'il est pas présent on le cree
+                        Cookie cookie = new Cookie("panier", "");
+                        System.out.println("MIAM MIAM LE BON COOKIE PANIER");
+                        response.addCookie(cookie);
+                    }
+
                     forwardTo = "index.jsp?action=ok";
                 } else {
                     session.setAttribute("connecte", "KO");
@@ -93,16 +110,27 @@ public class ServletUtilisateur extends HttpServlet {
                     forwardTo = "index.jsp?action=ko";
                 }
             } else if (action.equals("inscription")) { //On l'inscrit et il est automatiquement redirigé vers le site
-                
+
                 if (gestionnaireUtilisateur.chercherParLogin(request.getParameter("log")).isEmpty()) {
-                    
+
                     Utilisateur u = gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
                     session.setAttribute("idUtilisateur", u.getId());
-                    
+
                     session.setAttribute("connecte", "OK");
                     message = "Connexion reussie";
+
+                    // A la déconnexion, on efface le cookie
+                    Cookie[] cookies = request.getCookies();
+
+                    for (int i = 0; i < cookies.length; i++) {
+                        if (cookies[i].equals("panier")) {
+                            cookies[i] = null;
+                        }
+                    }
+                    
+
                     forwardTo = "index.jsp?action=ok";
                 } else {
                     message = "Login déjà utilisé, veuillez en prendre un autre";
@@ -117,7 +145,7 @@ public class ServletUtilisateur extends HttpServlet {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !\n";
             }
-            
+
         }
 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);

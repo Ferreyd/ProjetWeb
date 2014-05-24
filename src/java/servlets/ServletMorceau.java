@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
@@ -13,13 +12,17 @@ import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireMorceau;
+import projetweb.gestionnaire.GestionnaireUtilisateur;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Piste;
 import projetweb.modeles.Artiste;
+import projetweb.modeles.Utilisateur;
 
 /**
  *
@@ -27,8 +30,11 @@ import projetweb.modeles.Artiste;
  */
 @WebServlet(name = "ServletMorceau", urlPatterns = {"/ServletMorceau"})
 public class ServletMorceau extends HttpServlet {
+
     @EJB
     private GestionnaireMorceau gestionnaireMorceau;
+    @EJB
+    private GestionnaireUtilisateur gestionnaireUtilisateur;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,51 +47,49 @@ public class ServletMorceau extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String forwardTo = "morceaux.jsp";
         String action = request.getParameter("action");
-        String morceau_id = /*Integer.parseInt(*/request.getParameter("id")/*)*/;
+        String morceau_id = /*Integer.parseInt(*/ request.getParameter("id")/*)*/;
         String artist_id = request.getParameter("artiste_id");
         String index = request.getParameter("page");
-        
+        HttpSession session = request.getSession();
+
         if (action != null) {
-            if (action.equals("afficherLesMorceaux"))
-            {
+            if (action.equals("afficherLesMorceaux")) {
                 Collection<Morceau> morceaux;
-                double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux()/10);
+                double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux() / 10);
                 int nbPages = (int) res;
-                if(index == null){
+                if (index == null) {
                     morceaux = gestionnaireMorceau.getAllMorceaux(0);
-                }
-                else{          
-                    morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10))*Integer.parseInt(index));
-  
+                } else {
+                    morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
+
                 }
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);
-                
+
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
           
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
-                
+
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
                 request.setAttribute("nbLignes", pistes.size());
                 //request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("listePistes", pistes);
                 request.setAttribute("titreMorceau", titre);
-                
+
             }
             if (action.equals("ajouterMorceauxAvecPistes")) {
-                try{
+                try {
                     gestionnaireMorceau.ajouterMorceauAvecPistes();
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.getMessage();
                 }
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));
-                request.setAttribute("listeMorceaux", morceaux);       
+                request.setAttribute("listeMorceaux", morceaux);
             }
             
             
@@ -131,16 +135,29 @@ public class ServletMorceau extends HttpServlet {
             if (action.equals("ficheArtiste")) {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
                 String nomArtiste = a.getNom();
-                
+
                 Collection<Morceau> listeMorceaux = a.getMorceaux();
                 request.setAttribute("nomArtiste", nomArtiste);
                 request.setAttribute("listeMorceaux", listeMorceaux);
             }
-            
-        }
+            if (action.equals("ajoutMorceauPanier")) {
+                if (session.getAttribute("panier") != null) {
+                    String valeur = session.getAttribute("panier").toString();
+                    System.out.println("Ancienne valeur de panier = " + valeur);
+                    valeur += morceau_id + ";";
+                    session.setAttribute("panier", valeur);
+                    System.out.println("Nouvelle valeur de panier = " + valeur);
+                }else
+                {
+                    session.setAttribute("panier","");                  
+                    String valeur = morceau_id + ";";
+                    session.setAttribute("panier", valeur);
+                    System.out.println("Nouvelle valeur de panier = " + valeur);  
+                }
 
-        
-        
+                forwardTo = "morceaux.jsp?action=rechercheParTitre";
+            }
+        }
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
 
         dp.forward(request, response);

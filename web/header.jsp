@@ -17,7 +17,7 @@
                     <li> <a href="ServletUtilisateur?action=ok">Index</a></li>
                     <li> <a href="ServletCompte">Mon compte</a></li>
                     <li><a href="ServletMorceau">Morceaux</a></li>
-                    <li><a href="ServletPanier">Votre Panier</a></li>
+                    <li><a href="ServletPanier?action=affiche">Votre Panier</a></li>
                 </c:if>
             </ul>  
         </div>
