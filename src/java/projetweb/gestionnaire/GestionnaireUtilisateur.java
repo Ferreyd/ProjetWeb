@@ -7,11 +7,13 @@ package projetweb.gestionnaire;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import projetweb.modeles.Abonnement;
+import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
 
 /**
@@ -176,6 +178,13 @@ public class GestionnaireUtilisateur {
     public Abonnement getAbonnementUtilisateur(String login) {
         Query q = em.createQuery("select a from Abonnement a, Utilisateur u where u.login = '" + login + "'");
         return (Abonnement)q.getResultList().get(0);
+    }
+
+    public Utilisateur ajouteMorceau(String login, Set<Morceau> listeMorceaux) {
+        Utilisateur u = this.chercherParLogin(login).get(0);
+        u.setMorceaux(listeMorceaux);
+        em.persist(u);
+        return u;
     }
 
 }
