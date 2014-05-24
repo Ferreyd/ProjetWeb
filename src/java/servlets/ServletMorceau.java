@@ -67,13 +67,7 @@ public class ServletMorceau extends HttpServlet {
                 
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
-                //STOCKER PAGINATION parameter
-                // before et after pour les fleches
-                
-                
-                //Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));//param nbpagination
-                
-                
+          
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
                 
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
@@ -95,22 +89,44 @@ public class ServletMorceau extends HttpServlet {
             }
             
             
-            if (action.equals("rechercheParTitre")) {
+            if (action.equals("recherche")) {
                 Collection<Morceau> resultat;
-                String nom = request.getParameter("titre_recherche");
-                double res = Math.ceil(gestionnaireMorceau.compteRechercheParMorceaux(nom)/10);
-                int nbPages = (int) res;
-                if(index == null){
-                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, 0);
+                String nom = request.getParameter("champ_recherche");
+                String typeRecherche = request.getParameter("typeRecherche");
+                
+                if(typeRecherche.equals("rechercheTitre")){
+                    
+                    double res = Math.ceil(gestionnaireMorceau.compteRechercheParMorceaux(nom)/10);
+                    int nbPages = (int) res;
+                    if(index == null){
+                        resultat = gestionnaireMorceau.rechercheParMorceau(nom, 0);
+                    }
+                    else{
+                        resultat = gestionnaireMorceau.rechercheParMorceau(nom, (Integer.valueOf(10))*Integer.parseInt(index));
+                    }
+                    request.setAttribute("resultatsParMorceau", resultat);
+                    request.setAttribute("nbResultatParMorceau", gestionnaireMorceau.compteRechercheParMorceaux(nom));
+                    request.setAttribute("index", index);
+                    request.setAttribute("nbPages", nbPages);
+                  forwardTo="morceaux.jsp?action=recherche";
                 }
-                else{
-                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, (Integer.valueOf(10))*Integer.parseInt(index));
+               if(typeRecherche.equals("rechercheArtiste")){
+                   
+                    double res = Math.ceil(gestionnaireMorceau.compteRechercheParArtiste(nom)/10);
+                    int nbPages = (int) res;
+                    if(index == null){
+                        resultat = gestionnaireMorceau.rechercheParArtiste(nom, 0);
+                    }
+                    else{
+                        resultat = gestionnaireMorceau.rechercheParArtiste(nom, (Integer.valueOf(10))*Integer.parseInt(index));
+                    }
+                    request.setAttribute("resultatsParArtiste", resultat);
+                    request.setAttribute("nbResultatParArtiste", gestionnaireMorceau.compteRechercheParArtiste(nom));
+                    request.setAttribute("index", index);
+                    request.setAttribute("nbPages", nbPages);
+                    forwardTo="morceaux.jsp?action=recherche";
                 }
-                request.setAttribute("resultatsParMorceau", resultat);
-                request.setAttribute("nbResultatParMorceau", gestionnaireMorceau.compteRechercheParMorceaux(nom));
-                request.setAttribute("index", index);
-                request.setAttribute("nbPages", nbPages);
-                forwardTo="morceaux.jsp?action=rechercheParTitre";
+               
             }
             if (action.equals("ficheArtiste")) {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);

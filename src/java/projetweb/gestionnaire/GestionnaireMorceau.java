@@ -133,15 +133,26 @@ public class GestionnaireMorceau {
         q.setMaxResults(10);
         return q.getResultList();
     }
-    
+    //OK
     public Collection<Morceau> rechercheParMorceau(String titre, int index){
         Query q = em.createQuery("select m from Morceau m where m.titre LIKE '%"+titre+"%'");
         q.setFirstResult(index);
         q.setMaxResults(10);
         return q.getResultList();
     }
-     public int compteRechercheParMorceaux(String titre){
+    public int compteRechercheParMorceaux(String titre){
         Query q = em.createQuery("select m from Morceau m where m.titre LIKE '%"+titre+"%'");      
+        return q.getResultList().size();
+    }
+    
+    public Collection<Morceau> rechercheParArtiste(String nom, int index){
+        Query q = em.createQuery("select m from Morceau m where m.artiste.nom LIKE '%"+nom+"%'");   
+        q.setFirstResult(index);
+        q.setMaxResults(10);
+        return q.getResultList();
+    }
+    public int compteRechercheParArtiste(String nom){
+        Query q = em.createQuery("select m from Morceau m where m.artiste.nom LIKE '%"+nom+"%'");      
         return q.getResultList().size();
     }
     
