@@ -22,7 +22,8 @@
                 <th>Genre</th>
                 <th>Annee</th>
                 <th>Artiste</th>
-                <th>Prix</th>              
+                <th>Prix</th>
+                <th></th>
             </tr>
 
             <c:forEach var="m" items="${requestScope['listeMorceaux']}">
@@ -40,6 +41,7 @@
                         </c:forEach>
                     </td>
                     <td>0.99€</td>
+                    <td><a class="btn btn-danger" href="ServletPanier?action=supprimerDuPanier&id=${m.id}">Supprimer du panier</a></td>
                 </tr>
             </c:forEach>
         </table>
