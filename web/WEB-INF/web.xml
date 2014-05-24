@@ -8,6 +8,10 @@
         <servlet-name>ServletMorceau</servlet-name>
         <servlet-class>servlets.ServletMorceau</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPanier</servlet-name>
+        <servlet-class>ServletPanier</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletUtilisateur</servlet-name>
         <url-pattern>/ServletUtilisateur</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ServletMorceau</servlet-name>
         <url-pattern>/ServletMorceau</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>ServletPanier</servlet-name>
+        <url-pattern>/ServletPanier</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
