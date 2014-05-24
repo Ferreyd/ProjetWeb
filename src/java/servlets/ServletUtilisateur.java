@@ -6,13 +6,11 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -88,21 +86,7 @@ public class ServletUtilisateur extends HttpServlet {
                     message = "Connexion reussie";
 
                     // à la connexion on vérifie si le cookie panier est présent
-                    Cookie[] cookies = request.getCookies();
-                    boolean find = false;
-
-                    for (int i = 0; i < cookies.length; i++) {
-                        if (cookies[i].equals("panier")) {
-                            find = true;
-                        }
-                    }             
-                    System.out.println("FINd = " +  find);
-                    if (find == false) { //S'il est pas présent on le cree
-                        Cookie cookie = new Cookie("panier", "");
-                        System.out.println("MIAM MIAM LE BON COOKIE PANIER");
-                        response.addCookie(cookie);
-                    }
-
+                   
                     forwardTo = "index.jsp?action=ok";
                 } else {
                     session.setAttribute("connecte", "KO");
@@ -120,16 +104,6 @@ public class ServletUtilisateur extends HttpServlet {
 
                     session.setAttribute("connecte", "OK");
                     message = "Connexion reussie";
-
-                    // A la déconnexion, on efface le cookie
-                    Cookie[] cookies = request.getCookies();
-
-                    for (int i = 0; i < cookies.length; i++) {
-                        if (cookies[i].equals("panier")) {
-                            cookies[i] = null;
-                        }
-                    }
-                    
 
                     forwardTo = "index.jsp?action=ok";
                 } else {

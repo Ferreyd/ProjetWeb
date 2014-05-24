@@ -6,14 +6,12 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,30 +60,32 @@ public class ServletPanier extends HttpServlet {
             request.setAttribute("log", session.getAttribute("login"));
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
-            System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
             request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
         }
         if (action != null) {
             if (action.equals("affiche")) {
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
-                Collection<Morceau> morceaux = new ArrayList<Morceau>();
-
-                String valeur = session.getAttribute("panier").toString();
-                System.out.println("JE SUIS LA " + valeur);
-                String[] tokens = valeur.split("[;]"); // on parse les données du cookie
-                if (valeur != "") {
-                    for (String s : tokens) {
-                        Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
-                        System.out.println("MORCEAU : " + m.toString());
-                        morceaux.add(m);
+                Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
+                if (session.getAttribute("panier") != null) {
+                    String valeur = session.getAttribute("panier").toString();
+                    System.out.println("JE SUIS LA " + valeur);
+                    String[] tokens = valeur.split("[;]"); // on parse les données du cookie
+                    if (valeur != "") {
+                        for (String s : tokens) {
+                            Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
+                            System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
+                            listeMorceaux.add(m);
+                        }
                     }
                 }
-
                 System.out.println("ET LA AUSSI");
-                request.setAttribute("morceaux", morceaux);
+                request.setAttribute("listeMorceaux", listeMorceaux);
+                forwardTo = "panier.jsp?action=affiche";
             }
-        } 
+        } else {
+
+        }
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
 
         dp.forward(request, response);
