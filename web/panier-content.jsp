@@ -45,6 +45,8 @@
                 </tr>
             </c:forEach>
         </table>
+        
+        <a href="ServletPanier?action=achat"class="btn btn-success">ACHAT</a>
 
     </body>
 </html>
