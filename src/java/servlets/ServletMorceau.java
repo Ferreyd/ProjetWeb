@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
 import java.io.IOException;
@@ -31,12 +30,12 @@ import projetweb.modeles.Utilisateur;
  */
 @WebServlet(name = "ServletMorceau", urlPatterns = {"/ServletMorceau"})
 public class ServletMorceau extends HttpServlet {
+
     @EJB
     private GestionnaireMorceau gestionnaireMorceau;
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
-    
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -48,110 +47,96 @@ public class ServletMorceau extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String forwardTo = "morceaux.jsp";
         String action = request.getParameter("action");
-        String morceau_id = /*Integer.parseInt(*/request.getParameter("id")/*)*/;
+        String morceau_id = /*Integer.parseInt(*/ request.getParameter("id")/*)*/;
         String artist_id = request.getParameter("artiste_id");
-        String index = request.getParameter("page");       
+        String index = request.getParameter("page");
         HttpSession session = request.getSession();
-        
+
         if (action != null) {
-            if (action.equals("afficherLesMorceaux"))
-            {
+            if (action.equals("afficherLesMorceaux")) {
                 Collection<Morceau> morceaux;
-                double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux()/10);
+                double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux() / 10);
                 int nbPages = (int) res;
-                if(index == null){
+                if (index == null) {
                     morceaux = gestionnaireMorceau.getAllMorceaux(0);
-                }
-                else{          
-                    morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10))*Integer.parseInt(index));
-  
+                } else {
+                    morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
+
                 }
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);
-                
+
             }
             if (action.equals("afficherLesMorceauxEtPistes")) {
                 //STOCKER PAGINATION parameter
                 // before et after pour les fleches
-                
-                
+
                 //Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));//param nbpagination
-                
-                
                 Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
-                
+
                 String titre = gestionnaireMorceau.getMorceauById(morceau_id);
                 request.setAttribute("nbLignes", pistes.size());
                 //request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("listePistes", pistes);
                 request.setAttribute("titreMorceau", titre);
-                
+
             }
             if (action.equals("ajouterMorceauxAvecPistes")) {
-                try{
+                try {
                     gestionnaireMorceau.ajouterMorceauAvecPistes();
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.getMessage();
                 }
                 Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));
-                request.setAttribute("listeMorceaux", morceaux);       
+                request.setAttribute("listeMorceaux", morceaux);
             }
-            
-            
+
             if (action.equals("rechercheParTitre")) {
                 Collection<Morceau> resultat;
                 String nom = request.getParameter("titre_recherche");
-                double res = Math.ceil(gestionnaireMorceau.compteRechercheParMorceaux(nom)/10);
+                double res = Math.ceil(gestionnaireMorceau.compteRechercheParMorceaux(nom) / 10);
                 int nbPages = (int) res;
-                if(index == null){
+                if (index == null) {
                     resultat = gestionnaireMorceau.rechercheParMorceau(nom, 0);
-                }
-                else{
-                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, (Integer.valueOf(10))*Integer.parseInt(index));
+                } else {
+                    resultat = gestionnaireMorceau.rechercheParMorceau(nom, (Integer.valueOf(10)) * Integer.parseInt(index));
                 }
                 request.setAttribute("resultatsParMorceau", resultat);
                 request.setAttribute("nbResultatParMorceau", gestionnaireMorceau.compteRechercheParMorceaux(nom));
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);
-                forwardTo="morceaux.jsp?action=rechercheParTitre";
+                forwardTo = "morceaux.jsp?action=rechercheParTitre";
             }
             if (action.equals("ficheArtiste")) {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
                 String nomArtiste = a.getNom();
-                
+
                 Collection<Morceau> listeMorceaux = a.getMorceaux();
                 request.setAttribute("nomArtiste", nomArtiste);
                 request.setAttribute("listeMorceaux", listeMorceaux);
             }
-            if(action.equals("ajoutMorceauPanier"))
-            {
-                Cookie[] cookies = request.getCookies();
-                if(cookies != null) //Si il y a des cookies
+            if (action.equals("ajoutMorceauPanier")) {
+                if (session.getAttribute("panier") != null) {
+                    String valeur = session.getAttribute("panier").toString();
+                    System.out.println("Ancienne valeur de panier = " + valeur);
+                    valeur += morceau_id + ";";
+                    session.setAttribute("panier", valeur);
+                    System.out.println("Nouvelle valeur de panier = " + valeur);
+                }else
                 {
-                    for(int i = 0; i< cookies.length; i++) // on cherche dans le tableau de cookies
-                    {
-                        if(cookies[i].equals("panier")) // S'il existe un cookie de nom panier
-                        { //On récupere sa valeur et on ajoute l'id du morceau choisis dans le cookie
-                            String valeur = cookies[i].getValue();
-                            valeur += ";" + morceau_id;
-                            cookies[i].setValue(valeur);
-                            
-                        }
-                    }
-                }else //sinon, on cree le cookie
-                {
-                    Cookie cookie = new Cookie("panier",morceau_id);
-                    response.addCookie(cookie);                  
-                } 
-                
-                forwardTo="morceaux.jsp?action=rechercheParTitre";
-            }         
-        }      
+                    session.setAttribute("panier","");                  
+                    String valeur = morceau_id + ";";
+                    session.setAttribute("panier", valeur);
+                    System.out.println("Nouvelle valeur de panier = " + valeur);  
+                }
+
+                forwardTo = "morceaux.jsp?action=rechercheParTitre";
+            }
+        }
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
 
         dp.forward(request, response);
