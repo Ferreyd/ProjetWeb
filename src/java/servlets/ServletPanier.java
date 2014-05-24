@@ -8,6 +8,8 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,9 +49,10 @@ public class ServletPanier extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String forwardTo = "panier.jsp";
+        String forwardTo = "panier.jsp?action=affiche";
         String action = request.getParameter("action");
         String form = request.getParameter("form");
+        String id = request.getParameter("id");
         String message = "";
 
         //Object connecte = null;
@@ -64,20 +67,95 @@ public class ServletPanier extends HttpServlet {
         }
         if (action != null) {
             if (action.equals("affiche")) {
-                Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
                 Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
                     System.out.println("JE SUIS LA " + valeur);
                     String[] tokens = valeur.split("[;]"); // on parse les données du cookie
+                    /**
+                     * Le code ci dessous permet de gerer les doublons en
+                     * utilsant la structure de donné Set
+                     */
+                    ArrayList<String> list = new ArrayList();
+                    for (String s : tokens) {
+                        list.add(s);
+                    }
+                    Set set = new HashSet();
+                    set.addAll(list);
+                    ArrayList<String> panier = new ArrayList(set);
+
                     if (valeur != "") {
-                        for (String s : tokens) {
+                        for (String s : panier) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
                             System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
                             listeMorceaux.add(m);
                         }
                     }
+                }
+                System.out.println("ET LA AUSSI");
+                request.setAttribute("listeMorceaux", listeMorceaux);
+                forwardTo = "panier.jsp?action=affiche";
+            }
+            if (action.equals("supprimerDuPanier")) {
+                String res = "";
+                Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
+                if (session.getAttribute("panier") != null) {
+                    String valeur = session.getAttribute("panier").toString();
+                    String[] tokens = valeur.split("[;]"); // on parse les données du cookie
+                    /**
+                     * Le code ci dessous permet de gerer les doublons en
+                     * utilsant la structure de donné Set
+                     */
+                    ArrayList<String> list = new ArrayList();
+                    for (String s : tokens) {
+                        if (!id.equals(s)) {
+                            list.add(s);
+                        }
+                    }
+                    Set set = new HashSet();
+                    set.addAll(list);
+                    ArrayList<String> panier = new ArrayList(set);
+
+                    for (String s : panier) {
+
+                        res += s + ";";
+                    }
+                }
+                System.out.println("RES = " + res);
+                session.setAttribute("panier", res);
+                forwardTo = "panier.jsp?action=affiche";
+            }
+            if (action.equals("achat")) {
+
+                Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
+                Set<Morceau> listeMorceaux = new HashSet<>();
+                if (session.getAttribute("panier") != null) {
+                    String valeur = session.getAttribute("panier").toString();
+                    System.out.println("JE SUIS LA " + valeur);
+                    String[] tokens = valeur.split("[;]"); // on parse les données du cookie
+                    /**
+                     * Le code ci dessous permet de gerer les doublons en
+                     * utilsant la structure de donné Set
+                     */
+                    ArrayList<String> list = new ArrayList();
+                    for (String s : tokens) {
+                        list.add(s);
+                    }
+                    Set set = new HashSet();
+                    set.addAll(list);
+                    ArrayList<String> panier = new ArrayList(set);
+
+                    if (valeur != "") {
+                        for (String s : panier) {
+                            Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
+                            System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
+                            listeMorceaux.add(m);
+                        }
+                    }
+                    System.out.println("LOG = " + session.getAttribute("login"));
+                    gestionnaireUtilisateur.ajouteMorceau(session.getAttribute("login").toString(), listeMorceaux);
+                    listeMorceaux = null;
                 }
                 System.out.println("ET LA AUSSI");
                 request.setAttribute("listeMorceaux", listeMorceaux);
