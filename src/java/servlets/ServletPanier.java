@@ -7,15 +7,18 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import projetweb.gestionnaire.GestionnaireMorceau;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
@@ -30,6 +33,9 @@ public class ServletPanier extends HttpServlet {
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
 
+    @EJB
+    private GestionnaireMorceau gestionnaireMorceau;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,9 +49,9 @@ public class ServletPanier extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String forwardTo = "panier.jsp";
         String action = request.getParameter("action");
         String form = request.getParameter("form");
-        String forwardTo = "panier.jsp";
         String message = "";
 
         //Object connecte = null;
@@ -59,23 +65,28 @@ public class ServletPanier extends HttpServlet {
             System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
             request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
         }
-        if(action != null)
-        {
-           if(action.equals("affiche"))
-           {
-               
-           }
-        }
-        else {
-            System.out.println("session : " + session.getAttribute("login") + " " + session.getAttribute("idUtilisateur") + " cast : " + session.getAttribute("idUtilisateur").toString());
-            Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
+        if (action != null) {
+            if (action.equals("affiche")) {
+                System.out.println("session : " + session.getAttribute("login") + " " + session.getAttribute("idUtilisateur") + " cast : " + session.getAttribute("idUtilisateur").toString());
+                Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
-            Collection<Morceau> morceaux = u.getMorceaux();
+                Collection<Morceau> morceaux = new ArrayList<Morceau>();
 
-            request.setAttribute("morceaux", morceaux);
-            forwardTo +="?action=affiche";
-        }
+                String valeur = session.getAttribute("panier").toString();
+                System.out.println("JE SUIS LA " + valeur);
+                String[] tokens = valeur.split("[;]"); // on parse les données du cookie
+                if (valeur != "") {
+                    for (String s : tokens) {
+                        Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
+                        System.out.println("MORCEAU : " + m.toString());
+                        morceaux.add(m);
+                    }
+                }
 
+                System.out.println("ET LA AUSSI");
+                request.setAttribute("morceaux", morceaux);
+            }
+        } 
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
 
         dp.forward(request, response);
