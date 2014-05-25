@@ -139,7 +139,8 @@ public class GestionnaireMorceau {
                     m.setGenre(g);
                     a = getArtiste(artiste, image); // POUR VERIFIER DOUBLONS
                     m.setArtiste(a);
-                    
+                    em.persist(a);
+                    em.persist(g);
                     for(int i=0; i<instruments.length; i++){                       
                         in = getInstrument(instruments[i]);//VERIF DOUBLONS
 
@@ -159,8 +160,8 @@ public class GestionnaireMorceau {
                     }
                 }
               
-                em.persist(a);
-                em.persist(g);
+                
+                
                 em.persist(m);
                 
             } 
