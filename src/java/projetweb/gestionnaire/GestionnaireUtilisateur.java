@@ -182,7 +182,7 @@ public class GestionnaireUtilisateur {
 
     public Utilisateur ajouteMorceau(String login, Set<Morceau> listeMorceaux) {
         Utilisateur u = this.chercherParLogin(login).get(0);
-        u.setMorceaux(listeMorceaux);
+        u.setAchats(listeMorceaux);
         em.persist(u);
         return u;
     }
