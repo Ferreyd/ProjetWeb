@@ -24,7 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jeje
  */
 @Entity
-@XmlRootElement
 public class Genre implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,6 +36,10 @@ public class Genre implements Serializable {
     @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="genre")
     private Collection<Morceau> morceaux;
     
+    public Genre(){}
+    public Genre(String nom){
+        this.nom = nom;
+    }
 
     public int getId() {
         return id;

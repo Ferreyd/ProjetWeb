@@ -85,11 +85,22 @@ public class ServletMorceau extends HttpServlet {
             if (action.equals("ajouterMorceauxAvecPistes")) {
                 try {
                     gestionnaireMorceau.ajouterMorceauAvecPistes();
+                    Collection<Morceau> morceaux;
+                    double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux() / 10);
+                    int nbPages = (int) res;
+                    if (index == null) {
+                        morceaux = gestionnaireMorceau.getAllMorceaux(0);
+                    } else {
+                        morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
+
+                    }
+                    request.setAttribute("listeMorceaux", morceaux);
+                    request.setAttribute("index", index);
+                    request.setAttribute("nbPages", nbPages);                   
+                    forwardTo="morceaux.jsp?action=afficherLesMorceaux";
                 } catch (Exception e) {
                     e.getMessage();
-                }
-                Collection<Morceau> morceaux = gestionnaireMorceau.getAllMorceaux((Integer.parseInt(index)));
-                request.setAttribute("listeMorceaux", morceaux);
+                }             
             }
             
             

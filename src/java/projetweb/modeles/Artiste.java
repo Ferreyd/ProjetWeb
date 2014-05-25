@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Nicolas
  */
 @Entity
-@XmlRootElement
 public class Artiste implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -35,16 +34,24 @@ public class Artiste implements Serializable {
     
     // Nom de l'artiste (ou du groupe)
     private String nom;
-    /*private String resume;
+    //private String resume;
 
 
-    private String photo;*/
+    private String image;
     /*@ManyToMany
     @JoinTable(name = "MORCEAU_ARTISTE",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "ARTISTE_PK", referencedColumnName = "id")})*/
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     
     // Morceaux joués par l'artiste
     @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="artiste")
@@ -54,8 +61,9 @@ public class Artiste implements Serializable {
     
     public Artiste(){}
     // Constructeur
-    public Artiste(String nom) {
+    public Artiste(String nom, String image) {
         this.nom = nom;
+        this.image=image;
     }
 
     public String getNom() {

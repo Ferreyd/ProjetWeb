@@ -39,29 +39,17 @@ public class GestionnaireMorceau {
         return p;
     }
   
-    public Artiste creerArtiste(String nom){
-        Artiste a = new Artiste(nom);
-        em.persist(a);
-        return a;
-    }
+
     public boolean artisteExiste(String nom){
         Query q = em.createQuery("select a from Artiste a where a.nom ='"+nom+"'");
         if(q.getResultList().isEmpty()) return false;
         else return true;
     }
     
-    public Artiste getArtiste(String nom){
-        /*if(artisteExiste(nom)==false){
-           Artiste a = new Artiste(nom);
-           return a;
-        }else{
-           Query q = em.createQuery("select a from Artiste a where a.nom ="+nom+"");
-           return q.getResultList();
-           return a;
-        }*/
+    private Artiste getArtiste(String nom, String image){
         Query q = em.createQuery("select a from Artiste a where a.nom ='"+nom+"'");
         if(q.getResultList().isEmpty()){
-            Artiste a = new Artiste(nom);
+            Artiste a = new Artiste(nom, image);
             System.out.println("EXISTE PAS:" + a.getNom());
             return a;
         }
@@ -71,10 +59,39 @@ public class GestionnaireMorceau {
             return a;
         }       
     }
+    
+    private Genre getGenre(String nom){
+        Query q = em.createQuery("select g from Genre g where g.nom ='"+nom+"'");
+        if(q.getResultList().isEmpty()){
+            Genre g = new Genre(nom);
+            System.out.println("EXISTE PAS:" + g.getNom());
+            return g;
+        }
+        else{
+            Genre g = (Genre)q.getSingleResult();
+            System.out.println("EXISTE:" + g.getNom());
+            return g;
+        }       
+    }
+    
+    private Instrument getInstrument(String nom){
+        Query q = em.createQuery("select i from Instrument i where i.nom ='"+nom+"'");
+        if(q.getResultList().isEmpty()){
+            Instrument i = new Instrument(nom);
+            System.out.println("EXISTE PAS:" + i.getNom());
+            
+            return i;
+        }
+        else{
+            Instrument i = (Instrument)q.getSingleResult();
+            System.out.println("EXISTE:" + i.getNom());
+            return i;
+        }       
+    }
     public void ajouterMorceauAvecPistes() throws Exception{
 
-       // String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
-        String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        //String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         FileInputStream fis = null;
         BufferedReader br = null;
         try{
@@ -84,34 +101,68 @@ public class GestionnaireMorceau {
             
             Morceau m = null;
             Artiste a = null;
-            //int countInstru = 0;
-            Piste p = null;
             
+            Piste p = null;
+            Genre g = null;
+            Instrument in = null;
+            //int countInstru = 0;
+          
             while((ligne = br.readLine())!= null){
-                
+        
                 if(ligne.startsWith("./")){
-                    //System.out.println(ligne);
-                    String strar[] = ligne.split("./");
-                   // System.out.println(strar[1]);
-                    String musique[] = strar[1].split(" - ");
-                   
-                    String artiste = musique[0];
-                    String titre[] = musique[1].split(":");
-                    String morceau = titre[0];
+                
+                  
+                    String firstline[] = ligne.split("(\\./)");
+             
+                    String elements[] = firstline[1].split(" - ");
+                    
+                    //ARTISTE;IMAGE
+            
+                    String artiste_image[] = elements[0].split(";");
+                    String artiste = artiste_image[0];
+                    String image = artiste_image[1];
+
+                    //TITRE;GENRE;ANNEE
+                    String titre_genre_annee[] = elements[1].split(";");
+                    String morceau = titre_genre_annee[0];//
+                    String genre = titre_genre_annee[1];//
+                    String annee = titre_genre_annee[2];//
+
+                    //INSTRU
+                    String instruments[] = elements[2].split(":")[0].split(";");
+
+                    
                     m = new Morceau(morceau);
-                    //m.setTitre(morceau);
-                    a = getArtiste(artiste);
+                    Collection<Instrument> mi = m.getInstruments();
+                    m.setAnnee((Integer.parseInt(annee)));
+                    g = getGenre(genre);    // POUR VERIFIER DOUBLONS
+                    m.setGenre(g);
+                    a = getArtiste(artiste, image); // POUR VERIFIER DOUBLONS
                     m.setArtiste(a);
+                    
+                    for(int i=0; i<instruments.length; i++){                       
+                        in = getInstrument(instruments[i]);//VERIF DOUBLONS
+
+                        mi.add(in);
+                        in.getMorceaux().add(m);   
+                        
+                    }                   
+   
                 }else{                 
                     if(!ligne.isEmpty()){//Pour les sauts de ligne
-                        p = new Piste(ligne);
-                        p.setMorceau(m);
-                        em.persist(p);
+                            if(ligne.endsWith(".mp3")||ligne.endsWith(".ogg")){
+
+                                p = new Piste(ligne);
+                                p.setMorceau(m);
+                                em.persist(p);
+                        }
                     }
                 }
-                
+              
                 em.persist(a);
+                em.persist(g);
                 em.persist(m);
+                
             } 
 
         }

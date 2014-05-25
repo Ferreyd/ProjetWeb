@@ -1,4 +1,4 @@
-./AC-DC - Highway To hell (live):
+./AC-DC;http://www.acdc.com/sites/acdc/files/imagecache/600wide_max/acdchighwaytohell.jpg - Highway To hell (live);Rock;1977 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums 2 Bass drum.mp3
 Drums 3 snare.mp3
@@ -13,7 +13,7 @@ Vocals 2 Main.mp3
 Vocals 3 backing vocals guitar overdubs.mp3
 Vocals 4 backing vocals.mp3
 
-./AC-DC - Shoot To Thrills (live):
+./AC-DC;http://www.acdc.com/sites/acdc/files/imagecache/600wide_max/acdchighwaytohell.jpg - Shoot To Thrills (live);Rock;1980 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums 1 bass drum.mp3
 Drums 2 bass drum.mp3
@@ -28,7 +28,7 @@ Guitar overdubs over intro.mp3
 Vocals 1 Main.mp3
 Vocals 2 Main.mp3
 
-./AC-DC - Back In Black (live):
+./AC-DC;http://www.acdc.com/sites/acdc/files/imagecache/600wide_max/acdchighwaytohell.jpg - Back In Black (live);Rock;1980 - Batterie;Basse;Guitare;Voix:
 Backing guitar on solo.mp3
 Backing vocals.mp3
 Bass.mp3
@@ -43,7 +43,7 @@ Guitar 2.mp3
 Voice 1.mp3
 Voice 2.mp3
 
-./AC-DC - Hell's Bells (live):
+./AC-DC;http://www.acdc.com/sites/acdc/files/imagecache/600wide_max/acdchighwaytohell.jpg - Hell's Bells (live);Rock;1980 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums 1 bass drum.mp3
 Drums 2 bass drum.mp3
@@ -58,7 +58,7 @@ Misc Bells etc.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./AC-DC - You Shook Me All Night Long (live):
+./AC-DC;http://www.acdc.com/sites/acdc/files/imagecache/600wide_max/acdchighwaytohell.jpg - You Shook Me All Night Long (live);Rock;1980 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drum 1 bass drum.mp3
 Drums 2 bass drum.mp3
@@ -77,7 +77,7 @@ Misc.mp3
 Vocal main 1.mp3
 Vocal main 2.mp3
 
-./AFI - Miss Murder:
+./AFI;http://media.tumblr.com/8db214faf3fc196dc27cb21c7f3fbca1/tumblr_inline_mq5avb7fYa1qz4rgp.jpg - Miss Murder;Rock;2006 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -85,7 +85,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Aerosmith - Back in the Saddle:
+./Aerosmith;http://theseconddisc.files.wordpress.com/2011/01/aerosmith.jpeg - Back in the Saddle;Rock;1976 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -93,24 +93,24 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Aerosmith - Same Old Song and Dance:
+./Aerosmith;http://theseconddisc.files.wordpress.com/2011/01/aerosmith.jpeg - Same Old Song and Dance;Rock;1974 - Batterie;Guitare;Voix:
 guitar.ogg
 notes.mid
 rhythm.ogg
 song.ini
 song.ogg
 
-./Aerosmith - Walk This Way (3 tracks):
+./Aerosmith;http://theseconddisc.files.wordpress.com/2011/01/aerosmith.jpeg - Walk This Way (3 tracks);Rock;1975 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums and Vocals.mp3
 guitar.mp3
 
-./Alice Cooper - Billions Dollars Babies (3 tracks):
+./Alice Cooper;http://www.radiometal.com/images/posts/2010/06/alicecooper-conf.jpg - Billions Dollars Babies (3 tracks);Rock;1973 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums + Vocals + misc.mp3
 guitar.mp3
 
-./Alice Copper - I'm Eighteen:
+./Alice Cooper;http://www.radiometal.com/images/posts/2010/06/alicecooper-conf.jpg - I'm Eighteen;Rock;1956 - Batterie;Basse;Guitare;Voix:
 Alice Cooper - I'm Eighteen 8.mp3
 Alice Cooper - I'm Eighteen 9.mp3
 Bass.mp3
@@ -128,7 +128,7 @@ Misc harmonica + guitar overdubs 1.mp3
 Vocal Main 1.mp3
 Vocal Main 2.mp3
 
-./Alice Copper - School's Out:
+./Alice Cooper;http://www.radiometal.com/images/posts/2010/06/alicecooper-conf.jpg - School's Out;Rock;1992 - Batterie;Basse;Guitare;Orgue;Piano;Voix:
 Bass 1.mp3
 Bass 2.mp3
 Drum 1 bass drum.mp3
@@ -146,7 +146,7 @@ Organ + overdubs guitar.mp3
 Vocals 1 Main.mp3
 Vocals 2 Main.mp3
 
-./Alice in Chains - Them Bones:
+./Alice in Chains;http://www.isthismetal.com/wp-content/uploads/2013/08/is-alice-in-chains-metal.jpg - Them Bones;Rock;1992 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -154,7 +154,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Anthrax - Caught in a Mosh:
+./Anthrax;http://images6.fanpop.com/image/photos/34300000/Anthrax-anthrax-34379101-1280-1319.jpg - Caught in a Mosh;Rock;1987 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -162,7 +162,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Avenged Sevenfold - Almost Easy:
+./Avenged Sevenfold;http://3.bp.blogspot.com/-jLxiZ6YIrKM/TZcV87-3c5I/AAAAAAAAAHw/fiUjvAuSSC8/s1600/avengedsevenfold.jpg - Almost Easy;Rock;2006 - Batterie;Clavier;Guitare;Voix:
 drums.ogg
 guitar.ogg
 notes.mid
@@ -170,7 +170,7 @@ rhythm.ogg
 song.ini
 song.ogg
 
-./Avenged Sevenfold - Beast and the Harlot:
+./Avenged Sevenfold;http://3.bp.blogspot.com/-jLxiZ6YIrKM/TZcV87-3c5I/AAAAAAAAAHw/fiUjvAuSSC8/s1600/avengedsevenfold.jpg - Beast and the Harlot;Rock;2006 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -178,13 +178,13 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Beatles - A day in a life:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - A day in a life;Rock;1966 - Batterie;Basse;Guitare;Voix;Piano:
 1 Vocals.mp3
 2 Guitar + Piano.mp3
 3 Guitar + orchestra.mp3
 4 Bass + Drums.mp3
 
-./Beatles - Helter Skelter:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - Helter Skelter;Rock;1966 - Batterie;Basse;Guitare;Voix:
 Bass-2.mp3
 Bass.mp3
 Drums 1 snare + hi-hat.mp3
@@ -196,21 +196,21 @@ Guitar overdubs 1.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./Beatles - Sgt Peppers Lonley Hearts Club Band:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - Sgt Peppers Lonley Hearts Club Band;Rock;1966 - Guitare;Voix
 1 - Crowd Noise.mp3
 2 Backing instrus.mp3
 3 Vocals.mp3
 Lead Gtr + Horns.mp3
 MultiTrack_Masters_Beatles_Sgt_Peppers_Lonely_Hearts.nfo
 
-./Beatles - Shes Leaving Home:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - Shes Leaving Home;Rock;1966 - Violon;Voix:
 1 Strings 1.mp3
 2 Strings 2.mp3
 3 Paul Lead.mp3
 4 Back. Vocals.mp3
 MultiTrack_Masters_Beatles_Shes_Leaving_Home.nfo
 
-./Beatles - When Im 64:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - When Im 64;Rock;1966 - Batterie;Basse;Clarinette;Piano;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -222,14 +222,14 @@ piano.png
 voix.mp3
 voix.png
 
-./Beatles - With A Little Help From My Friends:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - With A Little Help From My Friends;Rock;1966 - Tambour;Basse:
 1 Bass + Tamb.mp3
 2 Backing instr.mp3
 3 Ringo.mp3
 4 Back. Vocals.mp3
 MultiTrack_Masters_Beatles_With_A_Little_Help.nfo
 
-./Beatles - Yellow Submarine:
+./Beatles;http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/TheBeatles.jpg?itok=WJnlc9HT - Yellow Submarine;Rock;1966 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -241,7 +241,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Billy Idol - White Wedding without vocals:
+./Billy Idol;http://4.bp.blogspot.com/-lA53cktvB7o/UJ3bLOo9g5I/AAAAAAAAAms/RCQLQY1JV_g/s1600/Billy+Idol+2.jpg - White Wedding without vocals;Rock;1987 - Batterie;Basse;Guitare:
 Bass.mp3
 Drum 1.mp3
 Drum 2.mp3
@@ -250,7 +250,7 @@ Drums 4 hi-hat snare.mp3
 Drums bass drum.mp3
 Guitars.mp3
 
-./Blue Oyster Cult - Godzilla:
+./Blue Oyster Cult;http://wallpaper.metalship.org/images/blue-%C3%96yster-cult1.jpg - Godzilla;Rock;2006 - Batterie;Basse;Guitare;Voix
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -259,7 +259,7 @@ rbconv.mid
 snaretoms.ogg
 song.ogg
 
-./Bob Marley - Is This Love:
+./Bob Marley;http://unabletofind.files.wordpress.com/2010/02/legend.jpg - Is This Love;Reggae;1978 - Batterie;Basse;Guitare;Piano;Orgue;Saxophone;Trombone;Trompette;Voix:
 basse.mp3
 basse.png
 choeurs1.mp3
@@ -291,7 +291,7 @@ trompette.png
 voix.mp3
 voix.png
 
-./Boston  - More Than a Feeling:
+./Boston;http://cps-static.rovicorp.com/3/JPG_400/MI0000/707/MI0000707190.jpg - More Than a Feeling;Rock;1976 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -299,14 +299,14 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Dandy Warhols - Mis Amigos:
+./Dandy Warhols;http://cps-static.rovicorp.com/3/JPG_400/MI0002/751/MI0002751616.jpg - Mis Amigos;Rock;2008 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums + Percs.mp3
 Guitar.mp3
 Loops + Trumpet.mp3
 Vocals.mp3
 
-./Danzig - Mother:
+./Danzig;http://cps-static.rovicorp.com/3/JPG_400/MI0001/328/MI0001328286.jpg - Mother;Rock;1994 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -314,7 +314,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./David Bowies - Lets Dance:
+./David Bowie;http://cps-static.rovicorp.com/3/JPG_400/MI0003/696/MI0003696241.jpg - Lets Dance;Pop;1983 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -324,12 +324,12 @@ guitare.png
 voix.mp3
 voix.png
 
-./Dead Kennedys - Holiday In Cambodia:
+./Dead Kennedys;http://cps-static.rovicorp.com/3/JPG_400/MI0001/399/MI0001399275.jpg - Holiday In Cambodia;Rock;1979 - Batterie;Guitare:
 guitar.mp3
 rhythm.mp3
 song.mp3
 
-./Deep Purple - Highway Star:
+./Deep Purple;http://cps-static.rovicorp.com/3/JPG_400/MI0001/343/MI0001343361.jpg - Highway Star;Rock;1972 - Batterie;Basse;Guitare;Voix:
 1 Drums1.mp3
 2 Drums2.mp3
 3 Drums3.mp3
@@ -340,7 +340,7 @@ song.mp3
 8 Vocals.mp3
 9 Guitar solo1 + Back. Instr..mp3
 
-./Deep Purple - Smoke On The Water:
+./Deep Purple;http://cps-static.rovicorp.com/3/JPG_400/MI0001/343/MI0001343361.jpg - Smoke On The Water;Rock;1972 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -350,7 +350,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Depeche Mode - never Let Me Down Again:
+./Depeche Mode;http://cps-static.rovicorp.com/3/JPG_400/MI0003/276/MI0003276341.jpg - never Let Me Down Again;Rock;1985 - Batterie;Clavier;Piano;Voix:
 batterie.mp3
 batterie.png
 clavier.mp3
@@ -362,7 +362,7 @@ piano.png
 voix.mp3
 voix.png
 
-./Dire Straits - Sultans of Swing:
+./Dire Straits;http://cps-static.rovicorp.com/3/JPG_400/MI0001/327/MI0001327499.jpg - Sultans of Swing;Rock;1978 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -372,7 +372,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Doors - Love Me Two Times:
+./Doors;http://cps-static.rovicorp.com/3/JPG_400/MI0003/688/MI0003688385.jpg - Love Me Two Times;Rock;1967 - Batterie;Basse;Clavecin;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -384,7 +384,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./DragonForce  - Through the Fire and Flames:
+./DragonForce;http://cps-static.rovicorp.com/3/JPG_400/MI0003/346/MI0003346650.jpg  - Through the Fire and Flames;Rock;2006 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -392,7 +392,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Eagles - Hotel California:
+./Eagles;http://cps-static.rovicorp.com/3/JPG_400/MI0003/590/MI0003590626.jpg - Hotel California;Rock;1976 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -404,7 +404,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Extreme  - Play With Me:
+./Extreme;http://cps-static.rovicorp.com/3/JPG_400/MI0003/732/MI0003732067.jpg - Play With Me;Rock;1989 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -412,7 +412,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Foo Fighters - Monkey Wrench:
+./Foo Fighters;http://cps-static.rovicorp.com/3/JPG_400/MI0003/343/MI0003343122.jpg - Monkey Wrench;Rock;1997 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -420,7 +420,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Franz Ferdinand - Take Me Out:
+./Franz Ferdinand;http://cps-static.rovicorp.com/3/JPG_400/MI0003/735/MI0003735617.jpg - Take Me Out;Rock;2004 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -428,7 +428,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Guns and Roses - Welcome to the jungle:
+./Guns and Roses;http://cps-static.rovicorp.com/3/JPG_400/MI0003/715/MI0003715095.jpg - Welcome to the jungle;Rock;1987 - Batterie;Basse;Guitare;Voix:
 1 drums + others.mp3
 2 Vocals + drums.mp3
 3 Guitar rythm.mp3
@@ -436,7 +436,7 @@ song.ogg
 5 Bass.mp3
 6 Bass.mp3
 
-./Heart  - Barracuda:
+./Heart;http://cps-static.rovicorp.com/3/JPG_400/MI0000/009/MI0000009334.jpg - Barracuda;Rock;1977 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -444,7 +444,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Helmet  - Unsung [Live]:
+./Helmet;http://cps-static.rovicorp.com/3/JPG_400/MI0000/015/MI0000015102.jpg  - Unsung [Live];Metal;1972 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -452,7 +452,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Hey You - The Exies:
+./Hey You;http://cps-static.rovicorp.com/3/JPG_400/MI0000/433/MI0000433618.jpg - The Exies;Rock;2004 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -460,7 +460,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Incubus  - Stellar:
+./Incubus;http://cps-static.rovicorp.com/3/JPG_400/MI0001/508/MI0001508589.jpg  - Stellar;Metal;1999 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -468,7 +468,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Iron Maiden - The Trooper:
+./Iron Maiden;http://cps-static.rovicorp.com/3/JPG_400/MI0002/336/MI0002336891.jpg - The Trooper;Metal;1983 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -476,7 +476,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./James Brown - Sex Machine:
+./James Brown;http://cps-static.rovicorp.com/3/JPG_400/MI0002/108/MI0002108081.jpg - Sex Machine;Rnb;1965 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -488,7 +488,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Janes Addiction - Stop!:
+./Janes Addiction;http://cps-static.rovicorp.com/3/JPG_400/MI0000/021/MI0000021834.jpg - Stop!;Rock;1990 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -496,7 +496,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Jimi Hendrix - Castles Made of Sand:
+./Jimi Hendrix;http://cps-static.rovicorp.com/3/JPG_400/MI0001/850/MI0001850269.jpg - Castles Made of Sand;Rock;1967 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -510,7 +510,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Joan Jett and the Blackhearts - I Love Rock 'n Roll:
+./Joan Jett and the Blackhearts;http://cps-static.rovicorp.com/3/JPG_400/MI0001/935/MI0001935350.jpg - I Love Rock 'n Roll;Rock;1981 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -519,7 +519,7 @@ rbconv.mid
 snaretoms.ogg
 song.ogg
 
-./Judas Priest - The Hellion, Electric Eye:
+./Judas Priest;http://cps-static.rovicorp.com/3/JPG_400/MI0000/154/MI0000154482.jpg - The Hellion, Electric Eye;Metal;1998 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -527,7 +527,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Kansas - Carry On Wayward Son:
+./Kansas;http://cps-static.rovicorp.com/3/JPG_400/MI0002/503/MI0002503888.jpg - Carry On Wayward Son;Rock;1976 - Batterie;Basse;Guitare:
 Guitar Hero Smash Hits - Complete Multitrack Audio.htm
 bass.ogg
 cymbals.ogg
@@ -536,7 +536,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Kiss - Rock and Roll All Nite:
+./Kiss;http://cps-static.rovicorp.com/3/JPG_400/MI0002/068/MI0002068831.jpg - Rock and Roll All Nite;Metal;1975 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -544,7 +544,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Lamb of God - Laid to Rest:
+./Lamb of God;http://cps-static.rovicorp.com/3/JPG_400/MI0002/455/MI0002455407.jpg - Laid to Rest;Metal;2004 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -552,7 +552,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Led Zeppelin - Heartbreaker 3 takes:
+./Led Zeppelin;http://cps-static.rovicorp.com/3/JPG_400/MI0003/680/MI0003680454.jpg - Heartbreaker 3 takes;Rock;1967 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drum Left.mp3
 Drum Right.mp3
@@ -562,7 +562,7 @@ Guitar 2.mp3
 Vocals + Guitar.mp3
 Vocals.mp3
 
-./Led Zeppelin - Ramble On:
+./Led Zeppelin;http://cps-static.rovicorp.com/3/JPG_400/MI0003/680/MI0003680454.jpg - Ramble On;Rock;1969 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drum Left.mp3
 Drum Right.mp3
@@ -572,7 +572,7 @@ Guitar 3.mp3
 Vocals + Guitar.mp3
 Vocals.mp3
 
-./Led Zeppelin - What Is And What Should Never Be:
+./Led Zeppelin;http://cps-static.rovicorp.com/3/JPG_400/MI0003/680/MI0003680454.jpg - What Is And What Should Never Be;Rock;1969 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drum Left.mp3
 Drum Right.mp3
@@ -582,7 +582,7 @@ Vocals 1.mp3
 Vocals 2.mp3
 Vocals 3.mp3
 
-./Les Zeppelin - Whole Lotta Love:
+./Les Zeppelin;http://cps-static.rovicorp.com/3/JPG_400/MI0003/680/MI0003680454.jpg - Whole Lotta Love;Rock;1969 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drum Left.mp3
 Drum Right.mp3
@@ -592,7 +592,7 @@ Percussion.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./Living Colour - Cult of Personality:
+./Living Colour;http://cps-static.rovicorp.com/3/JPG_400/MI0001/645/MI0001645345.jpg - Cult of Personality;Rock;1988 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -600,7 +600,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Lynyrd Skynyrd - Free Bird:
+./Lynyrd Skynyrd;http://cps-static.rovicorp.com/3/JPG_400/MI0003/111/MI0003111689.jpg - Free Bird;Rock;1973 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -608,7 +608,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Megadeath - Peace Sells:
+./Megadeath;http://cps-static.rovicorp.com/3/JPG_400/MI0001/535/MI0001535063.jpg - Peace Sells;Metal;1986 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -620,7 +620,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Metallica - Enter Sandman (4 Trcks):
+./Metallica;http://cps-static.rovicorp.com/3/JPG_400/MI0003/589/MI0003589822.jpg - Enter (4 Trcks);Metal;1991 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -630,7 +630,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Metallica - Enter Sandman (9 Trcks):
+./Metallica;http://cps-static.rovicorp.com/3/JPG_400/MI0003/589/MI0003589822.jpg - Enter Sandman (9 Trcks);Metal;1991 - Batterie;Basse;Guitare;Voix:
 Bass.mp3
 Drums 1.mp3
 Drums 2.mp3
@@ -641,7 +641,7 @@ Guitar 2.mp3
 Vocal 2 + extras.mp3
 Vocal.mp3
 
-./Metallica - One:
+./Metallica;http://cps-static.rovicorp.com/3/JPG_400/MI0003/589/MI0003589822.jpg - One;Metal;1988 - Batterie;Clavier;Guitare:
 guitar.ogg
 label.png
 notes.mid
@@ -649,7 +649,7 @@ rhythm.ogg
 song.ini
 song.ogg
 
-./Michael jackson - Beat It:
+./Michael Jackson;http://cps-static.rovicorp.com/3/JPG_400/MI0000/677/MI0000677650.jpg - Beat It;Pop;1982 - Batterie;Basse;Guitare;Clavier;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -661,7 +661,7 @@ synthes.png
 voix.mp3
 voix.png
 
-./Motorhead - The Ace Osf Spades:
+./Motorhead;http://cps-static.rovicorp.com/3/JPG_400/MI0003/414/MI0003414711.jpg - The Ace Of Spades;Rock;1980 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -673,7 +673,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Mountain - Mississipi Queen:
+./Mountain;http://cps-static.rovicorp.com/3/JPG_400/MI0001/764/MI0001764623.jpg - Mississipi Queen;Rock;1970 - Batterie;Basse;Guitare;Voix:
 1 Kicks.mp3
 2 Snare.mp3
 3 Hit Hat.mp3
@@ -684,7 +684,7 @@ voix.png
 8 Bass.mp3
 9 Guitar 3.mp3
 
-./Muse - Uprising:
+./Muse;http://cps-static.rovicorp.com/3/JPG_400/MI0003/425/MI0003425191.jpg - Uprising;Rock;2009 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -694,7 +694,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Nirvana - Smell Like Teen Spirit:
+./Nirvana;http://cps-static.rovicorp.com/3/JPG_400/MI0003/221/MI0003221759.jpg - Smell Like Teen Spirit;Rock;1992 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -704,7 +704,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Offspring - Come Out And Play:
+./Offspring;http://cps-static.rovicorp.com/3/JPG_400/MI0003/339/MI0003339078.jpg - Come Out And Play;Rock;1994 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -716,7 +716,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Ozzy Osbourne - Bark at the Moon:
+./Ozzy Osbourne;http://cps-static.rovicorp.com/3/JPG_400/MI0003/538/MI0003538195.jpg - Bark at the Moon;Metal;1983 - Batterie;Basse;Guitare;Voix:
 Guitar Hero Smash Hits - Complete Multitrack Audio.htm
 Nirvana - Heart Shaped Box
 bass.ogg
@@ -727,15 +727,7 @@ rbconv.mid
 snaretoms.ogg
 song.ogg
 
-./Ozzy Osbourne - Bark at the Moon/Nirvana - Heart Shaped Box:
-bass.ogg
-cymbals.ogg
-guitar.ogg
-kick.ogg
-snaretoms.ogg
-song.ogg
-
-./Pantera  - Cowboys from Hell [Live]:
+./Pantera;http://cps-static.rovicorp.com/3/JPG_400/MI0000/034/MI0000034303.jpg - Cowboys from Hell [Live];Metal;1990 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -744,7 +736,7 @@ rbconv.mid
 snaretoms.ogg
 song.ogg
 
-./Pat Benatar - Hit Me With Your Best Shot:
+./Pat Benatar;http://cps-static.rovicorp.com/3/JPG_400/MI0002/813/MI0002813902.jpg - Hit Me With Your Best Shot;Rock;1979 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -752,7 +744,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Pearl Jam - Even Flow:
+./Pearl Jam;http://cps-static.rovicorp.com/3/JPG_400/MI0001/780/MI0001780593.jpg - Even Flow;Rock;1994 - Batterie;Clavier;Guitare:
 guitar.ogg
 label.png
 notes.mid
@@ -760,7 +752,7 @@ rhythm.ogg
 song.ini
 song.ogg
 
-./Poison - Nothin' but a Good Time:
+./Poison;http://cps-static.rovicorp.com/3/JPG_400/MI0001/412/MI0001412659.jpg - Nothin' but a Good Time;Metal;1988 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -768,7 +760,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Priestess - Lay Down:
+./Priestess;http://cps-static.rovicorp.com/3/JPG_400/MI0001/987/MI0001987172.jpg - Lay Down;Metal;2006 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -776,7 +768,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Queen - Bohemian Rhapsody (24 trks):
+./Queen;http://cps-static.rovicorp.com/3/JPG_400/MI0003/627/MI0003627193.jpg - Bohemian Rhapsody (24 trks);Rock;1975 - Piano;Batterie;Basse;Voix:
 1 Harmony Vocals.mp3
 10 Piano.mp3
 11 Piano.mp3
@@ -802,7 +794,7 @@ song.ogg
 8 Bass.mp3
 9 Bass.mp3
 
-./Queen - Don't Stop Me Now:
+./Queen;http://cps-static.rovicorp.com/3/JPG_400/MI0003/627/MI0003627193.jpg  - Don't Stop Me Now;Rock;1978 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -816,7 +808,7 @@ piano.png
 voix.mp3
 voix.png
 
-./Queen - Killer Queen:
+./Queen;http://cps-static.rovicorp.com/3/JPG_400/MI0003/627/MI0003627193.jpg  - Killer Queen;Rock;1974 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -825,7 +817,7 @@ rbconv.mid
 snaretoms.ogg
 song.ogg
 
-./Queen - We Are The Champions:
+./Queen;http://cps-static.rovicorp.com/3/JPG_400/MI0003/627/MI0003627193.jpg  - We Are The Champions;Rock;1977 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -839,7 +831,7 @@ piano.png
 voix.mp3
 voix.png
 
-./Queens of the Stone Age - No One Knows:
+./Queens of the Stone Age;http://cps-static.rovicorp.com/3/JPG_400/MI0002/024/MI0002024114.jpg - No One Knows;Rock;2002 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -847,7 +839,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./R.E.M - Losing My Religion:
+./R.E.M;http://cps-static.rovicorp.com/3/JPG_400/MI0000/031/MI0000031737.jpg - Losing My Religion;Rock;1991 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -857,7 +849,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Radiohead - Creep:
+./Radiohead;http://cps-static.rovicorp.com/3/JPG_400/MI0000/667/MI0000667105.jpg - Creep;Rock;1993 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -871,7 +863,7 @@ public.png
 voix.mp3
 voix.png
 
-./Rage Against The Machine - Killing in the name:
+./Rage Against The Machine;http://cps-static.rovicorp.com/3/JPG_400/MI0001/673/MI0001673839.jpg - Killing in the name;Rock;1992 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -881,14 +873,14 @@ guitare.png
 voix.mp3
 voix.png
 
-./Rage Against the Machine - Bulls on Parade:
+./Rage Against the Machine;http://cps-static.rovicorp.com/3/JPG_400/MI0001/673/MI0001673839.jpg  - Bulls on Parade;Rock;1996 - Batterie;Basse;Guitare;Clavier:
 guitar.ogg
 notes.mid
 rhythm.ogg
 song.ini
 song.ogg
 
-./Ram Jam - Black Betty:
+./Ram Jam;http://cps-static.rovicorp.com/3/JPG_400/MI0001/782/MI0001782049.jpg - Black Betty;Rock;1977 - Batterie;Basse;Guitare;Voix:
 Bass 1.mp3
 Bass 2.mp3
 Drums 1 bass drum.mp3
@@ -906,7 +898,7 @@ Guitar 4.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./Ramones - I Wanna Be Sedated:
+./Ramones;http://cps-static.rovicorp.com/3/JPG_400/MI0001/762/MI0001762419.jpg - I Wanna Be Sedated;Rock;1978 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -916,7 +908,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Ramones - Rockaway Beach:
+./Ramones;http://cps-static.rovicorp.com/3/JPG_400/MI0001/762/MI0001762419.jpg - Rockaway Beach;Rock;1978 - Batterie;Basse;Guitare;Voix:
 Backing vocals.mp3
 Basse.mp3
 Drums 1.mp3
@@ -927,7 +919,7 @@ Guitare 1.mp3
 Guitare 2.mp3
 Vocal.mp3
 
-./Ratt  - Round and Round:
+./Ratt;http://cps-static.rovicorp.com/3/JPG_400/MI0003/719/MI0003719296.jpg - Round and Round;Metal;1984 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -935,7 +927,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Red Hot Chili Peppers - Suck My Kiss:
+./Red Hot Chili Peppers;http://cps-static.rovicorp.com/3/JPG_400/MI0003/733/MI0003733899.jpg - Suck My Kiss;Rock;1991 - Batterie;Basse;Guitare;Voix:
 guitar.ogg
 label.png
 notes.mid
@@ -943,7 +935,7 @@ rhythm.ogg
 song.ini
 song.ogg
 
-./Red Hot Chili Peppers - Under The Bridge:
+./Red Hot Chili Peppers;http://cps-static.rovicorp.com/3/JPG_400/MI0003/733/MI0003733899.jpg - Under The Bridge;Rock;1992 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -955,7 +947,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Red Hot chili Peppers - Give It Away:
+./Red Hot chili Peppers;http://cps-static.rovicorp.com/3/JPG_400/MI0003/733/MI0003733899.jpg - Give It Away;Rock;1991 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -967,7 +959,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./Rush  - YYZ:
+./Rush;http://cps-static.rovicorp.com/3/JPG_400/MI0001/815/MI0001815902.jpg - YYZ;Rock;1981 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -975,7 +967,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Santana - Black Magic Woman:
+./Santana;http://cps-static.rovicorp.com/3/JPG_400/MI0000/038/MI0000038850.jpg - Black Magic Woman;Rock;1974 - Batterie;Basse;Clavier;Guitare;Voix:
 Bass.mp3
 Guitar 1.mp3
 Guitar 2.mp3
@@ -989,7 +981,7 @@ Percussions 5.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./Simon and Garfunkel - the Sound Of Silence:
+./Simon and Garfunkel;http://cps-static.rovicorp.com/3/JPG_400/MI0002/961/MI0002961991.jpg - the Sound Of Silence;Rock;1964 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1001,7 +993,7 @@ guitare.png
 simon.mp3
 simon.png
 
-./Slayer - Raining Blood:
+./Slayer;http://cps-static.rovicorp.com/3/JPG_400/MI0003/371/MI0003371429.jpg - Raining Blood;Metal;1986 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1009,7 +1001,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Smashing Pumpkins - Zero:
+./Smashing Pumpkins;http://cps-static.rovicorp.com/3/JPG_400/MI0001/781/MI0001781676.jpg - Zero;Rock;1996 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1023,7 +1015,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Soundgarden - Black Hole Sun:
+./Soundgarden;http://cps-static.rovicorp.com/3/JPG_400/MI0002/493/MI0002493563.jpg - Black Hole Sun;Metal;1994 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1035,7 +1027,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./Spice Girls - Wannabe:
+./Spice Girls;http://cps-static.rovicorp.com/3/JPG_400/MI0001/679/MI0001679479.jpg - Wannabe;Pop;1996 - Clavier;Orgue;Batterie;Voix:
 clavier.mp3
 clavier.png
 orgue.mp3
@@ -1045,7 +1037,7 @@ rythme.png
 voix.mp3
 voix.png
 
-./Stevie Wonder - Superstition:
+./Stevie Wonder;http://cps-static.rovicorp.com/3/JPG_400/MI0003/653/MI0003653636.jpg - Superstition;Rnb;1972 - Basse;Trompette;Batterie;Clavier;Voix:
 Bass.mp3
 Brass 1.mp3
 Brass 2 trumpet.mp3
@@ -1063,7 +1055,7 @@ Keyboard 8 clavinet.mp3
 Vocal 1 main.mp3
 Vocal 2 main.mp3
 
-./Stone Temple Pilots - Trippin' on a Hole in a Paper Heart:
+./Stone Temple Pilots;http://cps-static.rovicorp.com/3/JPG_400/MI0001/762/MI0001762680.jpg - Trippin' on a Hole in a Paper Heart;Rock;1996 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1071,7 +1063,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Sublime - What I Got:
+./Sublime;http://cps-static.rovicorp.com/3/JPG_400/MI0000/145/MI0000145406.jpg - What I Got;Rock;1997 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1081,7 +1073,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./System Of A Down - Chop Suey!:
+./System Of A Down;http://cps-static.rovicorp.com/3/JPG_400/MI0000/301/MI0000301453.jpg - Chop Suey!;Metal;2001 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1093,18 +1085,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./The Cars - The Cars:
-01 The Cars - Good Times Roll.mogg
-02 The Cars - My Best Friend's Girl.mogg
-03 The Cars - Just What I Needed.mogg
-04 The Cars - I'm In Touch With Your World.mogg
-05 The Cars - Don't Cha Stop.mogg
-06 The Cars - You're All I've Got.mogg
-07 The Cars - Bye Bye Love.mogg
-08 The Cars - Moving In Stereo.mogg
-09 The Cars - All Mixed Up.mogg
-
-./The Clash - Should I Stay Or Should I Go:
+./The Clash;http://cps-static.rovicorp.com/3/JPG_400/MI0002/045/MI0002045280.jpg - Should I Stay Or Should I Go;Rock;1982 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1118,7 +1099,7 @@ guitare2.png
 voix.mp3
 voix.png
 
-./The Donnas - Take It Off:
+./The Donnas;http://cps-static.rovicorp.com/3/JPG_400/MI0000/371/MI0000371195.jpg - Take It Off;Rock;2002 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1126,24 +1107,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./The Pixies - Doolittle:
-01 - Pixies - Debaser.mogg
-02 Pixies - Tame.mogg
-03 Pixies - Wave Of Mutilation.mogg
-04 Pixies - I Bleed.mogg
-05 Pixies - Here Comes Your Man.mogg
-06 Pixies - Dead.mogg
-07 Pixies - Monkey Gone To Heaven.mogg
-08 Pixies - Mr. Grieves.mogg
-09 Pixies - Crackity Jones.mogg
-10 Pixies - La La Love You.mogg
-11 Pixies - No. 13 Baby.mogg
-12 Pixies - There Goes My Gun.mogg
-13 Pixies - Hey.mogg
-14 Pixies - Silver.mogg
-15 Pixies - Gouge Away.mogg
-
-./The Police - Message in a Bottle:
+./The Police;http://cps-static.rovicorp.com/3/JPG_400/MI0002/406/MI0002406127.jpg - Message in a Bottle;Rock;1979 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1151,7 +1115,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./The Police - Roxanne:
+./The Police;http://cps-static.rovicorp.com/3/JPG_400/MI0002/406/MI0002406127.jpg - Roxanne;Rock;1978 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1161,7 +1125,7 @@ guitare.png
 voix.mp3
 voix.png
 
-./The Reverend Horton Heat - Psychobilly Freakout:
+./The Reverend Horton Heat;http://cps-static.rovicorp.com/3/JPG_400/MI0003/715/MI0003715085.jpg - Psychobilly Freakout;Rock;1992 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1169,7 +1133,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./The Rolling Stones - Honky Tonk Woman:
+./The Rolling Stones;http://cps-static.rovicorp.com/3/JPG_400/MI0003/277/MI0003277352.jpg - Honky Tonk Woman;Rock;1970 - Batterie;Basse;Guitare;Piano;Voix:
 Bass 1.mp3
 Bass 2.mp3
 Drums 1 bass drum.mp3
@@ -1187,14 +1151,14 @@ Misc horns guitar overdubs.mp3
 Vocals 1 main.mp3
 Vocals 2 main + harmony.mp3
 
-./The Rolling Stones - Paint It Black:
+./The Rolling Stones;http://cps-static.rovicorp.com/3/JPG_400/MI0003/277/MI0003277352.jpg - Paint It Black;Rock;1966 - Batterie;Basse;Clavier;Guitare:
 guitar.ogg
 notes.mid
 rhythm.ogg
 song.ini
 song.ogg
 
-./The Sex Pistols - Pretty Vacant:
+./The Sex Pistols;http://cps-static.rovicorp.com/3/JPG_400/MI0002/749/MI0002749183.jpg - Pretty Vacant;Rock;1977 - Batterie;Basse;Guitare;Voix:
 Background vocals 1.mp3
 Background vocals 2.mp3
 Bass 1.mp3
@@ -1214,7 +1178,7 @@ Sex Pistols - Pretty Vacant 15.mp3
 Vocals 1.mp3
 Vocals 2.mp3
 
-./The Stooges - Search and Destroy:
+./The Stooges;http://cps-static.rovicorp.com/3/JPG_400/MI0002/947/MI0002947701.jpg - Search and Destroy;Rock;1973 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1223,7 +1187,7 @@ note.txt
 snaretoms.ogg
 song.ogg
 
-./The Sword - Freya:
+./The Sword;http://cps-static.rovicorp.com/3/JPG_400/MI0001/869/MI0001869738.jpg - Freya;Metal;2006 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1231,7 +1195,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./The Who - Behind Blue Eyes:
+./The Who;http://cps-static.rovicorp.com/3/JPG_400/MI0003/651/MI0003651951.jpg - Behind Blue Eyes;Rock;1971 - Batterie;Basse;Guitare;Voix:
 1 Guitar main.mp3
 10 Vocals choirs.mp3
 11 Misc noise + choirs.mp3
@@ -1245,7 +1209,7 @@ song.ogg
 8 Vocals.mp3
 9 Vocals choirs.mp3
 
-./The Who - I Won't Get Fooled Again:
+./The Who;http://cps-static.rovicorp.com/3/JPG_400/MI0003/651/MI0003651951.jpg - I Won't Get Fooled Again;Rock;1971 - Batterie;Basse;Clavier;Guitare;Voix:
 1 Drums1.mp3
 2 Drums2.mp3
 3 Bass.mp3
@@ -1256,7 +1220,7 @@ song.ogg
 8 Background Inst..mp3
 9 Keyboards.mp3
 
-./Trust - Antisocial:
+./Trust;http://cps-static.rovicorp.com/3/JPG_400/MI0002/049/MI0002049480.jpg - Antisocial;Metal;1980 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1268,7 +1232,7 @@ voix.png
 voix2.mp3
 voix2.png
 
-./Twisted Sister - I Wanna Rock:
+./Twisted Sister;http://cps-static.rovicorp.com/3/JPG_400/MI0002/431/MI0002431178.jpg - I Wanna Rock;Rock;1984 - Batterie;Basse;Guitare:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1276,7 +1240,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Village People - YMCA:
+./Village People;http://cps-static.rovicorp.com/3/JPG_400/MI0001/416/MI0001416801.jpg - YMCA;Pop;1978 - Batterie;Basse;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1286,7 +1250,7 @@ extra.png
 voix.mp3
 voix.png
 
-./Warrant  - Cherry Pie:
+./Warrant;http://cps-static.rovicorp.com/3/JPG_400/MI0002/211/MI0002211527.jpg - Cherry Pie;Rock;1990 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1294,14 +1258,14 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Weezer - My Name Is Jonas:
+./Weezer;http://cps-static.rovicorp.com/3/JPG_400/MI0003/569/MI0003569035.jpg - My Name Is Jonas;Rock;1994 - Batterie;Clavier;Guitare:
 guitar.ogg
 notes.mid
 rhythm.ogg
 song.ini
 song.ogg
 
-./Weezer - Say It Aint So:
+./Weezer;http://cps-static.rovicorp.com/3/JPG_400/MI0003/569/MI0003569035.jpg - Say It Aint So;Rock;1994 - Batterie;Basse;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
@@ -1313,7 +1277,7 @@ voix.png
 voix2.mp3
 voix2.png
 
-./White Zombie - Thunder Kiss '65:
+./White Zombie;http://cps-static.rovicorp.com/3/JPG_400/MI0001/715/MI0001715565.jpg - Thunder Kiss '65;Metal;2003 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1321,7 +1285,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Wolfmother  - Woman:
+./Wolfmother;http://cps-static.rovicorp.com/3/JPG_400/MI0001/685/MI0001685260.jpg - Woman;Rock;2006 - Batterie;Basse;Guitare;Voix:
 bass.ogg
 cymbals.ogg
 guitar.ogg
@@ -1329,7 +1293,7 @@ kick.ogg
 snaretoms.ogg
 song.ogg
 
-./Yes - Owner Of A Lonely Heart:
+./Yes;http://cps-static.rovicorp.com/3/JPG_400/MI0000/051/MI0000051572.jpg - Owner Of A Lonely Heart;Rock;1983 - Batterie;Basse;Clavier;Guitare;Voix:
 basse.mp3
 basse.png
 batterie.mp3
