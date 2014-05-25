@@ -38,15 +38,11 @@ public class Utilisateur implements Serializable {
     private Abonnement abonnement;
     private String login;
     private String mdp;
-    
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "UTILISATEUR_MORCEAU",
-            joinColumns = {
-                @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")})
-    
-    private Set<Morceau> morceaux;
+
+    @ManyToMany(targetEntity = Morceau.class,cascade=CascadeType.ALL)
+    @JoinTable(name = "UTILISATEUR_MORCEAU", joinColumns = @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id"),
+            inverseJoinColumns =  @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id"))  
+    private Set<Morceau> achats;
 
     public Utilisateur() {
     }
@@ -131,11 +127,16 @@ public class Utilisateur implements Serializable {
         return "projetweb.modeles.Utilisateur[ id=" + id + " ]";
     }
 
-    public Collection<Morceau> getMorceaux() {
-        return morceaux;
+    public Set<Morceau> getAchats() {
+        return achats;
     }
 
-    public void setMorceaux(Set<Morceau> morceaux) {
-        this.morceaux.addAll(morceaux);
+    
+    public void setAchats(Set<Morceau> achats) {
+        this.achats.addAll(achats);
     }
+
+
+
+   
 }
