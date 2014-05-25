@@ -8,6 +8,7 @@ package projetweb.modeles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -39,10 +40,14 @@ public class Utilisateur implements Serializable {
     private String login;
     private String mdp;
 
-    @ManyToMany(targetEntity = Morceau.class,cascade=CascadeType.ALL)
-    @JoinTable(name = "UTILISATEUR_MORCEAU", joinColumns = @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id"),
-            inverseJoinColumns =  @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id"))  
-    private Set<Morceau> achats;
+    // Morceaux dans lesquels on retrouve l'instrument
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "utilisateurs")
+    @JoinTable(name = "UTILISATEUR_MORCEAU",
+            joinColumns = {
+                @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "MORCEAu_PK", referencedColumnName = "id")})
+    private Set<Morceau> achats = new HashSet<Morceau>();
 
     public Utilisateur() {
     }
@@ -131,12 +136,8 @@ public class Utilisateur implements Serializable {
         return achats;
     }
 
-    
     public void setAchats(Set<Morceau> achats) {
         this.achats.addAll(achats);
     }
 
-
-
-   
 }
