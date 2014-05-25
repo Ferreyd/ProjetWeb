@@ -7,6 +7,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -139,14 +140,12 @@ public class ServletPanier extends HttpServlet {
                      * utilsant la structure de donné Set
                      */
                     ArrayList<String> list = new ArrayList();
-                    for (String s : tokens) {
-                        list.add(s);
-                    }
+                    list.addAll(Arrays.asList(tokens));
                     Set set = new HashSet();
                     set.addAll(list);
                     ArrayList<String> panier = new ArrayList(set);
 
-                    if (valeur != "") {
+                    if (!"".equals(valeur)) {
                         for (String s : panier) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
                             System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
@@ -155,9 +154,8 @@ public class ServletPanier extends HttpServlet {
                     }
                     System.out.println("LOG = " + session.getAttribute("login"));
                     gestionnaireUtilisateur.ajouteMorceau(session.getAttribute("login").toString(), listeMorceaux);
-                    listeMorceaux = null;
+                    listeMorceaux = null; // on vide le panier
                 }
-                System.out.println("ET LA AUSSI");
                 request.setAttribute("listeMorceaux", listeMorceaux);
                 forwardTo = "panier.jsp?action=affiche";
             }
