@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package projetweb.modeles;
 
 import java.util.Collection;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -32,46 +32,50 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 public class Morceau implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     // Titre du morceau
-    private String titre; 
-        
+    private String titre;
+
     // Instruments qu'on retrouve dans ce morceau
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy="morceaux")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "morceaux")
     @JoinTable(name = "MORCEAU_INSTRUMENT",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Instrument> instruments = new ArrayList<Instrument>();
-    
-    
 
-    @ManyToMany(targetEntity = Utilisateur.class,mappedBy = "achats")
-    private Set<Utilisateur> utilisateurs;
-      
-    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "UTILISATEUR_MORCEAU",
+            joinColumns = {
+                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id")})
+    private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>();
+
     // Pistes qui composent le morceau
-    @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="morceau")
-    private Collection<Piste> pistes;  
-    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "morceau")
+    private Collection<Piste> pistes;
+
     @ManyToOne
     private Artiste artiste;
-    
+
     @ManyToOne
     private Genre genre;
 
-    
     // Année de sortie du morceau
     private int annee;
 
-    public Morceau(){}
+    public Morceau() {
+    }
+
     public Morceau(String titre) {
         this.titre = titre;
-        
+
     }
 
     public String getTitre() {
@@ -82,7 +86,6 @@ public class Morceau implements Serializable {
         this.titre = titre;
     }
 
-
     @XmlTransient
     public Collection<Instrument> getInstruments() {
         return instruments;
@@ -92,7 +95,6 @@ public class Morceau implements Serializable {
         this.instruments = instruments;
     }
 
-
     public Collection<Piste> getPistes() {
         return pistes;
     }
@@ -101,7 +103,6 @@ public class Morceau implements Serializable {
         this.pistes = pistes;
     }
 
-
     public int getAnnee() {
         return annee;
     }
@@ -109,7 +110,7 @@ public class Morceau implements Serializable {
     public void setAnnee(int annee) {
         this.annee = annee;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -134,7 +135,6 @@ public class Morceau implements Serializable {
         this.genre = genre;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -167,5 +167,5 @@ public class Morceau implements Serializable {
     public String toString() {
         return "projetweb.modeles.Morceau[ id=" + id + " ]";
     }
-    
+
 }
