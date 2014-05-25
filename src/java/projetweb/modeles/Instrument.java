@@ -9,7 +9,9 @@ package projetweb.modeles;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Nicolas
  */
 @Entity
-@XmlRootElement
 public class Instrument implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,8 +35,13 @@ public class Instrument implements Serializable {
     // Nom de l'instrument
     private String nom;
 
+    public Instrument(){}
+    
+    public Instrument(String nom){
+        this.nom = nom;
+    }
     // Morceaux dans lesquels on retrouve l'instrument
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "MORCEAU_INSTRUMENT",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
@@ -43,7 +49,7 @@ public class Instrument implements Serializable {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Morceau> morceaux = new ArrayList<Morceau>();
 
-    @XmlTransient
+
     public Collection<Morceau> getMorceaux() {
         return morceaux;
     }

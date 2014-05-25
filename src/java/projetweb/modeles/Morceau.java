@@ -30,7 +30,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Nicolas
  */
 @Entity
-@XmlRootElement
 public class Morceau implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,7 +39,7 @@ public class Morceau implements Serializable {
     private String titre; 
         
     // Instruments qu'on retrouve dans ce morceau
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy="morceaux")
     @JoinTable(name = "MORCEAU_INSTRUMENT",
             joinColumns = {
                 @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
@@ -102,7 +101,6 @@ public class Morceau implements Serializable {
     }
 
 
-    @XmlTransient
     public Collection<Piste> getPistes() {
         return pistes;
     }

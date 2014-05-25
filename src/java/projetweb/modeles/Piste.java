@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Nicolas
  */
 @Entity
-@XmlRootElement
 public class Piste implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
