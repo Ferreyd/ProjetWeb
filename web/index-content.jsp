@@ -23,7 +23,7 @@
         <c:if test="${!empty param['message']}">  
             <h4>Reçu message : ${param.message}</h4>  
         </c:if>  
-        <h4 class="position"><a class="btn btn-default" href="ServletUtilisateur?action=creerUtilisateursDeTest" role="button">Créer 4 utilisateurs de test</a></h4>  
+        <jsp:include page="recherche.jsp"/>  
 
 
 
