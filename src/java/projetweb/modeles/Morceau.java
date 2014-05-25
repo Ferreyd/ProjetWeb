@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -48,20 +49,11 @@ public class Morceau implements Serializable {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Instrument> instruments = new ArrayList<Instrument>();
     
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "UTILISATEUR_MORCEAU",
-            joinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "UTILISATEUR", referencedColumnName = "id")})
-    private Collection<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
     
-    private Collection<Morceau> panier;
 
-    
+    @ManyToMany(targetEntity = Utilisateur.class,mappedBy = "achats")
+    private Set<Utilisateur> utilisateurs;
       
-    /*@OneToOne
-    private Album album;*/
     
     // Pistes qui composent le morceau
     @OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="morceau")
@@ -164,20 +156,13 @@ public class Morceau implements Serializable {
         }
         return true;
     }
-    public Collection<Utilisateur> getUtilisateurs() {
+
+    public Set getUtilisateurs() {
         return utilisateurs;
     }
 
-    public void setUtilisateurs(Collection<Utilisateur> utilisateurs) {
+    public void setUtilisateurs(Set utilisateurs) {
         this.utilisateurs = utilisateurs;
-    }
-
-    public Collection<Morceau> getPanier() {
-        return panier;
-    }
-
-    public void setPanier(Collection<Morceau> panier) {
-        this.panier = panier;
     }
 
     @Override
