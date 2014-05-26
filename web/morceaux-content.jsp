@@ -21,8 +21,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="nav nav-pills">
-                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Afficher/Rafraichir la liste des morceaux</a></li>
-                        <li><a href="ServletMorceau?action=ajouterMorceauxAvecPistes">Ajouter des morceaux</a></li>
+                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Afficher tous les morceaux</a></li>
+                        
                     </ul>
                     <br/>
                 </div>  

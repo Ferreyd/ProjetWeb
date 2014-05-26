@@ -17,15 +17,22 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenue ${login}</h1>
-        <h2> Votre abonnement : ${abonnementUtilisateur}</h2>
-        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
-        <c:if test="${!empty param['message']}">  
-            <h4>Reçu message : ${param.message}</h4>  
-        </c:if>  
-        <jsp:include page="recherche.jsp"/>  
+        <div class="page-header">
+            <div class="container">
 
+                <h1>Bienvenue ${login} !</h1>
+                <h2> </h2>
+                <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->   
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-3"></div>
+                       <div class="col-lg-6"><jsp:include page="recherche.jsp"/> </div> 
+                       <div class="col-lg-3"></div>
+                 
+                    </div>
 
-
+                </div>
+            </div>
+        </div>
     </body>
 </html>

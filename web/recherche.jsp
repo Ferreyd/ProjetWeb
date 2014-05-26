@@ -5,7 +5,7 @@
                  <input checked type="radio" name="typeRecherche" value="rechercheArtiste" /> Artiste
                  <input type="radio" name="typeRecherche" value="rechercheTitre" /> Titre
             </span>                                
-            <input type="text"  class="form-control" name="champ_recherche"/>
+            <input type="text"  class="form-control" placeholder="Rechercher un artiste ou un titre"name="champ_recherche"/>
 
             <span class="input-group-btn">
                 <button class="btn btn-block" type="submit" value="Rechercher" name="submit">Rechercher</button>
