@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -39,15 +40,8 @@ public class Utilisateur implements Serializable {
     private Abonnement abonnement;
     private String login;
     private String mdp;
-
-    // Morceaux dans lesquels on retrouve l'instrument
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "utilisateurs")
-    @JoinTable(name = "UTILISATEUR_MORCEAU",
-            joinColumns = {
-                @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "MORCEAu_PK", referencedColumnName = "id")})
-    private Set<Morceau> achats = new HashSet<Morceau>();
+    private Set<Morceau> achats;
+   
 
     public Utilisateur() {
     }
@@ -132,12 +126,14 @@ public class Utilisateur implements Serializable {
         return "projetweb.modeles.Utilisateur[ id=" + id + " ]";
     }
 
+    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
     public Set<Morceau> getAchats() {
         return achats;
     }
 
     public void setAchats(Set<Morceau> achats) {
-        this.achats.addAll(achats);
+        this.achats = achats;
     }
-
+    
+    
 }
