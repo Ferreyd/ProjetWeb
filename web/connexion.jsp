@@ -18,23 +18,33 @@
         <div class="container">
             <div  class="row">
                 <div class="col-lg-12">
+                    <!-- DIV INSCRIPTION -->
                     <div class="col-lg-4">
                   
                         <form class="form-signin" role="form" action="ServletUtilisateur" method="post" >
-                            <h2 class="form-signin-heading">Sinon, inscrivez-vous</h2>
+                            <h3 class="form-signin-heading">Profitez de l'offre musicale !</h3>
+                            <h4>Inscrivez-vous !</h4>
                            
-                            <input class="form-control"placeholder="Login" type="text" name="log">
+                            <input class="form-control"placeholder="Login" type="text" name="log"><br/>
                             
-                            <input class="form-control"placeholder="Nom" type="text" name="nom">
+                            <input class="form-control"placeholder="Nom" type="text" name="nom"><br/>
                           
-                            <input class="form-control"placeholder="Prénom" type="text" name="prenom">
+                            <input class="form-control"placeholder="Prénom" type="text" name="prenom"><br/>
                             
-                            <input class="form-control"placeholder="Mot de passe" type="password" name="mdp"><br/>    
+                            <input class="form-control"placeholder="Mot de passe" type="password" name="mdp"><br/>
+                            
                             <input type="hidden" name="action" value="inscription">    
                             <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="Inscription">
                         </form>
                          
-                </div>
+                    </div>
+                    <!-- DIV DESC-->
+                    <div class="col-lg-8">
+                        <h1>Ecoutez la musique autrement !</h1>
+                        <p>Sur Multitracksongs, vous pouvez écouter, découvrir et même vous offrir un chanson parmi un catalogue, <b>instruments par instruments</b>!<br/>
+                            
+                        </p>
+                    </div>
                  </div>
              </div>
          </div>

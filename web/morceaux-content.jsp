@@ -22,7 +22,9 @@
                 <div class="col-lg-6">
                     <ul class="nav nav-pills">
                         <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Afficher tous les morceaux</a></li>
-                        
+                        <c:forEach var="i" items="${requestScope['lesInstrus']}">
+                        <a href="ServletMorceau?action=afficherParInstrument&instru=${i.nom}">${i.nom}</a>
+                        </c:forEach>
                     </ul>
                     <br/>
                 </div>  
@@ -90,9 +92,10 @@
                                                    <li <c:if test="${compter.first}">class="active"</c:if>><a href="ServletMorceau?action=recherche&typeRecherche=rechercheTitre&champ_recherche=${param['champ_recherche']}&page=${compter.index}">${compter.count}</a></li>                                                          
                                              </c:forEach>
                                              <li><a href="ServletMorceau?action=recherche&typeRecherche=rechercheTitre&champ_recherche=${param['champ_recherche']}&page=${after}">&raquo;</a></li> 
-                                      </c:if>    
+                                      </c:if> 
+                                  </ul>
                                  </c:if> 
-                                 </ul>
+                                 
                                  <ul class="pagination">
                                  <c:if test="${param['page'] != null}">
                                      <c:set var="before" value="${param['page']-1}"/>
@@ -167,9 +170,10 @@
                                                    <li <c:if test="${compter.first}">class="active"</c:if>><a href="ServletMorceau?action=recherche&typeRecherche=rechercheArtiste&champ_recherche=${param['champ_recherche']}&page=${compter.index}">${compter.count}</a></li>                                                          
                                              </c:forEach>
                                              <li><a href="ServletMorceau?action=recherche&typeRecherche=rechercheArtiste&champ_recherche=${param['champ_recherche']}&page=${after}">&raquo;</a></li> 
-                                      </c:if>    
+                                      </c:if>   
+                                    </ul>
                                  </c:if> 
-                                 </ul>
+                                 
                                  <ul class="pagination">
                                  <c:if test="${param['page'] != null}">
                                      <c:set var="before" value="${param['page']-1}"/>
@@ -188,7 +192,87 @@
                         </c:if>
                         <!-- FIN RESULTAT DE RECHERCHE PAR ARTISTE-->
                      </c:if>                
-              <!-- FIN RESULTAT DE RECHERCHE -->            
+              <!-- FIN RESULTAT DE RECHERCHE --> 
+              <!-- DEBUT RESULTAT PAR INSTRU --> 
+                    <c:if test="${param['action'] == 'afficherParInstrument'}" >               
+                   
+                        
+                         <h2>${param['instru']}</h2>
+
+                         <table class="table table-bordered table-striped">
+                             <thead>
+                                <tr>
+                                    <td><b>Titre</b></td>
+                                    <td><b>Artiste</b></td>
+                                     <td><b>Pistes</b></td>
+                                     <td></td>
+                                </tr>
+                             </thead>
+                             <tbody>
+                                
+                                
+                                <c:forEach var="m" items="${requestScope['listeMorceaux']}">
+
+
+                                    <tr>                                               
+                                        <td>${m.titre}</td>
+                                        <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}
+                           
+                                        </td>
+                                        
+                                            <td>
+                                                <c:forEach var="p" varStatus="comptePiste" items="${m.pistes}">
+                                                    <!-- NOMBRE DE PISTES DU MORCEAU -->
+                                                    <c:if test="${comptePiste.last}" >  
+                                                        ${comptePiste.count}
+                                                    </c:if>
+                                                </c:forEach>                                      
+                                            </td>
+                                        
+                                            <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a><button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button></td>
+                                    </tr>
+                                    <tr id="${m.id}" style="display:none; ">
+                                        <td colspan="4"  >
+                                            <c:forEach var="p" items="${m.pistes}">
+
+                                                 <ul>
+                                                     <li>${p.nom}</li>
+                                                 </ul>
+
+                                             </c:forEach>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                             </tbody>
+                         </table>
+                        <ul class="pagination">
+                            <c:if test="${requestScope['nbResultatParInstru'] > 10 }">
+                                <c:if test="${param['page'] == null}">
+                                     <c:set var="after" value="1"/>
+
+                                     <c:forEach var="m" varStatus="compter" begin="0" end="${requestScope['nbPages']}">
+                                           <li <c:if test="${compter.first}">class="active"</c:if>><a href="ServletMorceau?action=afficherParInstrument&instru=${param['instru']}&page=${compter.index}">${compter.count}</a></li>                                                          
+                                     </c:forEach>
+                                     <li><a href="ServletMorceau?action=afficherParInstrument&instru=${param['instru']}&page=${after}">&raquo;</a></li> 
+                                </c:if> 
+                            </c:if>
+                        </ul>
+                        <ul class="pagination">
+                        <c:if test="${param['page'] != null}">
+                            <c:set var="before" value="${param['page']-1}"/>
+                            <c:if test="${before < 0}"></c:if>
+                            <c:if test="${before >= 0}"><li><a href="ServletMorceau?action=afficherParInstrument&instru=${param['instru']}&page=${before}">&laquo;</a></li></c:if>
+                            <c:forEach var="m" varStatus="compter" begin="0" end="${requestScope['nbPages']}">                                     
+                            <li <c:if test="${compter.index == param['page']}">class="active"</c:if>><a href="ServletMorceau?action=afficherParInstrument&instru=${param['instru']}&page=${compter.index}">${compter.count}</a></li>                                                          
+                            </c:forEach>                         
+                            <c:set var="after" value="${param['page']+1}"/>
+                            <c:if test="${after <= requestScope['nbPages']}"><li><a href="ServletMorceau?action=afficherParInstrument&instru=${param['instru']}&page=${after}">&raquo;</a></li></c:if>
+                            <c:if test="${after > requestScope['nbPages']}"></c:if>
+                        </c:if>
+                        </ul>    
+
+                    </c:if>
+                <!-- FIN PAR INSTRU -->
                <!-- DEBUT MORCEAUX ET PISTES -->          
                     <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" >               
                    

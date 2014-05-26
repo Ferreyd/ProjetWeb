@@ -90,8 +90,8 @@ public class GestionnaireMorceau {
     }
     public void ajouterMorceauAvecPistes() throws Exception{
 
-        //String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
-        String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        //String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         FileInputStream fis = null;
         BufferedReader br = null;
         try{
@@ -239,6 +239,21 @@ public class GestionnaireMorceau {
         return q.getResultList();
     }
  
+    public Collection<Instrument> getAllInstrus(){
+        Query q = em.createQuery("select i from Instrument i");
+        return q.getResultList();
+    }
+    
+    public Collection<Morceau> getMorceauxByInstru(String nomInstru, int index){
+        Query q = em.createQuery("select m from Morceau m where m.instruments in (select i from Instrument i where i.nom='"+nomInstru+"')");
+        q.setFirstResult(index);
+        q.setMaxResults(10);
+        return q.getResultList();
+    }    
+    public int compteMorceauxByInstru(String nomInstru){
+        Query q = em.createQuery("select m from Morceau m where m.instruments in (select i from Instrument i where i.nom='"+nomInstru+"')");
+        return q.getResultList().size();
+    }
 
  
 }

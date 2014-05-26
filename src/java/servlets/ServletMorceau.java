@@ -50,13 +50,30 @@ public class ServletMorceau extends HttpServlet {
 
         String forwardTo = "morceaux.jsp";
         String action = request.getParameter("action");
-       String morceau_id = /*Integer.parseInt(*/ request.getParameter("id")/*)*/;
+        String morceau_id = /*Integer.parseInt(*/ request.getParameter("id")/*)*/;
         String artist_id = request.getParameter("artiste_id");
+        String instru = request.getParameter("instru");
         String index = request.getParameter("page");
         HttpSession session = request.getSession();
-
+        request.setAttribute("lesInstrus", gestionnaireMorceau.getAllInstrus());
+        
         if (action != null) {
+            if(action.equals("afficherParInstrument")){
+                Collection<Morceau> morceaux;
+                double res = Math.ceil(gestionnaireMorceau.compteMorceauxByInstru(instru) / 10);
+                int nbPages = (int) res;
+                if (index == null) {
+                    morceaux = gestionnaireMorceau.getMorceauxByInstru(instru, 0);
+                } else {
+                    morceaux = gestionnaireMorceau.getMorceauxByInstru(instru, (Integer.valueOf(10)) * Integer.parseInt(index));
 
+                }
+                
+                request.setAttribute("listeMorceaux", morceaux);
+                request.setAttribute("index", index);
+                request.setAttribute("nbPages", nbPages); 
+                request.setAttribute("nbResultatParInstru", gestionnaireMorceau.compteMorceauxByInstru(instru));
+            }
             if (action.equals("afficherLesMorceauxEtPistes")) {
                 Collection<Morceau> morceaux;
                 double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux() / 10);
@@ -72,14 +89,6 @@ public class ServletMorceau extends HttpServlet {
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);
                 
-                //Collection<Piste> pistes = gestionnaireMorceau.getPistesByMorceau(morceau_id);
-
-                //String titre = gestionnaireMorceau.getMorceauById(morceau_id);
-                //request.setAttribute("nbLignes", pistes.size());
-                //request.setAttribute("listeMorceaux", morceaux);
-                //request.setAttribute("listePistes", pistes);
-                //request.setAttribute("titreMorceau", titre);
-
             }
             if (action.equals("ajouterMorceauxAvecPistes")) {
                 try {
