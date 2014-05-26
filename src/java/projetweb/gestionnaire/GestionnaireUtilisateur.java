@@ -180,11 +180,18 @@ public class GestionnaireUtilisateur {
         return (Abonnement)q.getResultList().get(0);
     }
 
+    /**
+     * 
+     * @param login
+     * @param listeMorceaux
+     * @return 
+     */
     public Utilisateur ajouteMorceau(String login, Set<Morceau> listeMorceaux) {
         Utilisateur u = this.chercherParLogin(login).get(0);
         u.setAchats(listeMorceaux);
         em.persist(u);
         return u;
     }
-
+    
+  
 }
