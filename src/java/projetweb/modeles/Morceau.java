@@ -48,17 +48,9 @@ public class Morceau implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Instrument> instruments = new ArrayList<Instrument>();
-
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @JoinTable(name = "UTILISATEUR_MORCEAU",
-            joinColumns = {
-                @JoinColumn(name = "MORCEAU_PK", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "UTILISATEUR_PK", referencedColumnName = "id")})
-    private Set<Utilisateur> utilisateurs = new HashSet<Utilisateur>();
-
+    
     // Pistes qui composent le morceau
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "morceau")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "morceau")
     private Collection<Piste> pistes;
 
     @ManyToOne
@@ -153,14 +145,6 @@ public class Morceau implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public Set getUtilisateurs() {
-        return utilisateurs;
-    }
-
-    public void setUtilisateurs(Set utilisateurs) {
-        this.utilisateurs = utilisateurs;
     }
 
     @Override
