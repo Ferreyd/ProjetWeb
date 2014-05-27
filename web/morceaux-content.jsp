@@ -19,18 +19,21 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <ul class="nav nav-pills">
-                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Afficher tous les morceaux</a></li>
+     
+                <div class="col-lg-12">
+                    <jsp:include page="recherche.jsp"/>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs">
+                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Tous</a></li>
                         <c:forEach var="i" items="${requestScope['lesInstrus']}">
-                        <a href="ServletMorceau?action=afficherParInstrument&instru=${i.nom}">${i.nom}</a>
+                        <li><a href="ServletMorceau?action=afficherParInstrument&instru=${i.nom}">${i.nom}</a></li>
                         </c:forEach>
                     </ul>
                     <br/>
                 </div>  
-                <div class="col-lg-6">
-                    <jsp:include page="recherche.jsp"/>  
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -298,8 +301,21 @@
 
                                     <tr>                                               
                                         <td>${m.titre}</td>
-                                        <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}
-                           
+                                        <td><a data-toggle="modal" href="#artiste${m.artiste.id}" >${m.artiste.nom}</a>
+                                                <div id="artiste{m.artiste.id}" class="modal hide fade in" style="display: none; ">
+                                                 <div class="modal-header">
+                                                   <a class="close" data-dismiss="modal">×</a>
+                                                   <h3>${m.artiste.nom}</h3>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                   <h4>Text in a modal</h4>
+                                                   <p>You can add some text here.</p>		        
+                                                 </div>
+                                                 <div class="modal-footer">
+                                                   <a href="#" class="btn btn-success">Call to action</a>
+                                                   <a href="#" class="btn" data-dismiss="modal">Close</a>
+                                                 </div>
+                                               </div>
                                         </td>
                                         
                                             <td>
