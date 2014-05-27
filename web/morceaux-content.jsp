@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
             
              <!-- DEBUT RESULTAT DE RECHERCHE -->
                     <c:if test="${param['action'] == 'recherche'}" >
@@ -354,7 +354,8 @@
                     </c:if>
                 
                     <c:if test="${param['action'] == 'ficheArtiste'}" >
-                        <h2>${requestScope['nomArtiste']}</h2>
+                        <jsp:include page="artiste.jsp"/>
+                        
                     </c:if>
    <!-- FIN DETAIL PISTES --> 
                 </div>
