@@ -30,22 +30,16 @@
                 <tr>                                               
                     <td>${m.titre}</td>
                     <td>
-                        <c:forEach var="g" items="${requestScope['m.genre']}">
-                            ${g}
-                        </c:forEach>
+                        ${m.genre.nom}
                     </td>
                     <td>${m.annee}</td>
-                    <td>
-                        <c:forEach var="a" items="${requestScope['m.artiste']}">
-                            ${a}
-                        </c:forEach>
-                    </td>
+                    <td>${m.artiste.nom}</td>
                     <td>0.99€</td>
                     <td><a class="btn btn-danger" href="ServletPanier?action=supprimerDuPanier&id=${m.id}">Supprimer du panier</a></td>
                 </tr>
             </c:forEach>
         </table>
-        
+
         <a href="ServletPanier?action=achat"class="btn btn-success">ACHAT</a>
 
     </body>
