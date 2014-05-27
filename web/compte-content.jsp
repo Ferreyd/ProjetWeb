@@ -16,30 +16,92 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Bienvenue ${u.nom}</h1>
-        <h2> Votre abonnement : ${abonnementUtilisateur}</h2>
-        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
-        <c:if test="${!empty param['message']}">  
-            <h4>Reçu message : ${param.message}</h4>  
-        </c:if>  
-    
-            <h2>
-                Nom : ${utilisateur.nom} <br/>
-                Prenom : ${utilisateur.prenom}<br/>
-                Abonnement : ${utilisateur.abonnement}<br/>
-                Login : ${utilisateur.login}<br/>
-                MDP : ${utilisateur.mdp}<br/>
-            </h2>
-        
-        <form action="ServletCompte" method="post">
-            <select name="choixAbo">
-                <c:forEach var="a" items="${abonnements}">
-                    <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
+
+        <div class="col-lg-12">
+            <h1>
+                Votre page d'admnistration
+            </h1>
+            <div class="col-xs-3">
+                <h3>
+                    Nom :
+                </h3>
+                <h3>
+                    Prenom :
+                </h3>
+                <h3>
+                    Abonnement :
+                </h3>
+                <h3>
+                    Login :
+                </h3>
+                <h3>
+                    Mot de passe :
+                </h3>
+            </div>
+            <div class="col-xs-6">
+                <h3>
+                    ${utilisateur.nom}
+                </h3>
+                <h3>
+                    ${utilisateur.prenom}
+                </h3>
+                <h3>
+                    ${abonnementUtilisateur}
+                </h3>
+                <h3>
+                    ${utilisateur.login}
+                </h3>
+                <h3>
+                    ${utilisateur.mdp}
+                </h3>
+            </div>
+            <form action="ServletCompte" method="post">
+                <select name="choixAbo">
+                    <c:forEach var="a" items="${abonnements}">
+                        <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
+                    </c:forEach>
+                </select>
+                <input type="hidden" name="action" value="changerAbo">
+                <input type="submit" class="btn btn-success"/>
+            </form>
+
+            <table border="1">
+                <tr>
+                    <th>Titre</th>
+                    <th>Genre</th>
+                    <th>Annee</th>
+                    <th>Artiste</th>
+                    <th>Prix</th>
+
+                </tr>
+
+                <c:forEach var="m" items="${requestScope['listeAchats']}">
+                    <tr>                                               
+                        <td>${m.titre}</td>
+                        <td>
+                            <c:forEach var="g" items="${requestScope['m.genre']}">
+                                ${g}
+                            </c:forEach>
+                        </td>
+                        <td>${m.annee}</td>
+                        <td>
+                            <c:forEach var="a" items="${requestScope['m.artiste']}">
+                                ${a}
+                            </c:forEach>
+                        </td>
+                        <td>0.99€</td>
+
+                    </tr>
                 </c:forEach>
-            </select>
-            <input type="hidden" name="action" value="changerAbo">
-            <input type="submit" class="btn btn-success"/>
-        </form>
+            </table>
+            <c:if test="${param['achats'] != null}" >
+
+            </c:if>
+
+
+        </div>
+
+
 
 
 
