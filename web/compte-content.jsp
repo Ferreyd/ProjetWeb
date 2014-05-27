@@ -65,30 +65,27 @@
                 <input type="submit" class="btn btn-success"/>
             </form>
 
-            <table border="1">
+
+
+
+
+        </div>
+        <div class="col-lg-12">
+            <table class="table-bordered" border="1">
                 <tr>
                     <th>Titre</th>
                     <th>Genre</th>
                     <th>Annee</th>
                     <th>Artiste</th>
                     <th>Prix</th>
-
-                </tr>
-
-                <c:forEach var="m" items="${requestScope['listeAchats']}">
+                        <c:forEach var="m" items="${requestScope['listeAchats']}">
                     <tr>                                               
                         <td>${m.titre}</td>
                         <td>
-                            <c:forEach var="g" items="${requestScope['m.genre']}">
-                                ${g}
-                            </c:forEach>
+                            ${m.genre.nom}
                         </td>
                         <td>${m.annee}</td>
-                        <td>
-                            <c:forEach var="a" items="${requestScope['m.artiste']}">
-                                ${a}
-                            </c:forEach>
-                        </td>
+                        <td>${m.artiste.nom}</td>
                         <td>0.99€</td>
 
                     </tr>
@@ -97,8 +94,6 @@
             <c:if test="${param['achats'] != null}" >
 
             </c:if>
-
-
         </div>
 
 
