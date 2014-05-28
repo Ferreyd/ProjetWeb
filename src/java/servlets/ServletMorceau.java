@@ -154,9 +154,10 @@ public class ServletMorceau extends HttpServlet {
             if (action.equals("ficheArtiste")) {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
                 String nomArtiste = a.getNom();
-
+                String imgArtiste = a.getImage();
                 Collection<Morceau> listeMorceaux = a.getMorceaux();
                 request.setAttribute("nomArtiste", nomArtiste);
+                request.setAttribute("imgArtiste", imgArtiste);
                 request.setAttribute("listeMorceaux", listeMorceaux);
             }
             if (action.equals("ajoutMorceauPanier")) {
@@ -176,6 +177,21 @@ public class ServletMorceau extends HttpServlet {
 
                 forwardTo = "morceaux.jsp?action=rechercheParTitre";
             }
+        }
+        else{
+            Collection<Morceau> morceaux;
+            double res = Math.ceil(gestionnaireMorceau.compteAllMorceaux() / 10);
+            int nbPages = (int) res;
+            if (index == null) {
+                morceaux = gestionnaireMorceau.getAllMorceaux(0);
+            } else {
+                morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
+
+            }
+
+            request.setAttribute("listeMorceaux", morceaux);
+            request.setAttribute("index", index);
+            request.setAttribute("nbPages", nbPages);
         }
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo);
 

@@ -9,7 +9,7 @@
 <html>
     <head>
         <link href="lib/bootstrap-3.1.1-dist/css/signin.css" rel="stylesheet">           
-        <link rel="stylesheet" href="lib/bootstrap-3.1.1-dist/css/cover.css">
+        <link href="lib/bootstrap-3.1.1-dist/css/cover.css" rel="stylesheet">  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
     </head>
@@ -23,7 +23,7 @@
                   
                         <form class="form-signin" role="form" action="ServletUtilisateur" method="post" >
                             <h3 class="form-signin-heading">Profitez de l'offre musicale !</h3>
-                            <h4>Inscrivez-vous !</h4>
+                            
                            
                             <input class="form-control"placeholder="Login" type="text" name="log"><br/>
                             

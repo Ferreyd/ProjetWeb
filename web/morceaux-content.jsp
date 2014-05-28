@@ -17,24 +17,29 @@
         <title>Morceaux</title>
     </head>
     <body>
+   
         <div class="container">
+          
             <div class="row">
-                <div class="col-lg-6">
-                    <ul class="nav nav-pills">
-                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Afficher tous les morceaux</a></li>
+     
+                <div class="col-lg-12">
+                    <jsp:include page="recherche.jsp"/> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs">
+                        <li><a href="ServletMorceau?action=afficherLesMorceauxEtPistes">Tous</a></li>
                         <c:forEach var="i" items="${requestScope['lesInstrus']}">
-                        <a href="ServletMorceau?action=afficherParInstrument&instru=${i.nom}">${i.nom}</a>
+                        <li><a href="ServletMorceau?action=afficherParInstrument&instru=${i.nom}">${i.nom}</a></li>
                         </c:forEach>
                     </ul>
                     <br/>
                 </div>  
-                <div class="col-lg-6">
-                    <jsp:include page="recherche.jsp"/>  
-                </div>
             </div>
             <div class="row">
-                <div class="col-md-10">
-            
+                <div class="col-md-12">
+         
              <!-- DEBUT RESULTAT DE RECHERCHE -->
                     <c:if test="${param['action'] == 'recherche'}" >
                         <!-- DEBUT RESULTAT DE RECHERCHE PAR TITRE -->
@@ -295,11 +300,11 @@
                                 
                                 <c:forEach var="m" items="${requestScope['listeMorceaux']}">
 
-
+                                    <c:set var="artisteid" value="${m.artiste.id}" /> 
                                     <tr>                                               
                                         <td>${m.titre}</td>
-                                        <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}
-                           
+                                        <td><a data-toggle="modal" href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}</a>
+                                                
                                         </td>
                                         
                                             <td>
@@ -324,6 +329,7 @@
                                              </c:forEach>
                                         </td>
                                     </tr>
+
                                 </c:forEach>
                              </tbody>
                          </table>
@@ -354,7 +360,8 @@
                     </c:if>
                 
                     <c:if test="${param['action'] == 'ficheArtiste'}" >
-                        <h2>${requestScope['nomArtiste']}</h2>
+                        <jsp:include page="artiste.jsp"/>
+                        
                     </c:if>
    <!-- FIN DETAIL PISTES --> 
                 </div>
@@ -364,11 +371,13 @@
         </div>
 
     </body>
-    <script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
-    <script>
+ 
+    <script type="text/javascript">
+
+    
     function show_hide(id)
     {
-        if(document.getElementById(id).style.display=='none')
+      if(document.getElementById(id).style.display=='none')
         {
             document.getElementById(id).style.display="";
             document.getElementById('showPistes'+id).innerHTML='Cacher pistes';
