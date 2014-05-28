@@ -7,6 +7,8 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
+import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
 
 /**
@@ -61,9 +64,7 @@ public class ServletCompte extends HttpServlet {
         Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
 
         if (action != null) {
-            System.out.println("if action");
             if (action.equals("changerAbo")) {
-                System.out.println("changer abo");
                 //Ajout d'un abonnement à l'utilisateur
                 u = gestionnaireUtilisateur.ajouteAbonnement((String) session.getAttribute("login"), (String) request.getParameter("choixAbo"));
                 session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
@@ -73,18 +74,20 @@ public class ServletCompte extends HttpServlet {
             }
             if (action.equals("affiche")) {
                 System.out.println("affiche");
+
             }
         } else {
-            System.out.println("le else");
-
             forwardTo += "?action=affiche";
         }
-
         request.setAttribute("utilisateur", u);
         request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
-        System.out.println("avant request");
+        Collection<Morceau> achats = u.getAchats();
+        for (Morceau m : achats) {
+            System.out.println(m.toString());
+        }
+        request.setAttribute("listeAchats", achats);
+        forwardTo += "?action=affiche";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
-        System.out.println("avant forward");
         dp.forward(request, response);
 
     }

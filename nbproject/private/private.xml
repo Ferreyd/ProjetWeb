@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/header.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/template.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/lib/bootstrap-3.1.1-dist/css/cover.css</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/index.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/recherche.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Genre.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/servlets/ServletPanier.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Abonnement.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/index-content.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/servlets/ServletMorceau.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/servlets/ServletUtilisateur.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/gestionnaire/GestionnaireMorceau.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/lib/bootstrap-3.1.1-dist/css/signin.css</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/gestionnaire/GestionnaireUtilisateur.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/servlets/ServletCompte.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/footer.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Instrument.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/connexion.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/artiste.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/morceaux.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Artiste.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Piste.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Morceau.java</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/morceaux-content.jsp</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/web/lib/bootstrap-3.1.1-dist/css/site.css</file>
+            <file>file:/C:/Users/Jeje/Documents/NetBeansProjects/ProjetWeb/src/java/projetweb/modeles/Utilisateur.java</file>
+        </group>
+    </open-files>
+</project-private>
