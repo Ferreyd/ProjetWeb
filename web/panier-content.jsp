@@ -34,13 +34,20 @@
                     </td>
                     <td>${m.annee}</td>
                     <td>${m.artiste.nom}</td>
-                    <td>0.99€</td>
+                    <td>3.99€</td>
                     <td><a class="btn btn-danger" href="ServletPanier?action=supprimerDuPanier&id=${m.id}">Supprimer du panier</a></td>
                 </tr>
             </c:forEach>
         </table>
 
-        <a href="ServletPanier?action=achat"class="btn btn-success">ACHAT</a>
+
+
+
+        <h2>Vous avez ${taillePanier} article(s) dans votre panier, pour une valeur de ${prix}€</h2>
+        <a href="ServletPanier?action=achat"class="btn btn-success" onclick="confirm('Confirmez vous vouloir acheter ces articles ?')">ACHAT</a>
+
+
 
     </body>
 </html>
+

@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Page du compte</title>
     </head>
     <body>
 
@@ -21,79 +21,82 @@
             <h1>
                 Votre page d'admnistration
             </h1>
-            <div class="col-xs-3">
-                <h3>
-                    Nom :
-                </h3>
-                <h3>
-                    Prenom :
-                </h3>
-                <h3>
-                    Abonnement :
-                </h3>
-                <h3>
-                    Login :
-                </h3>
-                <h3>
-                    Mot de passe :
-                </h3>
+            <div class="col-lg-12">
+                <h2>
+                    Vos informations
+                </h2>
+                <div class="col-xs-3">
+                    <h3>
+                        Nom :
+                    </h3>
+                    <h3>
+                        Prenom :
+                    </h3>
+                    <h3>
+                        Abonnement :
+                    </h3>
+                    <h3>
+                        Login :
+                    </h3>
+                    <h3>
+                        Mot de passe :
+                    </h3>
+                </div>
+                <div class="col-xs-6">
+                    <h3>
+                        ${utilisateur.nom}
+                    </h3>
+                    <h3>
+                        ${utilisateur.prenom}
+                    </h3>
+                    <h3>
+                        ${abonnementUtilisateur}
+                    </h3>
+                    <h3>
+                        ${utilisateur.login}
+                    </h3>
+                    <h3>
+                        ${utilisateur.mdp}
+                    </h3>
+                </div>
+                <form action="ServletCompte" method="post">
+                    <select name="choixAbo">
+                        <c:forEach var="a" items="${abonnements}">
+                            <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="hidden" name="action" value="changerAbo">
+                    <input type="submit" class="btn btn-success"/>
+                </form>
+
+
+
+
             </div>
-            <div class="col-xs-6">
-                <h3>
-                    ${utilisateur.nom}
-                </h3>
-                <h3>
-                    ${utilisateur.prenom}
-                </h3>
-                <h3>
-                    ${abonnementUtilisateur}
-                </h3>
-                <h3>
-                    ${utilisateur.login}
-                </h3>
-                <h3>
-                    ${utilisateur.mdp}
-                </h3>
-            </div>
-            <form action="ServletCompte" method="post">
-                <select name="choixAbo">
-                    <c:forEach var="a" items="${abonnements}">
-                        <option value="${a.id}">Nom : ${a.nom} + Prix : ${a.prix},Duree : ${a.duree}</option>
-                    </c:forEach>
-                </select>
-                <input type="hidden" name="action" value="changerAbo">
-                <input type="submit" class="btn btn-success"/>
-            </form>
-
-
-
-
-
         </div>
         <div class="col-lg-12">
-            <table class="table-bordered" border="1">
-                <tr>
-                    <th>Titre</th>
-                    <th>Genre</th>
-                    <th>Annee</th>
-                    <th>Artiste</th>
-                    <th>Prix</th>
-                        <c:forEach var="m" items="${requestScope['listeAchats']}">
-                    <tr>                                               
-                        <td>${m.titre}</td>
-                        <td>
-                            ${m.genre.nom}
-                        </td>
-                        <td>${m.annee}</td>
-                        <td>${m.artiste.nom}</td>
-                        <td>0.99€</td>
+            <h2>
+                Vos achats
+            </h2>
+                <table class="table-bordered" border="1">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Genre</th>
+                        <th>Annee</th>
+                        <th>Artiste</th>
+                        <th>Prix</th>
+                     <c:forEach var="m" items="${requestScope['listeAchats']}">
+                        <tr>                                               
+                            <td>${m.titre}</td>
+                            <td>${m.genre.nom}</td>
+                            <td>${m.annee}</td>
+                            <td>${m.artiste.nom}</td>
+                            <td>0.99€</td>
 
-                    </tr>
-                </c:forEach>
-            </table>
-            <c:if test="${param['achats'] != null}" >
-
-            </c:if>
+                        </tr>
+                    </c:forEach>
+                </table>
+            
         </div>
 
 

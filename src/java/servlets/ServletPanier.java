@@ -68,7 +68,7 @@ public class ServletPanier extends HttpServlet {
         }
         if (action != null) {
             if (action.equals("affiche")) {
-
+                double prix = 0;
                 Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
@@ -85,7 +85,18 @@ public class ServletPanier extends HttpServlet {
                     Set set = new HashSet();
                     set.addAll(list);
                     ArrayList<String> panier = new ArrayList(set);
+                    if (panier.size() >= 0 && panier.size() < 3) {
+                        prix = panier.size() * 3.99;
 
+                    } else if (panier.size() >= 3 && panier.size() < 10) {
+                        //On prend le nombre de paquet de 3 qu'on multiplie par 5 et on ajoute le reste qu'on multiplie par 3.99
+                        //Ainsi , on compte 5€ par parquet de 3 chansons et 3.99€ pour les chansons restantes
+                        prix = ((panier.size() / 3) * 5) + ((panier.size() % 3) * 3.99);
+                    } else if (panier.size() >= 10) {
+                        //Même principe, sauf qu'on prend les paquets de 10 et de 3
+                        prix = ((panier.size() / 10) * 1) + (((panier.size() % 10) % 3) * 3.99);
+                    }
+                    System.out.println("PRIX = " + prix);
                     if (valeur != "") {
                         for (String s : panier) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
@@ -93,13 +104,16 @@ public class ServletPanier extends HttpServlet {
                             listeMorceaux.add(m);
                         }
                     }
+                    request.setAttribute("taillePanier", panier.size());
+                    request.setAttribute("prix", prix);
                 }
-                System.out.println("ET LA AUSSI");
                 request.setAttribute("listeMorceaux", listeMorceaux);
+
                 forwardTo = "panier.jsp?action=affiche";
             }
             if (action.equals("supprimerDuPanier")) {
                 String res = "";
+
                 Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
@@ -122,9 +136,9 @@ public class ServletPanier extends HttpServlet {
 
                         res += s + ";";
                     }
+
+                    session.setAttribute("panier", res);
                 }
-                System.out.println("RES = " + res);
-                session.setAttribute("panier", res);
                 forwardTo = "panier.jsp?action=affiche";
             }
             if (action.equals("achat")) {
@@ -152,10 +166,12 @@ public class ServletPanier extends HttpServlet {
                             listeMorceaux.add(m);
                         }
                     }
-                    System.out.println("LOG = " + session.getAttribute("login"));
                     gestionnaireUtilisateur.ajouteMorceau(session.getAttribute("login").toString(), listeMorceaux);
                     listeMorceaux = null; // on vide le panier
                 }
+                session.setAttribute("panier", "");
+                request.setAttribute("taillePanier", "");
+                request.setAttribute("prix", "");
                 request.setAttribute("listeMorceaux", listeMorceaux);
                 forwardTo = "panier.jsp?action=affiche";
             }
