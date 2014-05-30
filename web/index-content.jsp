@@ -23,13 +23,36 @@
                 <h1>Bienvenue ${login} !</h1>
                 <h2> </h2>
                 <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->   
-                <div class="row">
+                <div class="row">                       <div class="col-lg-3"></div>
+
                     <div class="col-lg-12">
-                        <div class="col-lg-3"></div>
-                       <div class="col-lg-6"><jsp:include page="recherche.jsp"/> </div> 
-                       <div class="col-lg-3"></div>
-                 
+                        <div class="col-lg-6"><jsp:include page="recherche.jsp"/> </div> 
+                        <div class="col-lg-3"></div>             
                     </div>
+                </div>
+                <div class="col-lg-12">
+                    <h2>
+                        Vos achats
+                    </h2>
+                    <table class="table table-bordered table-striped" border="1">
+                        <tr>
+                            <th>Titre</th>
+                            <th>Genre</th>
+                            <th>Annee</th>
+                            <th>Artiste</th>
+                            <th></th>
+                                <c:forEach var="m" items="${requestScope['listeAchats']}">
+                            <tr>                                               
+                                <td>${m.titre}</td>
+                                <td>${m.genre.nom}</td>
+                                <td>${m.annee}</td>
+                                <td>${m.artiste.nom}</td>
+                                <td>                                           
+                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
 
                 </div>
             </div>
