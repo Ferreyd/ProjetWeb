@@ -11,17 +11,14 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <html>
     <head>
-
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
-
+        <link rel="stylesheet" href="resources/wikipedia.css">
         <title>Morceaux</title>
     </head>
     <body>
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-12">
                     <jsp:include page="recherche.jsp"/>  
                 </div>
@@ -389,33 +386,6 @@
     </body>
 </html>
 <script>
-    /*
-     var url = "http://fr.wikipedia.org/w/api.php?action=parse&format=json&callback=?";
-     var page = "${artiste}";
-          
-     $.getJSON(url, {
-     page: page,
-     prop: "text|images",
-     section: 0,
-     uselang: "fr"
-     }, function(data) {
-     var $container = $("p")
-          
-     // append title
-     $container.append(data['parse']['title']);
-          
-     // append page text
-     $container.append(data['parse']['text']['*']);
-          
-     // append images
-     var images = data['parse']['images'];
-     $.each(images, function(i, src) {
-     // note: the path of these images is somewhat obscured
-     // filenames are all that is supplied (no path)
-     $container.append(src)
-     })
-     })
-     */
     var url = "http://fr.wikipedia.org/w/api.php?action=parse&format=json&callback=?";
     var page = "${artiste}";
     $.getJSON(url, {
@@ -429,6 +399,13 @@
             return "http://fr.wikipedia.org" + $(this).attr("href"); //Pour les liens wikipedia
         });
         $("#wikiInfo").find("a").attr("target", "_blank");
+        $("#wikiInfo").find(".homonymie").hide() 
+        $("#wikiInfo").find(".icone_de_titre").hide(); 
+        $("#wikiInfo").find(".entete icon musique").hide();
+        $("#wikiInfo").find(".thumbcaption").hide();
+        $("#wikiInfo").find("table").addClass("table table-bordered");
+        $("#wikiInfo").find(".navbar noprint bordered").hide();
+        $("#wikiInfo").find(".reference").hide();
     });
 </script>
 
