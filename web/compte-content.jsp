@@ -74,34 +74,5 @@
 
             </div>
         </div>
-        <div class="col-lg-12">
-            <h2>
-                Vos achats
-            </h2>
-                <table class="table-bordered" border="1">
-                    <tr>
-                        <th>Titre</th>
-                        <th>Genre</th>
-                        <th>Annee</th>
-                        <th>Artiste</th>
-                        <th>Prix</th>
-                     <c:forEach var="m" items="${requestScope['listeAchats']}">
-                        <tr>                                               
-                            <td>${m.titre}</td>
-                            <td>${m.genre.nom}</td>
-                            <td>${m.annee}</td>
-                            <td>${m.artiste.nom}</td>
-                            <td>0.99€</td>
-
-                        </tr>
-                    </c:forEach>
-                </table>
-            
-        </div>
-
-
-
-
-
     </body>
 </html>

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
+import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
 
 /**
@@ -56,12 +57,23 @@ public class ServletUtilisateur extends HttpServlet {
             request.setAttribute("prenom", session.getAttribute("prenom"));
             System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
             request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
+
         }
         if (action != null) {
             if (gestionnaireUtilisateur.testAbonnement() == false) {
                 gestionnaireUtilisateur.creerAbonnementsTest();
             } else {
                 request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
+            }
+            if (action.equals("affiche")) {
+                Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
+                Collection<Morceau> achats = u.getAchats();
+                for (Morceau m : achats) {
+                    System.out.println(m.toString());
+                }
+                request.setAttribute("listeAchats", achats);
+                
+                forwardTo = "index.jsp?action=affiche";
             }
             if (action.equals("creerUtilisateursDeTest")) {
                 gestionnaireUtilisateur.creerUtilisateursDeTest();
@@ -72,11 +84,7 @@ public class ServletUtilisateur extends HttpServlet {
             } else if (action.equals("checkConnexion")) {
                 System.out.println("test");
                 boolean existe = gestionnaireUtilisateur.userExists(request.getParameter("log"), request.getParameter("pass"));
-                System.out.println("EXISTE : " + existe);
-                //boolean existe = true;
-
                 if (existe) {
-
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
                     session.setAttribute("abonnementUtilisateur", gestionnaireUtilisateur.getAbonnementUtilisateur(request.getParameter("log")).getNom());
@@ -84,9 +92,7 @@ public class ServletUtilisateur extends HttpServlet {
                     session.setAttribute("connecte", "OK");
                     //connecte = true;
                     message = "Connexion reussie";
-
                     // à la connexion on vérifie si le cookie panier est présent
-                   
                     forwardTo = "index.jsp?action=ok";
                 } else {
                     session.setAttribute("connecte", "KO");
