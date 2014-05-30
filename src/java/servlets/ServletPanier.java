@@ -72,7 +72,6 @@ public class ServletPanier extends HttpServlet {
                 Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
-                    System.out.println("JE SUIS LA " + valeur);
                     String[] tokens = valeur.split("[;]"); // on parse les données du cookie
                     /**
                      * Le code ci dessous permet de gerer les doublons en
@@ -85,7 +84,7 @@ public class ServletPanier extends HttpServlet {
                     Set set = new HashSet();
                     set.addAll(list);
                     ArrayList<String> panier = new ArrayList(set);
-                    if (panier.size() >= 0 && panier.size() < 3) {
+                    if (panier.size() > 0 && panier.size() < 3) {
                         prix = panier.size() * 3.99;
 
                     } else if (panier.size() >= 3 && panier.size() < 10) {
@@ -96,11 +95,10 @@ public class ServletPanier extends HttpServlet {
                         //Même principe, sauf qu'on prend les paquets de 10 et de 3
                         prix = ((panier.size() / 10) * 1) + (((panier.size() % 10) % 3) * 3.99);
                     }
-                    System.out.println("PRIX = " + prix);
+
                     if (valeur != "") {
                         for (String s : panier) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
-                            System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
                             listeMorceaux.add(m);
                         }
                     }
@@ -113,8 +111,7 @@ public class ServletPanier extends HttpServlet {
             }
             if (action.equals("supprimerDuPanier")) {
                 String res = "";
-
-                Collection<Morceau> listeMorceaux = new ArrayList<Morceau>();
+                Collection<Morceau> listeMorceaux = new ArrayList<>();
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
                     String[] tokens = valeur.split("[;]"); // on parse les données du cookie
@@ -146,8 +143,7 @@ public class ServletPanier extends HttpServlet {
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
                 Set<Morceau> listeMorceaux = new HashSet<>();
                 if (session.getAttribute("panier") != null) {
-                    String valeur = session.getAttribute("panier").toString();
-                    System.out.println("JE SUIS LA " + valeur);
+                    String valeur = session.getAttribute("panier").toString();                  
                     String[] tokens = valeur.split("[;]"); // on parse les données du cookie
                     /**
                      * Le code ci dessous permet de gerer les doublons en
@@ -162,7 +158,6 @@ public class ServletPanier extends HttpServlet {
                     if (!"".equals(valeur)) {
                         for (String s : panier) {
                             Morceau m = gestionnaireMorceau.getMorceauByIdReturnAsMorceau(s);
-                            System.out.println("MORCEAU : " + m.getTitre() + " " + m.getGenre());
                             listeMorceaux.add(m);
                         }
                     }
@@ -173,6 +168,7 @@ public class ServletPanier extends HttpServlet {
                 request.setAttribute("taillePanier", "");
                 request.setAttribute("prix", "");
                 request.setAttribute("listeMorceaux", listeMorceaux);
+                System.out.println("panier = " + session.getAttribute("panier").toString());
                 forwardTo = "panier.jsp?action=affiche";
             }
         } else {
