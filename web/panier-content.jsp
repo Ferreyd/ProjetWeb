@@ -39,12 +39,9 @@
                 </tr>
             </c:forEach>
         </table>
-
-
-
-
-        <h2>Vous avez ${taillePanier} article(s) dans votre panier, pour une valeur de ${prix}€</h2>
-        <a href="ServletPanier?action=achat"class="btn btn-success" onclick="confirm('Confirmez vous vouloir acheter ces articles ?')">ACHAT</a>
+            <h2>Vous avez ${taillePanier} article(s) dans votre panier, pour une valeur de ${prix}€</h2>
+            <a href="ServletPanier?action=achat"class="btn btn-success" onclick="confirm('Confirmez vous vouloir acheter ces articles ?')">ACHAT</a>
+        
 
 
 
