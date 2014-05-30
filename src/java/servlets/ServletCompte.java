@@ -81,11 +81,6 @@ public class ServletCompte extends HttpServlet {
         }
         request.setAttribute("utilisateur", u);
         request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
-        Collection<Morceau> achats = u.getAchats();
-        for (Morceau m : achats) {
-            System.out.println(m.toString());
-        }
-        request.setAttribute("listeAchats", achats);
         forwardTo += "?action=affiche";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);
