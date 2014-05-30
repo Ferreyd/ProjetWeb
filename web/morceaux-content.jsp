@@ -69,7 +69,11 @@
                                                         </c:if>
                                                     </c:forEach>            
                                                 </td>
-                                                <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a><button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button></td>
+                                                <td>
+                                                    <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                                    <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
+                                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                </td>
                                             </tr>
                                             <tr id="${m.id}" style="display:none; ">
                                                 <td colspan="4"  >
@@ -146,7 +150,11 @@
                                                     </c:forEach>
 
                                                 </td>
-                                                <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a><button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button></td>
+                                                <td>
+                                                    <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                                    <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
+                                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                </td>
 
                                             </tr>
                                             <tr id="${m.id}" style="display:none; ">
@@ -231,7 +239,11 @@
                                             </c:forEach>                                      
                                         </td>
 
-                                        <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a><button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button></td>
+                                        <td>
+                                            <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                            <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
+                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                        </td>
                                     </tr>
                                     <tr id="${m.id}" style="display:none; ">
                                         <td colspan="4"  >
@@ -326,7 +338,11 @@
                                             </c:forEach>                                      
                                         </td>
 
-                                        <td><a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a><button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button></td>
+                                        <td>
+                                            <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                            <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
+                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                        </td>
                                     </tr>
                                     <tr id="${m.id}" style="display:none; ">
                                         <td colspan="4"  >
@@ -373,7 +389,7 @@
                         <c:set var="artiste" value="${nomArtiste}"/>
 
                         <h4>Données wikipedia</h2>
-                        <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
+                            <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
 
                         </c:if>
                         <!-- FIN DETAIL PISTES --> 
@@ -419,7 +435,7 @@
         $("#wikiInfo").find("div.homonymie").hide();
         $("#wikiInfo").find(".icone_de_titre").hide();
         $("#wikiInfo").find(".entete icon musique").hide();
-        $("#wikiInfo").find(".thumbcaption").hide();        
+        $("#wikiInfo").find(".thumbcaption").hide();
         $("#wikiInfo").find("p.navbar").hide();
         $("#wikiInfo").find("sup.reference").hide();
         $("#wikiInfo").find("strong.error").hide();
