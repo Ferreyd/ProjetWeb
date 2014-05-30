@@ -373,7 +373,7 @@
                         <c:set var="artiste" value="${nomArtiste}"/>
 
                         <h4>Données wikipedia</h2>
-                            <div id="wikiInfo">&nbsp;</div>
+                        <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
 
                         </c:if>
                         <!-- FIN DETAIL PISTES --> 
@@ -386,6 +386,21 @@
     </body>
 </html>
 <script>
+    function show_hide(id)
+    {
+        if (document.getElementById(id).style.display == 'none')
+        {
+            document.getElementById(id).style.display = "";
+            document.getElementById('showPistes' + id).innerHTML = 'Cacher pistes';
+        }
+        else
+        {
+            document.getElementById(id).style.display = "none";
+            document.getElementById('showPistes' + id).innerHTML = 'Voir pistes';
+        }
+        return true;
+    }
+
     var url = "http://fr.wikipedia.org/w/api.php?action=parse&format=json&callback=?";
     var page = "${artiste}";
     $.getJSON(url, {
@@ -398,14 +413,16 @@
         $("#wikiInfo").find("a:not(.references a)").attr("href", function() {
             return "http://fr.wikipedia.org" + $(this).attr("href"); //Pour les liens wikipedia
         });
-        $("#wikiInfo").find("a").attr("target", "_blank");
-        $("#wikiInfo").find(".homonymie").hide() 
-        $("#wikiInfo").find(".icone_de_titre").hide(); 
-        $("#wikiInfo").find(".entete icon musique").hide();
-        $("#wikiInfo").find(".thumbcaption").hide();
+        $("#wikiInfo").find("div.infobox_v3").addClass("col-md-6").hide();
         $("#wikiInfo").find("table").addClass("table table-bordered");
-        $("#wikiInfo").find(".navbar noprint bordered").hide();
-        $("#wikiInfo").find(".reference").hide();
+        $("#wikiInfo").find("a").attr("target", "_blank");
+        $("#wikiInfo").find("div.homonymie").hide();
+        $("#wikiInfo").find(".icone_de_titre").hide();
+        $("#wikiInfo").find(".entete icon musique").hide();
+        $("#wikiInfo").find(".thumbcaption").hide();        
+        $("#wikiInfo").find("p.navbar").hide();
+        $("#wikiInfo").find("sup.reference").hide();
+        $("#wikiInfo").find("strong.error").hide();
     });
 </script>
 
