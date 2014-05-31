@@ -12,8 +12,6 @@
         <c:choose>
             <c:when test="${connecte=='OK'}">               
 
-                <jsp:include page="menu.jsp"/>  
-
                 <h1>${param.title}</h1>  
 
                 <jsp:include page="${param.content}.jsp"/>  
