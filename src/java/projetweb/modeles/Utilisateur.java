@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -40,7 +41,10 @@ public class Utilisateur implements Serializable {
     private Abonnement abonnement;
     private String login;
     private String mdp;
+@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
     private Set<Morceau> achats;
+
+    private DateTime finAbonnement;
    
 
     public Utilisateur() {
@@ -126,14 +130,23 @@ public class Utilisateur implements Serializable {
         return "projetweb.modeles.Utilisateur[ id=" + id + " ]";
     }
 
-    @OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-    public Set<Morceau> getAchats() {
+        public Set<Morceau> getAchats() {
         return achats;
     }
 
     public void setAchats(Set<Morceau> achats) {
         this.achats = achats;
     }
+
+    public DateTime getFinAbonnement() {
+        return finAbonnement;
+    }
+
+    public void setFinAbonnement(DateTime finAbonnement) {
+        this.finAbonnement = finAbonnement;
+    }
+    
+    
     
     
 }

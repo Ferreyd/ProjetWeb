@@ -5,7 +5,10 @@
  */
 package projetweb.gestionnaire;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +17,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import org.joda.time.*;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 import projetweb.modeles.Abonnement;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
@@ -27,7 +33,9 @@ public class GestionnaireUtilisateur {
 
     @PersistenceContext
     private EntityManager em;
-    
+
+    SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+
     public void creerUtilisateursDeTest() {
         creeUtilisateur("John", "Lennon", "jlennon", "mdp");
         creeUtilisateur("Paul", "Mac Cartney", "pmc", "mdp");
@@ -114,6 +122,7 @@ public class GestionnaireUtilisateur {
         Abonnement a = getAbonnementParId(idAbonnement);
         Utilisateur u = chercherParLogin(login).get(0);
         u.setAbonnement(a);
+        u.setFinAbonnement(DateTime.now().plusDays(a.getDuree())); //On ajoute la durée de l'abonnement       
         em.persist(u);
         return u;
     }
@@ -196,10 +205,41 @@ public class GestionnaireUtilisateur {
      */
     private Set<Morceau> ajouteMorceauxGratuit() {
         Query q = em.createQuery("select m from Morceau m where m.titre LIKE 'Highway To hell (live)' OR m.titre LIKE 'We Are The Champions' OR m.titre LIKE 'Paint It Black'");
-        Collection <Morceau> m = q.getResultList();
+        Collection<Morceau> m = q.getResultList();
         Set<Morceau> set = new HashSet<>();
         set.addAll(m);
         return set;
+    }
+
+    /**
+     * Retourne la différence entre la date de prise d'abonnement et la date
+     * d'aujourd'hui
+     *
+     * @param id l'id de l'utilisateur
+     * @return True sur la date est dépassé
+     */
+    public boolean testAbonnementValide(String id) {
+        Utilisateur u = this.getUtilisateurParId(id);
+        return u.getFinAbonnement().isAfterNow();
+
+    }
+
+    /**
+     * Donne le temps restant à un utilisateur
+     * @param id ID de l'utilisateur
+     * @return le temps restant
+     */
+    public String tempsRestant(String id) {
+        Utilisateur u = this.getUtilisateurParId(id);
+        DateTime debut = DateTime.now();
+        DateTime fin = u.getFinAbonnement();
+
+        Period period = new Period(debut, fin, PeriodType.dayTime());
+
+        PeriodFormatter formatter = new PeriodFormatterBuilder().appendDays().appendSuffix(" jour ", " jours ").toFormatter();
+        
+        return formatter.toString();
+
     }
 
 }

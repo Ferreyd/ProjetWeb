@@ -74,7 +74,6 @@ public class ServletCompte extends HttpServlet {
                 System.out.println("action, apres forwarTO : " + forwardTo);
             }
             if (action.equals("affiche")) {
-                System.out.println("affiche");
 
             }
         } else {
@@ -82,6 +81,7 @@ public class ServletCompte extends HttpServlet {
         }
         request.setAttribute("utilisateur", u);
         request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
+        request.setAttribute("temps", gestionnaireUtilisateur.tempsRestant(String.valueOf(u.getId())));
         forwardTo += "?action=affiche";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);

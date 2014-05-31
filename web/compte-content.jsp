@@ -35,7 +35,6 @@
                     <h3>
                         Abonnement :
                     </h3>
-                    <h3>
                         Login :
                     </h3>
                     <h3>
@@ -50,8 +49,11 @@
                         ${utilisateur.prenom}
                     </h3>
                     <h3>
-                        ${abonnementUtilisateur}
+                        ${abonnementUtilisateur} , Abonnement jusqu'a : ${utilisateur.finAbonnement} .<br/>
+                        Il vous reste donc ${tempsRestant} jours.
                     </h3>
+    
+                        
                     <h3>
                         ${utilisateur.login}
                     </h3>
