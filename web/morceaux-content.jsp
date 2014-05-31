@@ -72,7 +72,9 @@
                                                 <td>
                                                     <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                                     <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                    <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                        <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                    </c:if>
                                                 </td>
                                             </tr>
                                             <tr id="${m.id}" style="display:none; ">
@@ -153,7 +155,9 @@
                                                 <td>
                                                     <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                                     <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                    <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                        <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                                    </c:if>
                                                 </td>
 
                                             </tr>
@@ -242,7 +246,9 @@
                                         <td>
                                             <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                             <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                            <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                            </c:if>
                                         </td>
                                     </tr>
                                     <tr id="${m.id}" style="display:none; ">
@@ -303,13 +309,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 <c:set var="nbPages" value="1"/>
                                 <c:set var="nbLignes" value="1"/>  
-
                                 <c:forEach var="m" items="${requestScope['listeMorceaux']}">
-
-
                                     <tr>                                               
                                         <td>${m.titre}</td>
                                         <td><a data-toggle="modal" href="#artiste${m.artiste.id}" >${m.artiste.nom}</a>
@@ -341,7 +343,9 @@
                                         <td>
                                             <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                             <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                            <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                            </c:if>
                                         </td>
                                     </tr>
                                     <tr id="${m.id}" style="display:none; ">
@@ -385,14 +389,37 @@
                     </c:if>
 
                     <c:if test="${param['action'] == 'ficheArtiste'}" >
-                        <h2>${requestScope['nomArtiste']}</h2>
-                        <c:set var="artiste" value="${nomArtiste}"/>
 
-                        <h4>Données wikipedia</h2>
-                            <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
+                        <h3>Morceaux présent sur le site</h3>
+                        <table class="table table-bordered table-striped" border="1">
+                            <tr>
+                                <th>Titre</th>
+                                <th>Genre</th>
+                                <th>Annee</th>
+                                <th></th>
+                                    <c:forEach var="m" items="${requestScope['listeMorceaux']}">
+                                <tr>                                               
+                                    <td>${m.titre}</td>
+                                    <td>${m.genre.nom}</td>
+                                    <td>${m.annee}</td>
+                                    <td> 
+                                        <c:if test="${abonnement != 'gratuit'}" >
+                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <h2>${requestScope['artiste']}</h2>
+                        <c:set var="artiste" value="${artiste}"/>
 
-                        </c:if>
-                        <!-- FIN DETAIL PISTES --> 
+                        <h3>Information sur l'artiste</h3>
+                        <img style="text-align: center" src="${imageArtiste}">
+                        <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
+
+
+                    </c:if>
+                    <!-- FIN DETAIL PISTES --> 
                 </div>
             </div>
 
@@ -430,7 +457,7 @@
             return "http://fr.wikipedia.org" + $(this).attr("href"); //Pour les liens wikipedia
         });
         $("#wikiInfo").find("div.infobox_v3").addClass("col-md-6").hide();
-        $("#wikiInfo").find("table").addClass("table table-bordered");
+        $("#wikiInfo").find("table").hide();
         $("#wikiInfo").find("a").attr("target", "_blank");
         $("#wikiInfo").find("div.homonymie").hide();
         $("#wikiInfo").find(".icone_de_titre").hide();

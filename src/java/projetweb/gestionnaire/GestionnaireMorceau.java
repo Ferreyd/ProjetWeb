@@ -197,6 +197,11 @@ public class GestionnaireMorceau {
         q.setMaxResults(10);
         return q.getResultList();
     }
+    
+     public Collection<Morceau> rechercheParArtiste(String nom){
+        Query q = em.createQuery("select m from Morceau m where m.artiste.nom LIKE '%"+nom+"%'");   
+        return q.getResultList();
+    }
     public int compteRechercheParArtiste(String nom){
         Query q = em.createQuery("select m from Morceau m where m.artiste.nom LIKE '%"+nom+"%'");      
         return q.getResultList().size();
@@ -228,7 +233,7 @@ public class GestionnaireMorceau {
     
     // POUR LA RECHERCHE
     public Collection<Morceau> getMorceauByArtiste(String nom){
-        Query q = em.createQuery("select m from Morceau m where m.nom = "+nom+"");
+        Query q = em.createQuery("select m from Morceau m where m.nom = " +nom+"");
         return q.getResultList();
     }
  

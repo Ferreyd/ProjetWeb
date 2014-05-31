@@ -58,6 +58,8 @@ public class ServletMorceau extends HttpServlet {
         request.setAttribute("lesInstrus", gestionnaireMorceau.getAllInstrus());
         
         if (action != null) {
+            request.setAttribute("abonnement", session.getAttribute("abonnementUtilisateur"));
+            System.out.println("login = " + session.getAttribute("login").toString() + " ABONNEMENT LOL = " + request.getAttribute("abonnement"));
             if(action.equals("afficherParInstrument")){
                 Collection<Morceau> morceaux;
                 double res = Math.ceil(gestionnaireMorceau.compteMorceauxByInstru(instru) / 10);
@@ -155,8 +157,9 @@ public class ServletMorceau extends HttpServlet {
                 Artiste a = gestionnaireMorceau.getInfosArtiste(artist_id);
                 String nomArtiste = a.getNom();
 
-                Collection<Morceau> listeMorceaux = a.getMorceaux();
-                request.setAttribute("nomArtiste", nomArtiste);
+                Collection<Morceau> listeMorceaux = gestionnaireMorceau.rechercheParArtiste(nomArtiste);
+                request.setAttribute("artiste", nomArtiste);
+                request.setAttribute("imageArtiste", a.getImage());
                 request.setAttribute("listeMorceaux", listeMorceaux);
             }
             if (action.equals("ajoutMorceauPanier")) {
