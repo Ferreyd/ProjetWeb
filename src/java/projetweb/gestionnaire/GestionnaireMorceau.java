@@ -50,12 +50,10 @@ public class GestionnaireMorceau {
         Query q = em.createQuery("select a from Artiste a where a.nom ='"+nom+"'");
         if(q.getResultList().isEmpty()){
             Artiste a = new Artiste(nom, image);
-            System.out.println("EXISTE PAS:" + a.getNom());
             return a;
         }
         else{
             Artiste a = (Artiste)q.getSingleResult();
-            System.out.println("EXISTE:" + a.getNom());
             return a;
         }       
     }
@@ -64,12 +62,10 @@ public class GestionnaireMorceau {
         Query q = em.createQuery("select g from Genre g where g.nom ='"+nom+"'");
         if(q.getResultList().isEmpty()){
             Genre g = new Genre(nom);
-            System.out.println("EXISTE PAS:" + g.getNom());
             return g;
         }
         else{
             Genre g = (Genre)q.getSingleResult();
-            System.out.println("EXISTE:" + g.getNom());
             return g;
         }       
     }
@@ -77,21 +73,18 @@ public class GestionnaireMorceau {
     private Instrument getInstrument(String nom){
         Query q = em.createQuery("select i from Instrument i where i.nom ='"+nom+"'");
         if(q.getResultList().isEmpty()){
-            Instrument i = new Instrument(nom);
-            System.out.println("EXISTE PAS:" + i.getNom());
-            
+            Instrument i = new Instrument(nom);            
             return i;
         }
         else{
             Instrument i = (Instrument)q.getSingleResult();
-            System.out.println("EXISTE:" + i.getNom());
             return i;
         }       
     }
     public void ajouterMorceauAvecPistes() throws Exception{
 
-        String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
-        //String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        //String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         FileInputStream fis = null;
         BufferedReader br = null;
         try{
