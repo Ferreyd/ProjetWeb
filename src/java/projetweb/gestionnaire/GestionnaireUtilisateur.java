@@ -6,8 +6,10 @@
 package projetweb.gestionnaire;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,7 +27,7 @@ public class GestionnaireUtilisateur {
 
     @PersistenceContext
     private EntityManager em;
-
+    
     public void creerUtilisateursDeTest() {
         creeUtilisateur("John", "Lennon", "jlennon", "mdp");
         creeUtilisateur("Paul", "Mac Cartney", "pmc", "mdp");
@@ -35,8 +37,9 @@ public class GestionnaireUtilisateur {
 
     public Utilisateur creeUtilisateur(String nom, String prenom, String login, String mdp) {
         Utilisateur u = new Utilisateur(nom, prenom, login, mdp);
-        u.setAbonnement(getAbonnementParNom("gratuit"));
+        u.setAbonnement(getAbonnementParNom("gratuit")); //Abonnement par défaut
         em.persist(u);
+        this.ajouteMorceau(login, this.ajouteMorceauxGratuit()); //Ajoute les morceaux gratuit;
         return u;
     }
 
@@ -45,8 +48,8 @@ public class GestionnaireUtilisateur {
         Query q = em.createQuery("select u from Utilisateur u");
         return q.getResultList();
     }
-    
-        /**
+
+    /**
      * Cherche les utilisateurs pas leur login
      *
      * @param login login de l'utilisateur
@@ -63,7 +66,7 @@ public class GestionnaireUtilisateur {
                 + "where u.login = '" + login + "'");
         int numUpdates = q.executeUpdate();
     }
-    
+
     /**
      * Supprimer un utilisateur en le selectionnant par son login
      *
@@ -76,30 +79,30 @@ public class GestionnaireUtilisateur {
 
     }
 
-     public Abonnement getAbonnementParNom(String nom) {
-        Query q = em.createQuery("select a from Abonnement a where a.nom = '"+nom+"'");
-        return (Abonnement)q.getResultList().get(0);
+    public Abonnement getAbonnementParNom(String nom) {
+        Query q = em.createQuery("select a from Abonnement a where a.nom = '" + nom + "'");
+        return (Abonnement) q.getResultList().get(0);
     }
-    
+
     public Collection<Abonnement> getAllAbonnement() {
         Query q = em.createQuery("select a from Abonnement a");
         return q.getResultList();
     }
-    
+
     /**
-     * Methode de test qui sert à savoir s'il y a des abonnements dans la abse de données
+     * Methode de test qui sert à savoir s'il y a des abonnements dans la abse
+     * de données
+     *
      * @return true s'il y a des abonnements, false sinon
      */
-    public boolean testAbonnement()
-    {
+    public boolean testAbonnement() {
         Collection<Abonnement> test = getAllAbonnement();
-        if(!test.isEmpty())
-        {
+        if (!test.isEmpty()) {
             return true;
         }
         return false;
     }
-    
+
     /**
      * Ajoute un abonnement à l'utilisateur
      *
@@ -108,43 +111,35 @@ public class GestionnaireUtilisateur {
      * @return l'utilisateur abonné
      */
     public Utilisateur ajouteAbonnement(String login, String idAbonnement) {
-        System.out.println("ABO = " + idAbonnement + "    idUtil = " + login);
         Abonnement a = getAbonnementParId(idAbonnement);
-        System.out.println("ABO1 =" + a.toString() + "NOM = "  + a.getNom());
-        System.out.println("TOTAL = " + chercherParLogin(login));
         Utilisateur u = chercherParLogin(login).get(0);
-        System.out.println("UTIL1 =" + u.toString());
         u.setAbonnement(a);
         em.persist(u);
         return u;
     }
-    
-    public Abonnement getAbonnementParId(String id)
-    {
-        Query q = em.createQuery("select a from Abonnement a where a.id='"+id+"'");
-        return (Abonnement)q.getResultList().get(0);
-        
+
+    public Abonnement getAbonnementParId(String id) {
+        Query q = em.createQuery("select a from Abonnement a where a.id='" + id + "'");
+        return (Abonnement) q.getResultList().get(0);
+
     }
-    
-    public Utilisateur getUtilisateurParId(String id)
-    {
-        System.out.println("REQUETE GET UTILISATEUR ID : " + "select u from Utilisateur u where u.id='"+id+"'");
-        Query q = em.createQuery("select u from Utilisateur u where u.id='"+id+"'");
-        return (Utilisateur)q.getResultList().get(0);
+
+    public Utilisateur getUtilisateurParId(String id) {
+        Query q = em.createQuery("select u from Utilisateur u where u.id='" + id + "'");
+        return (Utilisateur) q.getResultList().get(0);
     }
-    
-    public int getIdUtilisateurParLogin(String login)
-    {
-        System.out.println("REQUETE => " + "select u.id from Utilisateur u where u.login = '" + login + "'");
+
+    public int getIdUtilisateurParLogin(String login) {
         Query q = em.createQuery("select u.id from Utilisateur u where u.login = '" + login + "'");
-        
-        return (int)q.getResultList().get(0);
+
+        return (int) q.getResultList().get(0);
     }
-      public void creerAbonnementsTest() {
-        creeAbonnement("gratuit",999,0);
-        creeAbonnement("duo",2,0);
-        creeAbonnement("quinzaine",15,0);
-        creeAbonnement("cent jours",100,0);
+
+    public void creerAbonnementsTest() {
+        creeAbonnement("gratuit", 999, 0);
+        creeAbonnement("duo", 2, 0);
+        creeAbonnement("quinzaine", 15, 0);
+        creeAbonnement("cent jours", 100, 0);
     }
 
     public Abonnement creeAbonnement(String nom, int duree, int prix) {
@@ -154,11 +149,13 @@ public class GestionnaireUtilisateur {
     }
 
     /**
-     * Verifie si un utilisateur existe dans la base de donnée
-     * Si on rentre admin admin, on creer l'utilisateur admin s'il n'existe pas dans la base de donnée
+     * Verifie si un utilisateur existe dans la base de donnée Si on rentre
+     * admin admin, on creer l'utilisateur admin s'il n'existe pas dans la base
+     * de donnée
+     *
      * @param login
      * @param mdp
-     * @return 
+     * @return
      */
     public boolean userExists(String login, String mdp) {
         Query q = em.createQuery("select u from Utilisateur u where u.login = '" + login + "' and u.mdp = '" + mdp + '"');
@@ -166,8 +163,7 @@ public class GestionnaireUtilisateur {
             return true;
         }
         if (login.equals("admin") && mdp.equals("admin")) {
-            if(chercherParLogin("admin").size() == 0)
-            {
+            if (chercherParLogin("admin").size() == 0) {
                 creeUtilisateur("admin", "admin", "admin", "admin");
             }
             return true;
@@ -177,14 +173,14 @@ public class GestionnaireUtilisateur {
 
     public Abonnement getAbonnementUtilisateur(String login) {
         Query q = em.createQuery("select a from Abonnement a, Utilisateur u where u.login = '" + login + "'");
-        return (Abonnement)q.getResultList().get(0);
+        return (Abonnement) q.getResultList().get(0);
     }
 
     /**
-     * 
+     *
      * @param login
      * @param listeMorceaux
-     * @return 
+     * @return
      */
     public Utilisateur ajouteMorceau(String login, Set<Morceau> listeMorceaux) {
         Utilisateur u = this.chercherParLogin(login).get(0);
@@ -192,6 +188,18 @@ public class GestionnaireUtilisateur {
         em.persist(u);
         return u;
     }
-    
-  
+
+    /**
+     * Selectionne les morceaux gratuit
+     *
+     * @return les 3 morceaux gratuits
+     */
+    private Set<Morceau> ajouteMorceauxGratuit() {
+        Query q = em.createQuery("select m from Morceau m where m.titre LIKE 'Highway To hell (live)' OR m.titre LIKE 'We Are The Champions' OR m.titre LIKE 'Paint It Black'");
+        Collection <Morceau> m = q.getResultList();
+        Set<Morceau> set = new HashSet<>();
+        set.addAll(m);
+        return set;
+    }
+
 }

@@ -72,8 +72,6 @@ public class ServletUtilisateur extends HttpServlet {
                     System.out.println(m.toString());
                 }
                 request.setAttribute("listeAchats", achats);
-                
-                forwardTo = "index.jsp?action=affiche";
             }
             if (action.equals("creerUtilisateursDeTest")) {
                 gestionnaireUtilisateur.creerUtilisateursDeTest();
@@ -82,7 +80,6 @@ public class ServletUtilisateur extends HttpServlet {
                 forwardTo = "compte.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
             } else if (action.equals("checkConnexion")) {
-                System.out.println("test");
                 boolean existe = gestionnaireUtilisateur.userExists(request.getParameter("log"), request.getParameter("pass"));
                 if (existe) {
                     session.setAttribute("login", request.getParameter("log"));
@@ -92,8 +89,15 @@ public class ServletUtilisateur extends HttpServlet {
                     session.setAttribute("connecte", "OK");
                     //connecte = true;
                     message = "Connexion reussie";
-                    // à la connexion on vérifie si le cookie panier est présent
-                    forwardTo = "index.jsp?action=ok";
+                    
+                    Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
+                    Collection<Morceau> achats = u.getAchats();
+                    for (Morceau m : achats) {
+                        System.out.println(m.toString());
+                    }
+                    request.setAttribute("listeAchats", achats);
+
+                    forwardTo = "index.jsp?action=affiche";
                 } else {
                     session.setAttribute("connecte", "KO");
                     message = "Vos identifiants de connexions ne sont pas correcte";
@@ -111,7 +115,7 @@ public class ServletUtilisateur extends HttpServlet {
                     session.setAttribute("connecte", "OK");
                     message = "Connexion reussie";
 
-                    forwardTo = "index.jsp?action=ok";
+                    forwardTo = "index.jsp?action=affiche";
                 } else {
                     message = "Login déjà utilisé, veuillez en prendre un autre";
                     forwardTo = "index.jsp?action=ko";
@@ -127,7 +131,6 @@ public class ServletUtilisateur extends HttpServlet {
             }
 
         }
-
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
 
         dp.forward(request, response);
