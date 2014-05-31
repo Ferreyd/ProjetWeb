@@ -53,7 +53,6 @@ public class ServletCompte extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("log") != null) //On met les informations intéréssante en attributs afin de les avoir affichés
         {
-
             request.setAttribute("log", session.getAttribute("login"));
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
@@ -66,10 +65,12 @@ public class ServletCompte extends HttpServlet {
         if (action != null) {
             if (action.equals("changerAbo")) {
                 //Ajout d'un abonnement à l'utilisateur
-                u = gestionnaireUtilisateur.ajouteAbonnement((String) session.getAttribute("login"), (String) request.getParameter("choixAbo"));
+                System.out.println("Abonnement avant = " + u.getAbonnement().getNom() + " et dans la variable de sessions = " + session.getAttribute("abonnementUtilisateur"));
+                u = gestionnaireUtilisateur.ajouteAbonnement(u.getLogin(),request.getParameter("choixAbo").toString());
                 session.setAttribute("abonnementUtilisateur", u.getAbonnement().getNom());
                 message = "Abonnement ajoute";
                 forwardTo += "?action=affiche";
+                System.out.println("Abonnement après = " + u.getAbonnement().getNom() + " et dans la variable de sessions = " + session.getAttribute("abonnementUtilisateur"));
                 System.out.println("action, apres forwarTO : " + forwardTo);
             }
             if (action.equals("affiche")) {
