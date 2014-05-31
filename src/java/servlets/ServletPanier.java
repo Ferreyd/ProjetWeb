@@ -168,7 +168,6 @@ public class ServletPanier extends HttpServlet {
                 request.setAttribute("taillePanier", "");
                 request.setAttribute("prix", "");
                 request.setAttribute("listeMorceaux", listeMorceaux);
-                System.out.println("panier = " + session.getAttribute("panier").toString());
                 forwardTo = "panier.jsp?action=affiche";
             }
         } else {
