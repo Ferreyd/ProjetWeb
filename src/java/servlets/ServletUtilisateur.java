@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
+import projetweb.modeles.Abonnement;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
 
@@ -89,13 +90,18 @@ public class ServletUtilisateur extends HttpServlet {
                     session.setAttribute("connecte", "OK");
                     //connecte = true;
                     message = "Connexion reussie";
-                    
+
                     Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
                     Collection<Morceau> achats = u.getAchats();
                     for (Morceau m : achats) {
                         System.out.println(m.toString());
                     }
                     request.setAttribute("listeAchats", achats);
+
+                    if (gestionnaireUtilisateur.testAbonnementValide(String.valueOf(u.getId())) == false) // Si l'abonnement est plus valide alors il repasse en gratuit
+                    {
+                        u.setAbonnement(gestionnaireUtilisateur.getAbonnementParNom("gratuit"));
+                    }
 
                     forwardTo = "index.jsp?action=affiche";
                 } else {
@@ -108,6 +114,7 @@ public class ServletUtilisateur extends HttpServlet {
                 if (gestionnaireUtilisateur.chercherParLogin(request.getParameter("log")).isEmpty()) {
 
                     Utilisateur u = gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
+                    u.setAbonnement(gestionnaireUtilisateur.getAbonnementParNom("gratuit"));
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
                     session.setAttribute("idUtilisateur", u.getId());

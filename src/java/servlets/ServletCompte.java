@@ -81,7 +81,7 @@ public class ServletCompte extends HttpServlet {
         }
         request.setAttribute("utilisateur", u);
         request.setAttribute("abonnements", gestionnaireUtilisateur.getAllAbonnement());
-        request.setAttribute("temps", gestionnaireUtilisateur.tempsRestant(String.valueOf(u.getId())));
+       // request.setAttribute("temps", gestionnaireUtilisateur.tempsRestant(String.valueOf(u.getId())));
         forwardTo += "?action=affiche";
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);
         dp.forward(request, response);

@@ -7,7 +7,9 @@ package projetweb.modeles;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -21,7 +23,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import org.joda.time.DateTime;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -41,11 +43,11 @@ public class Utilisateur implements Serializable {
     private Abonnement abonnement;
     private String login;
     private String mdp;
-@OneToMany(cascade={CascadeType.ALL},fetch=FetchType.EAGER)
-    private Set<Morceau> achats;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date finAbonnement;
 
-    private DateTime finAbonnement;
-   
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Set<Morceau> achats;
 
     public Utilisateur() {
     }
@@ -93,8 +95,18 @@ public class Utilisateur implements Serializable {
         return abonnement;
     }
 
+    /**
+     * Ajoute un abonnement à un utilisateur et initialise la date de fin de
+     * l'abonnement
+     *
+     * @param abonnement
+     */
     public void setAbonnement(Abonnement abonnement) {
         this.abonnement = abonnement;
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, abonnement.getDuree());
+        this.finAbonnement = c.getTime();
     }
 
     public int getId() {
@@ -130,7 +142,7 @@ public class Utilisateur implements Serializable {
         return "projetweb.modeles.Utilisateur[ id=" + id + " ]";
     }
 
-        public Set<Morceau> getAchats() {
+    public Set<Morceau> getAchats() {
         return achats;
     }
 
@@ -138,15 +150,15 @@ public class Utilisateur implements Serializable {
         this.achats = achats;
     }
 
-    public DateTime getFinAbonnement() {
+    public Date getFinAbonnement() {
         return finAbonnement;
     }
 
-    public void setFinAbonnement(DateTime finAbonnement) {
-        this.finAbonnement = finAbonnement;
+    public void setFinAbonnement(Date finAbonnement) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DATE, abonnement.getDuree());
+        this.finAbonnement = c.getTime();
     }
-    
-    
-    
-    
+
 }

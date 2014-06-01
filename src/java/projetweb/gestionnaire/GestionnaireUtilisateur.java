@@ -5,7 +5,6 @@
  */
 package projetweb.gestionnaire;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -17,9 +16,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import org.joda.time.*;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
+
 import projetweb.modeles.Abonnement;
 import projetweb.modeles.Morceau;
 import projetweb.modeles.Utilisateur;
@@ -122,7 +119,7 @@ public class GestionnaireUtilisateur {
         Abonnement a = getAbonnementParId(idAbonnement);
         Utilisateur u = chercherParLogin(login).get(0);
         u.setAbonnement(a);
-        u.setFinAbonnement(DateTime.now().plusDays(a.getDuree())); //On ajoute la durée de l'abonnement       
+        // u.setFinAbonnement(DateTime.now().plusDays(a.getDuree()).toDate()); //On ajoute la durée de l'abonnement       
         em.persist(u);
         return u;
     }
@@ -132,6 +129,7 @@ public class GestionnaireUtilisateur {
         return (Abonnement) q.getResultList().get(0);
 
     }
+
 
     public Utilisateur getUtilisateurParId(String id) {
         Query q = em.createQuery("select u from Utilisateur u where u.id='" + id + "'");
@@ -220,25 +218,24 @@ public class GestionnaireUtilisateur {
      */
     public boolean testAbonnementValide(String id) {
         Utilisateur u = this.getUtilisateurParId(id);
-        return u.getFinAbonnement().isAfterNow();
-
+        Date now = new Date();
+        if (now.compareTo(u.getFinAbonnement()) > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
      * Donne le temps restant à un utilisateur
+     *
      * @param id ID de l'utilisateur
      * @return le temps restant
      */
     public String tempsRestant(String id) {
         Utilisateur u = this.getUtilisateurParId(id);
-        DateTime debut = DateTime.now();
-        DateTime fin = u.getFinAbonnement();
-
-        Period period = new Period(debut, fin, PeriodType.dayTime());
-
-        PeriodFormatter formatter = new PeriodFormatterBuilder().appendDays().appendSuffix(" jour ", " jours ").toFormatter();
-        
-        return formatter.toString();
+        String res = "";
+        return res;
 
     }
 
