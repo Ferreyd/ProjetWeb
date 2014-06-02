@@ -43,30 +43,14 @@
                         <h1>Ecoutez la musique autrement !</h1>
                         <p>Sur Multitracksongs, vous pouvez écouter, découvrir et même vous offrir un chanson parmi un catalogue, <b>instruments par instruments</b>!<br/>
                             <b>Multitracksongs</b>, votre meilleur partenaire musical !<br/>
-                            Testez notre service révolutionnaire avec ces 3 chansons gratuite !
-
                         <div class="col-lg-12">
+                            <p>Cliquez sur une chanson pour tester notre service !</p>
                             <div class="col-lg-12">
-                                <h2>
-                                    <a class="btn btn-large btn-primary " href="http://mt5demo.gexsoft.com/music/Highway To hell (live)">Highway to hell</a>
-                                </h2>
-                            </div>
-                            <div class="col-lg-12">
-                                <h2>
-                                    <a class="btn btn-large btn-primary " href="http://mt5demo.gexsoft.com/music/We Are The Championsl">We Are The Champions</a>
-                                </h2>
-
-                            </div>
-                            <div class="col-lg-12">
-                                <h2>
-                                    <a class="btn btn-large btn-primary " href="http://mt5demo.gexsoft.com/music/ Paint It Black"> Paint It Black</a>
-                                </h2>
-
+                                <a href="http://mt5demo.gexsoft.com/music/Highway To hell (live)"><img src="http://rgcred.files.wordpress.com/2012/07/ac-dc-highway-to-hell-stencil.jpg" width="200" height="150"></a>
+                                <a href="http://mt5demo.gexsoft.com/music/We Are The Champions"><img src="http://991.com/NewGallery/Queen-We-Are-The-Champi-83729.jpg"width="200" height="150"></a>
+                                <a href="http://mt5demo.gexsoft.com/music/Paint It Black"><img src="http://3.bp.blogspot.com/-KwOTlHHmDnc/Tud2RUBBfFI/AAAAAAAABdI/4xh0jLGCfT0/s1600/paintitblack.jpg"width="200" height="150"></a>
                             </div>
                         </div>
-
-
-
                         </p>
                     </div>
                 </div>

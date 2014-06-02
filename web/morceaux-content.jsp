@@ -72,7 +72,7 @@
                                                 <td>
                                                     <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                                     <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                                    <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                    <c:if test="${abonnement != 'gratuit'}" >
                                                         <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                                     </c:if>
                                                 </td>
@@ -155,7 +155,7 @@
                                                 <td>
                                                     <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                                     <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                                    <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                                    <c:if test="${abonnement != 'gratuit'}" >
                                                         <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                                     </c:if>
                                                 </td>
@@ -246,7 +246,7 @@
                                         <td>
                                             <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                             <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                            <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                            <c:if test="${abonnement != 'gratuit'}" >
                                                 <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                             </c:if>
                                         </td>
@@ -343,7 +343,7 @@
                                         <td>
                                             <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
                                             <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                            <c:if test="${param['action'] == 'ficheArtiste'}" >
+                                            <c:if test="${abonnement != 'gratuit'}" >
                                                 <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                             </c:if>
                                         </td>
@@ -403,6 +403,8 @@
                                     <td>${m.genre.nom}</td>
                                     <td>${m.annee}</td>
                                     <td> 
+                                        <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                        <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
                                         <c:if test="${abonnement != 'gratuit'}" >
                                             <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                         </c:if>

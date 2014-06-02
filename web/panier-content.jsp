@@ -15,8 +15,9 @@
     </head>
     <body>
 
+        <div class="col-lg-12">
         <h2>Tableau des morceaux</h2>
-        <table border="1">
+        <table class="table table-bordered table-striped" border="1">
             <tr>
                 <th>Titre</th>
                 <th>Genre</th>
@@ -42,6 +43,7 @@
             <h2>Vous avez ${taillePanier} article(s) dans votre panier, pour une valeur de ${prix}€</h2>
             <a href="ServletPanier?action=achat"class="btn btn-success" onclick="confirm('Confirmez vous vouloir acheter ces articles ?')">ACHAT</a>
         
+        </div>
 
 
 
