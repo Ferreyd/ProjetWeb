@@ -24,6 +24,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.jboss.weld.util.collections.ArraySet;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Utilisateur implements Serializable {
     private Date finAbonnement;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Set<Morceau> achats;
+    private Set<Morceau> achats = new HashSet<>();
 
     public Utilisateur() {
     }
@@ -147,7 +148,7 @@ public class Utilisateur implements Serializable {
     }
 
     public void setAchats(Set<Morceau> achats) {
-        this.achats = achats;
+        this.achats.addAll(achats);
     }
 
     public Date getFinAbonnement() {
