@@ -129,6 +129,7 @@ public class GestionnaireUtilisateur {
 
     }
 
+
     public Utilisateur getUtilisateurParId(String id) {
         return em.find(Utilisateur.class, Integer.valueOf(id));
     }
@@ -137,6 +138,13 @@ public class GestionnaireUtilisateur {
         Query q = em.createQuery("select u.id from Utilisateur u where u.login = '" + login + "'");
 
         return (int) q.getResultList().get(0);
+    }
+
+    public void creerAbonnementsTest() {
+        creeAbonnement("gratuit", 999, 0);
+        creeAbonnement("duo", 2, 0);
+        creeAbonnement("quinzaine", 15, 0);
+        creeAbonnement("cent jours", 100, 0);
     }
 
     public Abonnement creeAbonnement(String nom, int duree, int prix) {
