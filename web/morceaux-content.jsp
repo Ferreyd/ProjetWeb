@@ -389,37 +389,38 @@
                     </c:if>
 
                     <c:if test="${param['action'] == 'ficheArtiste'}" >
+                        <div class="col-lg-12 infoArtiste">
 
-                        <h3>Morceaux présent sur le site</h3>
-                        <table class="table table-bordered table-striped" border="1">
-                            <tr>
-                                <th>Titre</th>
-                                <th>Genre</th>
-                                <th>Annee</th>
-                                <th></th>
-                                    <c:forEach var="m" items="${requestScope['listeMorceaux']}">
-                                <tr>                                               
-                                    <td>${m.titre}</td>
-                                    <td>${m.genre.nom}</td>
-                                    <td>${m.annee}</td>
-                                    <td> 
-                                        <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
-                                        <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
-                                        <c:if test="${abonnement != 'gratuit'}" >
-                                            <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </table>
-                        <h2>${requestScope['artiste']}</h2>
-                        <c:set var="artiste" value="${artiste}"/>
+                            <h3>Morceaux présent sur le site</h3>
+                            <table class="table table-bordered table-striped" border="1">
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Genre</th>
+                                    <th>Annee</th>
+                                    <th></th>
+                                        <c:forEach var="m" items="${requestScope['listeMorceaux']}">
+                                    <tr>                                               
+                                        <td>${m.titre}</td>
+                                        <td>${m.genre.nom}</td>
+                                        <td>${m.annee}</td>
+                                        <td> 
+                                            <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
+                                            <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
+                                            <c:if test="${abonnement != 'gratuit'}" >
+                                                <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                            <h2>${requestScope['artiste']}</h2>
+                            <c:set var="artiste" value="${artiste}"/>
 
-                        <h3>Information sur l'artiste</h3>
-                        <img style="text-align: center" src="${imageArtiste}">
-                        <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
+                            <h3>Information sur l'artiste</h3>
+                            <img style="text-align: center" src="${imageArtiste}">
+                            <div id="wikiInfo" class="col-lg-12">&nbsp;</div>
 
-
+                        </div>
                     </c:if>
                     <!-- FIN DETAIL PISTES --> 
                 </div>
