@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -83,7 +84,7 @@ public class ServletCompte extends HttpServlet {
             }
             request.setAttribute("utilisateur", u);
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat formatter = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
             Date dateStr = new Date();
             try {
                 dateStr = formatter.parse(u.getFinAbonnement().toString());

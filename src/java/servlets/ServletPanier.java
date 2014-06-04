@@ -55,9 +55,11 @@ public class ServletPanier extends HttpServlet {
         String form = request.getParameter("form");
         String id = request.getParameter("id");
         String message = "";
-
         //Object connecte = null;
         HttpSession session = request.getSession();
+
+        request.setAttribute("taillePanier", 0);
+        request.setAttribute("prix", 0);
 
         if (session == null) //On met les informations intéréssante en attributs afin de les avoir affichés
         {
@@ -102,8 +104,16 @@ public class ServletPanier extends HttpServlet {
                             listeMorceaux.add(m);
                         }
                     }
-                    request.setAttribute("taillePanier", panier.size());
-                    request.setAttribute("prix", prix);
+                    if (panier.get(0).equals("")) {
+                        request.setAttribute("taillePanier", 0);
+                        request.setAttribute("prix", 0);
+
+                    } else {
+                        request.setAttribute("taillePanier", panier.size());
+                        request.setAttribute("prix", prix);
+                    }
+                    System.out.println("TAILLE PANIER = " + panier.size() + "PRIX = " + prix + " PANIER " + panier.toString());
+
                 }
                 request.setAttribute("listeMorceaux", listeMorceaux);
 
@@ -143,7 +153,7 @@ public class ServletPanier extends HttpServlet {
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
                 Set<Morceau> listeMorceaux = new HashSet<>();
                 if (session.getAttribute("panier") != null) {
-                    String valeur = session.getAttribute("panier").toString();                  
+                    String valeur = session.getAttribute("panier").toString();
                     String[] tokens = valeur.split("[;]"); // on parse les données du cookie
                     /**
                      * Le code ci dessous permet de gerer les doublons en
@@ -165,8 +175,8 @@ public class ServletPanier extends HttpServlet {
                     listeMorceaux = null; // on vide le panier
                 }
                 session.setAttribute("panier", "");
-                request.setAttribute("taillePanier", "");
-                request.setAttribute("prix", "");
+                request.setAttribute("taillePanier", 0);
+                request.setAttribute("prix", 0);
                 request.setAttribute("listeMorceaux", listeMorceaux);
                 forwardTo = "panier.jsp?action=affiche";
             }
