@@ -1,8 +1,3 @@
-
-
-
-
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid"> 
@@ -15,9 +10,9 @@
                 <a type="button" class="btn  btn-default btn-sm navbar-btn" href="ServletUtilisateur?action=affiche">Index</a>
                 <a type="button" class="btn  btn-default btn-sm navbar-btn" href="ServletMorceau">Morceaux</a>
                 <a type="button" class="btn  btn-default btn-sm navbar-btn" href="ServletCompte">Mon compte</a></li>                  
-                <a type="button" class="btn  btn-default btn-sm navbar-btn" href="ServletPanier?action=affiche">Votre Panier</a>
+                <a type="button" class="btn  btn-default btn-sm navbar-btn" href="ServletPanier?action=affiche">Mon Panier</a>
 
-                <a type="button" class="btn second-button btn-default btn-sm navbar-btn pull-right" href="ServletUtilisateur?action=deconnexion">Deconnexion</a>
+                <a type="button" class="btn second-button btn-default btn-sm navbar-btn pull-right btn-danger" href="ServletUtilisateur?action=deconnexion">Deconnexion</a>
             </div>
         </c:if>
         <c:if test="${connecte!='OK'}">

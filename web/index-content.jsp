@@ -18,7 +18,7 @@
     </head>
     <body>
         <div class="page-header">
-            <div class="container">
+            <div class="container content">
 
                 <h1>Bienvenue ${login} !</h1>
                 <h2> </h2>
@@ -30,30 +30,33 @@
                         <div class="col-lg-3"></div>             
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <h2>
-                        Vos achats
-                    </h2>
-                    <table class="table table-bordered table-striped" border="1">
-                        <tr>
+                <div class="container">
+                    <div class="col-lg-12">
+                        <h2>
+                            Vos achats
+                        </h2>
+                        <table class="table table-bordered table-striped" border="1">
+                            <thead>
                             <th>Titre</th>
                             <th>Genre</th>
                             <th>Annee</th>
                             <th>Artiste</th>
                             <th></th>
-                                <c:forEach var="m" items="${requestScope['listeAchats']}">
-                            <tr>                                               
-                                <td>${m.titre}</td>
-                                <td>${m.genre.nom}</td>
-                                <td>${m.annee}</td>
-                                <td>${m.artiste.nom}</td>
-                                <td>                                           
-                                    <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
+                            </thead>
+                            <c:forEach var="m" items="${requestScope['listeAchats']}">
+                                <tr>                                               
+                                    <td>${m.titre}</td>
+                                    <td>${m.genre.nom}</td>
+                                    <td>${m.annee}</td>
+                                    <td>${m.artiste.nom}</td>
+                                    <td>                                           
+                                        <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,6 +7,8 @@ package servlets;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import projetweb.gestionnaire.GestionnaireMorceau;
 import projetweb.gestionnaire.GestionnaireUtilisateur;
 import projetweb.modeles.Abonnement;
 import projetweb.modeles.Morceau;
@@ -29,6 +32,9 @@ public class ServletUtilisateur extends HttpServlet {
 
     @EJB
     private GestionnaireUtilisateur gestionnaireUtilisateur;
+
+    @EJB
+    private GestionnaireMorceau gestionnaireMorceau;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,13 +80,17 @@ public class ServletUtilisateur extends HttpServlet {
                 }
                 request.setAttribute("listeAchats", achats);
             }
-            if (action.equals("creerUtilisateursDeTest")) {
-                gestionnaireUtilisateur.creerUtilisateursDeTest();
-                Collection<Utilisateur> liste = gestionnaireUtilisateur.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                forwardTo = "compte.jsp?action=listerLesUtilisateurs";
-                message = "Liste des utilisateurs";
-            } else if (action.equals("checkConnexion")) {
+            if (action.equals("checkConnexion")) {
+                //Si il n'y a pas de morceaux dans la base de données, méthode utile seulement pour le développement
+                //Si le site était hébergé sur une base de donnée distante ce morceau de code n'existerait pas 
+                //Il se trouve aussi dans checkConnexion car le compte admin est cree si on rentre admin admin dans le formulaire de connexion
+                if (gestionnaireMorceau.getAllMorceaux(0).size() == 0) {
+                    try {
+                        gestionnaireMorceau.ajouterMorceauAvecPistes();
+                    } catch (Exception ex) {
+                        Logger.getLogger(ServletUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 boolean existe = gestionnaireUtilisateur.userExists(request.getParameter("log"), request.getParameter("pass"));
                 if (existe) {
                     session.setAttribute("login", request.getParameter("log"));
@@ -93,9 +103,6 @@ public class ServletUtilisateur extends HttpServlet {
 
                     Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
                     Collection<Morceau> achats = u.getAchats();
-                    for (Morceau m : achats) {
-                        System.out.println(m.toString());
-                    }
                     request.setAttribute("listeAchats", achats);
 
                     if (gestionnaireUtilisateur.testAbonnementValide(String.valueOf(u.getId())) == false) // Si l'abonnement est plus valide alors il repasse en gratuit
@@ -115,6 +122,15 @@ public class ServletUtilisateur extends HttpServlet {
 
                     Utilisateur u = gestionnaireUtilisateur.creeUtilisateur(request.getParameter("log"), request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("mdp"));
                     u.setAbonnement(gestionnaireUtilisateur.getAbonnementParNom("gratuit"));
+                    //Si il n'y a pas de morceaux dans la base de données, méthode utile seulement pour le développement
+                    //Si le site était hébergé sur une base de donnée distante ce morceau de code n'existerait pas                   String index = "";
+                    if (gestionnaireMorceau.getAllMorceaux(0).size() == 0) {
+                        try {
+                            gestionnaireMorceau.ajouterMorceauAvecPistes();
+                        } catch (Exception ex) {
+                            Logger.getLogger(ServletUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                     session.setAttribute("login", request.getParameter("log"));
                     session.setAttribute("mdp", request.getParameter("pass"));
                     session.setAttribute("idUtilisateur", u.getId());

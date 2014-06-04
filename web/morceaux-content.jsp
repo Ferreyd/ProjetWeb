@@ -35,7 +35,7 @@
                 </div>  
             </div>
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12 content">
 
                     <!-- DEBUT RESULTAT DE RECHERCHE -->
                     <c:if test="${param['action'] == 'recherche'}" >
