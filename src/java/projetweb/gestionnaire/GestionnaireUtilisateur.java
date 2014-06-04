@@ -124,29 +124,19 @@ public class GestionnaireUtilisateur {
         return u;
     }
 
-    public Abonnement getAbonnementParId(String id) {
-        Query q = em.createQuery("select a from Abonnement a where a.id='" + id + "'");
-        return (Abonnement) q.getResultList().get(0);
+    public Abonnement getAbonnementParId(String id) {       
+        return em.find(Abonnement.class, Integer.valueOf(id));
 
     }
 
-
     public Utilisateur getUtilisateurParId(String id) {
-        Query q = em.createQuery("select u from Utilisateur u where u.id='" + id + "'");
-        return (Utilisateur) q.getResultList().get(0);
+        return em.find(Utilisateur.class, Integer.valueOf(id));
     }
 
     public int getIdUtilisateurParLogin(String login) {
         Query q = em.createQuery("select u.id from Utilisateur u where u.login = '" + login + "'");
 
         return (int) q.getResultList().get(0);
-    }
-
-    public void creerAbonnementsTest() {
-        creeAbonnement("gratuit", 999, 0);
-        creeAbonnement("duo", 2, 0);
-        creeAbonnement("quinzaine", 15, 0);
-        creeAbonnement("cent jours", 100, 0);
     }
 
     public Abonnement creeAbonnement(String nom, int duree, int prix) {
