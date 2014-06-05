@@ -62,7 +62,6 @@ public class ServletUtilisateur extends HttpServlet {
             request.setAttribute("log", session.getAttribute("login"));
             request.setAttribute("nom", session.getAttribute("nom"));
             request.setAttribute("prenom", session.getAttribute("prenom"));
-            System.out.println("LOGIN ====>" + session.getAttribute("login") + " " + request.getAttribute("log"));
             request.setAttribute("idUtilisateur", gestionnaireUtilisateur.getIdUtilisateurParLogin((String) session.getAttribute("login")));
 
         }
@@ -75,9 +74,6 @@ public class ServletUtilisateur extends HttpServlet {
             if (action.equals("affiche")) {
                 Utilisateur u = gestionnaireUtilisateur.getUtilisateurParId(session.getAttribute("idUtilisateur").toString());
                 Collection<Morceau> achats = u.getAchats();
-                for (Morceau m : achats) {
-                    System.out.println(m.toString());
-                }
                 request.setAttribute("listeAchats", achats);
             }
             if (action.equals("checkConnexion")) {
@@ -85,7 +81,7 @@ public class ServletUtilisateur extends HttpServlet {
                 //Si le site était hébergé sur une base de donnée distante ce morceau de code n'existerait pas 
                 //Il se trouve aussi dans checkConnexion car le compte admin est cree si on rentre admin admin dans le formulaire de connexion
                 if (gestionnaireMorceau.getAllMorceaux(0).size() == 0) {
-                    try {
+                    try {                     
                         gestionnaireMorceau.ajouterMorceauAvecPistes();
                     } catch (Exception ex) {
                         Logger.getLogger(ServletUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,6 +122,7 @@ public class ServletUtilisateur extends HttpServlet {
                     //Si le site était hébergé sur une base de donnée distante ce morceau de code n'existerait pas                   String index = "";
                     if (gestionnaireMorceau.getAllMorceaux(0).size() == 0) {
                         try {
+                            System.out.println(request.getServletContext().getContextPath() + "/web/resources/liste.txt");
                             gestionnaireMorceau.ajouterMorceauAvecPistes();
                         } catch (Exception ex) {
                             Logger.getLogger(ServletUtilisateur.class.getName()).log(Level.SEVERE, null, ex);

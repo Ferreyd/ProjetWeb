@@ -52,7 +52,6 @@ public class ServletCompte extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
 
             String action = request.getParameter("action");
-            System.out.println("ACTION = " + action);
             String form = request.getParameter("form");
             String forwardTo = "compte.jsp";
             String message = "";

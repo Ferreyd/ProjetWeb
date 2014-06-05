@@ -84,11 +84,13 @@ public class GestionnaireMorceau {
 
         //String data = "C:\\Users\\Jeje\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
         String data = "C:\\Users\\Nicolas\\Documents\\NetBeansProjects\\ProjetWeb\\web\\resources\\liste.txt";
+        File f = new File(data);
+        System.out.println("f = " + f.getAbsolutePath() +" " +f.getName());
         FileInputStream fis = null;
         BufferedReader br = null;
         try {
             String ligne;
-            fis = new FileInputStream(data);
+            fis = new FileInputStream(f.getAbsolutePath());
             br = new BufferedReader(new InputStreamReader(fis));
 
             Morceau m = null;

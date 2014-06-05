@@ -86,10 +86,6 @@ public class ServletMorceau extends HttpServlet {
                     morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
 
                 }
-                for(Morceau m : morceaux)
-                {
-                    System.out.println("Chanson : " + m.getTitre() + " Nombre de pistes = " + m.getPistes().size());
-                }
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);
@@ -110,7 +106,7 @@ public class ServletMorceau extends HttpServlet {
                     request.setAttribute("listeMorceaux", morceaux);
                     request.setAttribute("index", index);
                     request.setAttribute("nbPages", nbPages);                   
-                    forwardTo="morceaux.jsp?action=afficherLesMorceaux";
+                    forwardTo="ServletPanier";
                 } catch (Exception e) {
                     e.getMessage();
                 }             
@@ -168,16 +164,13 @@ public class ServletMorceau extends HttpServlet {
             if (action.equals("ajoutMorceauPanier")) {
                 if (session.getAttribute("panier") != null) {
                     String valeur = session.getAttribute("panier").toString();
-                    System.out.println("Ancienne valeur de panier = " + valeur);
                     valeur += morceau_id + ";";
-                    session.setAttribute("panier", valeur);
-                    System.out.println("Nouvelle valeur de panier = " + valeur);
+                    session.setAttribute("panier", valeur);                
                 }else
                 {
                     session.setAttribute("panier","");                  
                     String valeur = morceau_id + ";";
                     session.setAttribute("panier", valeur);
-                    System.out.println("Nouvelle valeur de panier = " + valeur);  
                 }
 
                 forwardTo = "morceaux.jsp?action=rechercheParTitre";
