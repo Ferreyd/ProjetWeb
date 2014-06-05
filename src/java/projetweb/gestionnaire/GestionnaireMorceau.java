@@ -144,11 +144,13 @@ public class GestionnaireMorceau {
 
                             p = new Piste(ligne);
                             p.setMorceau(m);
+                            m.getPistes().add(p);
                             em.persist(p);
+
                         }
                     }
                 }
-
+  
                 em.persist(m);
 
             }
@@ -204,18 +206,18 @@ public class GestionnaireMorceau {
 
     //OK
     public Collection<Piste> getPistesByMorceau(String morceau_id) {
-        Morceau m = em.find(Morceau.class,  Integer.valueOf(morceau_id));
+        Morceau m = em.find(Morceau.class, Long.valueOf(morceau_id));
         return m.getPistes();
     }
 
     //OK
     public String getMorceauById(String morceau_id) {
-        Morceau m = em.find(Morceau.class,  Integer.valueOf(morceau_id));
+        Morceau m = em.find(Morceau.class, Long.valueOf(morceau_id));
         return m.getTitre();
     }
 
     public Morceau getMorceauByIdReturnAsMorceau(String morceau_id) {
-        return em.find(Morceau.class,  Integer.valueOf(morceau_id));
+        return em.find(Morceau.class, Integer.valueOf(morceau_id));
     }
 
     public Artiste getInfosArtiste(String id) {

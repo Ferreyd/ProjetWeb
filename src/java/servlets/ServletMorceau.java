@@ -59,7 +59,7 @@ public class ServletMorceau extends HttpServlet {
         
         if (action != null) {
             request.setAttribute("abonnement", session.getAttribute("abonnementUtilisateur"));
-            System.out.println("login = " + session.getAttribute("login").toString() + " ABONNEMENT LOL = " + request.getAttribute("abonnement"));
+           
             if(action.equals("afficherParInstrument")){
                 Collection<Morceau> morceaux;
                 double res = Math.ceil(gestionnaireMorceau.compteMorceauxByInstru(instru) / 10);
@@ -86,7 +86,10 @@ public class ServletMorceau extends HttpServlet {
                     morceaux = gestionnaireMorceau.getAllMorceaux((Integer.valueOf(10)) * Integer.parseInt(index));
 
                 }
-                
+                for(Morceau m : morceaux)
+                {
+                    System.out.println("Chanson : " + m.getTitre() + " Nombre de pistes = " + m.getPistes().size());
+                }
                 request.setAttribute("listeMorceaux", morceaux);
                 request.setAttribute("index", index);
                 request.setAttribute("nbPages", nbPages);

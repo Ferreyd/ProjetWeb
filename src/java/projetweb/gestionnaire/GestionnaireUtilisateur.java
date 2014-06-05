@@ -125,7 +125,7 @@ public class GestionnaireUtilisateur {
     }
 
     public Abonnement getAbonnementParId(String id) {       
-        return em.find(Abonnement.class, Integer.valueOf(id));
+        return em.find(Abonnement.class, Long.valueOf(id));
 
     }
 

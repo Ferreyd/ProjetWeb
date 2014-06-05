@@ -35,7 +35,7 @@
                         <h2>
                             Vos achats
                         </h2>
-                        <table class="table table-bordered table-striped" border="1">
+                        <table class="table table-bordered" border="1">
                             <thead>
                             <th>Titre</th>
                             <th>Genre</th>

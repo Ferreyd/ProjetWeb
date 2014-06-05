@@ -112,8 +112,6 @@ public class ServletPanier extends HttpServlet {
                         request.setAttribute("taillePanier", panier.size());
                         request.setAttribute("prix", prix);
                     }
-                    System.out.println("TAILLE PANIER = " + panier.size() + "PRIX = " + prix + " PANIER " + panier.toString());
-
                 }
                 request.setAttribute("listeMorceaux", listeMorceaux);
 

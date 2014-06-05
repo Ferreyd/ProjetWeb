@@ -8,9 +8,6 @@ package projetweb.modeles;
 import java.util.Collection;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,8 +19,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -48,10 +43,10 @@ public class Morceau implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "INSTRUMENT_PK", referencedColumnName = "id")})
     private Collection<Instrument> instruments = new ArrayList<Instrument>();
-    
+
     // Pistes qui composent le morceau
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "morceau")
-    private Collection<Piste> pistes;
+    @OneToMany(targetEntity = Piste.class, mappedBy = "morceau")
+    private Collection<Piste> pistes = new ArrayList<Piste>();
 
     @ManyToOne
     private Artiste artiste;
@@ -87,12 +82,12 @@ public class Morceau implements Serializable {
         this.instruments = instruments;
     }
 
-    public Collection<Piste> getPistes() {
-        return pistes;
-    }
-
     public void setPistes(Collection<Piste> pistes) {
         this.pistes = pistes;
+    }
+
+    public Collection<Piste> getPistes() {
+        return pistes;
     }
 
     public int getAnnee() {

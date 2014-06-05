@@ -46,14 +46,12 @@
                             </c:if>
                             <c:if test="${requestScope['nbResultatParMorceau'] != 0}" >  
                                 <h2>${requestScope['nbResultatParMorceau']} resultat(s) pour le titre "${param['champ_recherche']}"</h2>
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th><b>Titre</b></th>
-                                            <th><b>Artiste</b></th>
-                                            <th><b>Pistes</b></th>
-                                            <th></th>
-                                        </tr>
+                                    <th><b>Titre</b></th>
+                                    <th><b>Artiste</b></th>
+                                    <th><b>Pistes</b></th>
+                                    <th></th>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="m" items="${requestScope['resultatsParMorceau']}">
@@ -128,14 +126,14 @@
                             </c:if>
                             <c:if test="${requestScope['nbResultatParArtiste'] != 0}" >  
                                 <h2>${requestScope['nbResultatParArtiste']} resultat(s) pour l'artiste "${param['champ_recherche']}"</h2>
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th><b>Titre</b></th>
-                                            <th><b>Artiste</b></th>
-                                            <th><b>Pistes</b></th>
-                                            <th></th>
-                                        </tr>
+                                    <head>
+                                    <th><b>Titre</b></th>
+                                    <th><b>Artiste</b></th>
+                                    <th><b>Pistes</b></th>
+                                    <th></th>
+                                    </thead>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="m" items="${requestScope['resultatsParArtiste']}">
@@ -213,14 +211,12 @@
 
                         <h2>${param['instru']}</h2>
 
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <td><b>Titre</b></td>
-                                    <td><b>Artiste</b></td>
-                                    <td><b>Pistes</b></td>
-                                    <td></td>
-                                </tr>
+                            <th><b>Titre</b></th>
+                            <th><b>Artiste</b></th>
+                            <th><b>Pistes</b></th>
+                            <th></th>
                             </thead>
                             <tbody>
 
@@ -294,19 +290,15 @@
                     </c:if>
                     <!-- FIN PAR INSTRU -->
                     <!-- DEBUT MORCEAUX ET PISTES -->          
-                    <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" >               
-
-
+                    <c:if test="${param['action'] == 'afficherLesMorceauxEtPistes'}" > 
                         <h2>Tableau des morceaux</h2>
 
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered">
                             <thead>
-                                <tr>
-                                    <td><b>Titre</b></td>
-                                    <td><b>Artiste</b></td>
-                                    <td><b>Pistes</b></td>
-                                    <td></td>
-                                </tr>
+                            <th><b>Titre</b></th>
+                            <th><b>Artiste</b></th>
+                            <th><b>Pistes</b></th>
+                            <th></th>
                             </thead>
                             <tbody>
                                 <c:set var="nbPages" value="1"/>
@@ -314,23 +306,8 @@
                                 <c:forEach var="m" items="${requestScope['listeMorceaux']}">
                                     <tr>                                               
                                         <td>${m.titre}</td>
-                                        <td><a data-toggle="modal" href="#artiste${m.artiste.id}" >${m.artiste.nom}</a>
-                                            <div id="artiste{m.artiste.id}" class="modal hide fade in" style="display: none; ">
-                                                <div class="modal-header">
-                                                    <a class="close" data-dismiss="modal">×</a>
-                                                    <h3>${m.artiste.nom}</h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <h4>Text in a modal</h4>
-                                                    <p>You can add some text here.</p>		        
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a href="#" class="btn btn-success">Call to action</a>
-                                                    <a href="#" class="btn" data-dismiss="modal">Close</a>
-                                                </div>
-                                            </div>
+                                        <td><a href="ServletMorceau?action=ficheArtiste&artiste_id=${m.artiste.id}">${m.artiste.nom}
                                         </td>
-
                                         <td>
                                             <c:forEach var="p" varStatus="comptePiste" items="${m.pistes}">
                                                 <!-- NOMBRE DE PISTES DU MORCEAU -->
@@ -392,7 +369,7 @@
                         <div class="col-lg-12 infoArtiste">
 
                             <h3>Morceaux présent sur le site</h3>
-                            <table class="table table-bordered table-striped" border="1">
+                            <table class="table table-bordered" border="1">
                                 <tr>
                                     <th>Titre</th>
                                     <th>Genre</th>
@@ -405,7 +382,6 @@
                                         <td>${m.annee}</td>
                                         <td> 
                                             <a class="btn btn-success" href="ServletMorceau?action=ajoutMorceauPanier&id=${m.id}">Ajouter </a>
-                                            <button class="btn btn-info" id="showPistes${m.id}" onclick="javascript:show_hide('${m.id}')">Voir pistes</button>
                                             <c:if test="${abonnement != 'gratuit'}" >
                                                 <a class="btn btn-primary" href="http://mt5demo.gexsoft.com/music/${m.titre}">Ecouter</a>
                                             </c:if>

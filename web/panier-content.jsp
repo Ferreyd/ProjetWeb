@@ -17,7 +17,7 @@
         <div class="col-xs-2"></div>
         <div class="col-lg-8 content">
             <h2>Tableau des morceaux</h2>
-            <table class="table table-bordered table-striped" border="1">
+            <table class="table table-bordered" border="1">
                 <thead>
                 <th>Titre</th>
                 <th>Genre</th>
