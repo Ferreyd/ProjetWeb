@@ -41,7 +41,8 @@
                     <!-- DIV DESC-->
                     <div class="col-lg-8">
                         <h1>Ecoutez la musique autrement !</h1>
-                        <p>Sur Multitracksongs, vous pouvez écouter, découvrir et même vous offrir un chanson parmis un catalogue, <b>instruments par instruments</b>!<br/>
+                        <p>Sur Multitracksongs, vous pouvez écouter, découvrir et même vous offrir une chanson de notre catalogue, et en profiter instrument à instrument. 
+                            N'hesitez pas à vous abonner pour avoir un accès complet au site et bénéficier d'un nombre illimité de chanson...<br/>
                             <b>Multitracksongs</b>, votre meilleur partenaire musical !<br/>
                         <div class="col-lg-12">
                             <p>Cliquez sur une chanson pour tester notre service !</p>
